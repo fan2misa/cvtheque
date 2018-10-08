@@ -23,3 +23,12 @@
 /.docker/dockerfiles/database/data
 /.docker/dockerfiles/database/import
 ###< Docker ###
+
+###> npm ###
+/node_modules/
+###< npm ###
+
+###> Grunt ###
+/public/css/*
+/.sass-cache/
+###< Grunt ###
