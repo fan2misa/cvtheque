@@ -16,3 +16,7 @@ confirmation_inscription:
 
 deconnexion:
     path: /deconnexion
+
+dashboard:
+    path: /dashboard
+    controller: App\Controller\DashboardController::index
