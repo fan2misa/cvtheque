@@ -26,7 +26,7 @@ services:
             - "${SOURCE_ROOT_FOLDER}:/var/www"
         links:
             - database:database
-            - maildev:mailhost
+            - maildev:maildev
         environment:
             - PRODUCTION=false
 

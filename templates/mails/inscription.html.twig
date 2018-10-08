@@ -1,0 +1,15 @@
+{% extends 'mail.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <h1>Confirmation d'inscription</h1>
+    <p>
+        Bonjour {{ user.prenom }} {{ user.nom }},
+    </p>
+    <p>
+        <a href="{{ url('confirmation_inscription', {token: user.tokenInscription}) }}">
+            {{ url('confirmation_inscription', {token: user.tokenInscription}) }}
+        </a>
+    </p>
+{% endblock %}

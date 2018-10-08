@@ -9,3 +9,10 @@ connexion:
 inscription:
     path: /inscription
     controller: App\Controller\InscriptionController::index
+
+confirmation_inscription:
+    path: /confirmation-inscription/{token}
+    controller: App\Controller\InscriptionController::confirmationInscription
+
+deconnexion:
+    path: /deconnexion
