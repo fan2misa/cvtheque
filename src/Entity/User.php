@@ -62,6 +62,11 @@ class User implements UserInterface {
      */
     private $tokenInscription;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $avatarPath;
+
     public function __construct() {
         $this->dateInscription = new DateTime();
         $this->roles = [RoleEnum::ROLE_USER];
@@ -160,6 +165,16 @@ class User implements UserInterface {
 
     public function setTokenInscription($tokenInscription): self {
         $this->tokenInscription = $tokenInscription;
+
+        return $this;
+    }
+
+    public function getAvatarPath() {
+        return $this->avatarPath;
+    }
+
+    public function setAvatarPath($avatarPath): self {
+        $this->avatarPath = $avatarPath;
 
         return $this;
     }

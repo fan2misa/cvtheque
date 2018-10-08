@@ -20,3 +20,7 @@ deconnexion:
 dashboard:
     path: /dashboard
     controller: App\Controller\DashboardController::index
+
+profil:
+    path: /profil
+    controller: App\Controller\ProfilController::index
