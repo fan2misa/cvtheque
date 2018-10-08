@@ -30,5 +30,6 @@
 
 ###> Grunt ###
 /public/css/*
+/public/js/*
 /.sass-cache/
 ###< Grunt ###

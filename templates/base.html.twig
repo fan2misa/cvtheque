@@ -4,20 +4,27 @@
         <meta charset="UTF-8">
         <title>{% block title %}Bienvenue{% endblock %} | CVThèque</title>
         <link type="text/css" rel="stylesheet" href="{{ asset('css/main.css') }}" />
-    {% block stylesheets %}{% endblock %}
-</head>
+        {% block stylesheets %}{% endblock %}
+    </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="{{ path('home') }}">CVThèque</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbar-content">
             <ul class="navbar-nav ml-auto">
                 {% if is_granted('ROLE_USER') %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('deconnexion') }}">Déconnexion</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbar-compte-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true">
+                          Mon compte
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbar-compte-dropdown">
+                            <a class="dropdown-item" href="{{ path('profil') }}">Profil</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ path('deconnexion') }}">Déconnexion</a>
+                        </div>
                     </li>
                 {% else %}
                     <li class="nav-item">
@@ -40,6 +47,10 @@
     {% endfor %}
 
     {% block body %}{% endblock %}
+    
+    <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     {% block javascripts %}{% endblock %}
     </body>
 </html>

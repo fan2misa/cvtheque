@@ -3,15 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Enum\RoleEnum;
 use App\Form\InscriptionFormType;
 use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class InscriptionController extends AbstractController {
 
-    public function index(Request $request, UserService $userService) {
+    public function index(Request $request, UserService $userService, AuthorizationCheckerInterface $authChecker) {
+        
+        if ($authChecker->isGranted(RoleEnum::ROLE_USER)) {
+            return $this->redirectToRoute('dashboard');
+        }
+        
         $user = new User();
         $form = $this->createForm(InscriptionFormType::class, $user);
 
