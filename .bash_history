@@ -1,0 +1,9 @@
+./bin/phpunit 
+exit
+./bin/phpunit 
+cls
+clear
+./bin/phpunit 
+exit
+./bin/phpunit 
+exit

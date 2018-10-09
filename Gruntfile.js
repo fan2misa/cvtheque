@@ -1,5 +1,11 @@
+'use strict';
+
 module.exports = function (grunt) {
-    require('load-grunt-tasks')(grunt);
+
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.initConfig({
         sass: {

@@ -9,7 +9,7 @@ RUN apt-get install -y \
         libxrender1 \
         libfontconfig1
 
-RUN docker-php-ext-install pdo pdo_mysql
+RUN docker-php-ext-install pdo pdo_mysql zip
 
 ENV TZ Europe/Paris
 RUN cp /usr/share/zoneinfo/Europe/Paris /etc/localtime
