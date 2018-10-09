@@ -4,4 +4,4 @@
  * and open the template in the editor.
  */
 
-console.log('start');
+alert('boom');

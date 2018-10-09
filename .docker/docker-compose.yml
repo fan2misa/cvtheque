@@ -51,7 +51,7 @@ services:
     composer:
         image: composer/composer
         volumes:
-            - ../:/app/
+            - ${SOURCE_ROOT_FOLDER}:/app/
         links:
             - database
         environment:
@@ -61,6 +61,6 @@ services:
               - "MYSQL_DATABASE=${BDD_MYSQL_DATABASE}"
               
     npm:
-        image: digitallyseamless/nodejs-bower-grunt
+        build: ./dockerfiles/npm
         volumes:
-            - ../:/data/
+            - ${SOURCE_ROOT_FOLDER}:/data/
