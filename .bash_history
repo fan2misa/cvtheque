@@ -7,3 +7,5 @@ clear
 exit
 ./bin/phpunit 
 exit
+php bin/phpunit 
+exit
