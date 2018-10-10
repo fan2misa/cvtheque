@@ -1,0 +1,27 @@
+## YAML Template.
+---
+
+-
+    id: 1
+    nom: Wayne
+    prenom: Bruce
+    email: bruce.wayne@batman.com
+    password: azerty
+    enabled: 1
+    roles: ['ROLE_SUPER_ADMIN']
+-
+    id: 2
+    nom: Kent
+    prenom: Clark
+    email: clark.kent@superman.com
+    password: azerty
+    enabled: 1
+    roles: ['ROLE_USER']
+-
+    id: 3
+    nom: Croft
+    prenom: Lara
+    email: lara.croft@tombraider.com
+    password: azerty
+    enabled: 0
+    roles: ['ROLE_USER']

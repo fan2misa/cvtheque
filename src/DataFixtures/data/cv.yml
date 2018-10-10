@@ -1,0 +1,11 @@
+## YAML Template.
+---
+
+-
+    id: 1
+    nom: PDG
+    user_id: 1
+-
+    id: 2
+    nom: Journaliste
+    user_id: 2
