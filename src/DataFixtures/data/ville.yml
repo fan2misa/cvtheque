@@ -1,0 +1,13 @@
+## YAML Template.
+---
+
+-
+    id: 1
+    nom: Gotham
+    code_postal: 76480
+    pays: USA
+-
+    id: 2
+    nom: Metropolis
+    code_postal: 76481
+    pays: USA

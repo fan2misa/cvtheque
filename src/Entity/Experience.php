@@ -39,6 +39,11 @@ class Experience {
      */
     private $typeContrat;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ville")
+     */
+    private $ville;
+
     public function getId() {
         return $this->id;
     }
@@ -79,6 +84,16 @@ class Experience {
 
     public function setTypeContrat(string $typeContrat): self {
         $this->typeContrat = $typeContrat;
+
+        return $this;
+    }
+
+    public function getVille(): Ville {
+        return $this->ville;
+    }
+
+    public function setVille(Ville $ville): self {
+        $this->ville = $ville;
 
         return $this;
     }

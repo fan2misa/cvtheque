@@ -42,7 +42,8 @@ class CvFixture extends AbstractFixture implements DependentFixtureInterface {
                     $experience
                             ->setInformationsGenerales($informationsGenerales)
                             ->setTypeContrat(constant(TypeContratEnumType::class . '::' . $experienceData['type_contrat']))
-                            ->setEntreprise($this->getReference($this->getReferencePath(EntrepriseFixture::PREFIX_REFERENCE, $experienceData['entreprise_id'])));
+                            ->setEntreprise($this->getReference($this->getReferencePath(EntrepriseFixture::PREFIX_REFERENCE, $experienceData['entreprise_id'])))
+                            ->setVille($this->getReference($this->getReferencePath(VilleFixture::PREFIX_REFERENCE, $experienceData['ville_id'])));
                     
                     $entity->addExperience($experience);
                 }
@@ -64,6 +65,7 @@ class CvFixture extends AbstractFixture implements DependentFixtureInterface {
         return [
             UserFixture::class,
             EntrepriseFixture::class,
+            VilleFixture::class,
         ];
     }
 

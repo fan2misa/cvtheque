@@ -13,12 +13,14 @@
                 date_fin: 2018-06-10
             entreprise_id: 1
             type_contrat: CDI
+            ville_id: 1
         -
             informations_generales:
                 intitule_poste: Batman
                 date_debut: 2017-01-01
             entreprise_id: 2
             type_contrat: CDD
+            ville_id: 1
 -
     id: 2
     nom: Journaliste
