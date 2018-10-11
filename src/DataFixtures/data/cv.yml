@@ -5,6 +5,18 @@
     id: 1
     nom: PDG
     user_id: 1
+    experiences:
+        -
+            informations_generales:
+                intitule_poste: PDG
+                date_debut: 2016-09-01
+                date_fin: 2018-06-10
+            entreprise_id: 1
+        -
+            informations_generales:
+                intitule_poste: Batman
+                date_debut: 2017-01-01
+            entreprise_id: 2
 -
     id: 2
     nom: Journaliste

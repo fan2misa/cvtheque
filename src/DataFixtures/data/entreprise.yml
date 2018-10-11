@@ -1,0 +1,15 @@
+## YAML Template.
+---
+
+-
+    id: 1
+    nom: Wayne Enterprise
+    description: Description de Wayne Enterprise
+-
+    id: 2
+    nom: Manoir Wayne
+    description: Description de Manoir Wayne
+-
+    id: 3
+    nom: The Daily Planet
+    description: Description de The Daily Planet

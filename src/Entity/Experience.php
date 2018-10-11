@@ -37,7 +37,7 @@ class Experience {
         return $this->id;
     }
 
-    public function getInformationsGenerales() {
+    public function getInformationsGenerales(): ExperienceInformationsGenerales {
         return $this->informationsGenerales;
     }
 

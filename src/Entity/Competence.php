@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CompetenceRepository")
  */
-class Competence
-{
+class Competence {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -32,44 +32,38 @@ class Competence
      */
     private $domaine;
 
-    public function getId(): ?int
-    {
+    public function getId() {
         return $this->id;
     }
 
-    public function getNom(): ?string
-    {
+    public function getNom() {
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
-    {
+    public function setNom(string $nom): self {
         $this->nom = $nom;
 
         return $this;
     }
 
-    public function getNote(): ?int
-    {
+    public function getNote() {
         return $this->note;
     }
 
-    public function setNote(?int $note): self
-    {
+    public function setNote($note): self {
         $this->note = $note;
 
         return $this;
     }
 
-    public function getDomaine(): ?CompetenceDomaine
-    {
+    public function getDomaine() {
         return $this->domaine;
     }
 
-    public function setDomaine(?CompetenceDomaine $domaine): self
-    {
+    public function setDomaine(CompetenceDomaine $domaine): self {
         $this->domaine = $domaine;
 
         return $this;
     }
+
 }

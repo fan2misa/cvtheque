@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ExperienceInformationsGeneralesRepository")
  */
-class ExperienceInformationsGenerales
-{
+class ExperienceInformationsGenerales {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -36,56 +36,48 @@ class ExperienceInformationsGenerales
      */
     private $enCours;
 
-    public function getId(): ?int
-    {
+    public function getId() {
         return $this->id;
     }
 
-    public function getIntitulePoste(): ?string
-    {
+    public function getIntitulePoste() {
         return $this->intitulePoste;
     }
 
-    public function setIntitulePoste(string $intitulePoste): self
-    {
+    public function setIntitulePoste(string $intitulePoste): self {
         $this->intitulePoste = $intitulePoste;
 
         return $this;
     }
 
-    public function getDateDebut(): ?\DateTimeInterface
-    {
+    public function getDateDebut() {
         return $this->dateDebut;
     }
 
-    public function setDateDebut(\DateTimeInterface $dateDebut): self
-    {
+    public function setDateDebut(\DateTimeInterface $dateDebut): self {
         $this->dateDebut = $dateDebut;
 
         return $this;
     }
 
-    public function getDateFin(): ?\DateTimeInterface
-    {
+    public function getDateFin() {
         return $this->dateFin;
     }
 
-    public function setDateFin(?\DateTimeInterface $dateFin): self
-    {
+    public function setDateFin(\DateTimeInterface $dateFin): self {
         $this->dateFin = $dateFin;
 
         return $this;
     }
 
-    public function getEnCours(): ?bool
-    {
+    public function enCours() {
         return $this->enCours;
     }
 
-    public function setEnCours(bool $enCours): self
-    {
+    public function setEnCours(bool $enCours): self {
         $this->enCours = $enCours;
 
         return $this;
     }
+
 }

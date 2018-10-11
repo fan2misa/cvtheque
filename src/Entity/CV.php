@@ -45,7 +45,7 @@ class CV {
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Experience", mappedBy="cv", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Experience", mappedBy="cv", orphanRemoval=true, cascade={"persist"})
      */
     private $experiences;
 

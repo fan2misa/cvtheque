@@ -9,8 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CompetenceDomaineRepository")
  */
-class CompetenceDomaine
-{
+class CompetenceDomaine {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -28,23 +28,19 @@ class CompetenceDomaine
      */
     private $competences;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->competences = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
+    public function getId() {
         return $this->id;
     }
 
-    public function getNom(): ?string
-    {
+    public function getNom() {
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
-    {
+    public function setNom(string $nom): self {
         $this->nom = $nom;
 
         return $this;
@@ -53,13 +49,11 @@ class CompetenceDomaine
     /**
      * @return Collection|Competence[]
      */
-    public function getCompetences(): Collection
-    {
+    public function getCompetences(): Collection {
         return $this->competences;
     }
 
-    public function addCompetence(Competence $competence): self
-    {
+    public function addCompetence(Competence $competence): self {
         if (!$this->competences->contains($competence)) {
             $this->competences[] = $competence;
             $competence->setDomaine($this);
@@ -68,8 +62,7 @@ class CompetenceDomaine
         return $this;
     }
 
-    public function removeCompetence(Competence $competence): self
-    {
+    public function removeCompetence(Competence $competence): self {
         if ($this->competences->contains($competence)) {
             $this->competences->removeElement($competence);
             // set the owning side to null (unless already changed)
@@ -80,4 +73,5 @@ class CompetenceDomaine
 
         return $this;
     }
+
 }
