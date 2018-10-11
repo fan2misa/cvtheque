@@ -14,6 +14,7 @@
                     <h2 class="card-title">{{ experience.informationsGenerales.intitulePoste }}</h2>
                     <h3>{{ experience.entreprise.nom }}</h3>
                     <div>{{ experience_periode(experience) }}</div>
+                    <div>{{ experience.typeContrat | readable_enum  }}</div>
                 </div>
             </div>
         {% endfor %}

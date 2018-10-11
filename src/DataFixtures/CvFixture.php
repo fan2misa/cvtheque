@@ -3,12 +3,12 @@
 namespace App\DataFixtures;
 
 use App\DataFixtures\AbstractFixture;
+use App\DBAL\Types\TypeContratEnumType;
 use App\Entity\CV;
 use App\Entity\Experience;
 use App\Entity\ExperienceInformationsGenerales;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use DateTime;
 
 class CvFixture extends AbstractFixture implements DependentFixtureInterface {
 
@@ -38,9 +38,10 @@ class CvFixture extends AbstractFixture implements DependentFixtureInterface {
                     } else {
                         $informationsGenerales->setEnCours(TRUE);
                     }
-
+                    
                     $experience
                             ->setInformationsGenerales($informationsGenerales)
+                            ->setTypeContrat(constant(TypeContratEnumType::class . '::' . $experienceData['type_contrat']))
                             ->setEntreprise($this->getReference($this->getReferencePath(EntrepriseFixture::PREFIX_REFERENCE, $experienceData['entreprise_id'])));
                     
                     $entity->addExperience($experience);

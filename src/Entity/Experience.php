@@ -33,6 +33,12 @@ class Experience {
      */
     private $cv;
 
+    /**
+     * @ORM\Column(type="TypeContratEnumType")
+     * @Fresh\DoctrineEnumBundle\Validator\Constraints\Enum(entity="App\DBAL\Types\TypeContratEnumType")
+     */
+    private $typeContrat;
+
     public function getId() {
         return $this->id;
     }
@@ -63,6 +69,16 @@ class Experience {
 
     public function setCv($cv): self {
         $this->cv = $cv;
+
+        return $this;
+    }
+
+    public function getTypeContrat() {
+        return $this->typeContrat;
+    }
+
+    public function setTypeContrat(string $typeContrat): self {
+        $this->typeContrat = $typeContrat;
 
         return $this;
     }
