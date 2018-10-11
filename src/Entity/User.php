@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Enum\RoleEnum;
 use DateTime;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -67,10 +69,16 @@ class User implements UserInterface {
      */
     private $avatarPath;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CV", mappedBy="user", orphanRemoval=true)
+     */
+    private $cvs;
+
     public function __construct() {
         $this->dateInscription = new DateTime();
         $this->roles = [RoleEnum::ROLE_USER];
         $this->enabled = FALSE;
+        $this->cvs = new ArrayCollection();
     }
 
     public function getId() {
@@ -95,6 +103,10 @@ class User implements UserInterface {
         $this->prenom = $prenom;
 
         return $this;
+    }
+    
+    public function getFullname() {
+        return $this->prenom . ' ' . $this->nom;
     }
 
     public function getEmail() {
@@ -175,6 +187,37 @@ class User implements UserInterface {
 
     public function setAvatarPath($avatarPath): self {
         $this->avatarPath = $avatarPath;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CV[]
+     */
+    public function getCvs(): Collection
+    {
+        return $this->cvs;
+    }
+
+    public function addCv(CV $cv): self
+    {
+        if (!$this->cvs->contains($cv)) {
+            $this->cvs[] = $cv;
+            $cv->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCv(CV $cv): self
+    {
+        if ($this->cvs->contains($cv)) {
+            $this->cvs->removeElement($cv);
+            // set the owning side to null (unless already changed)
+            if ($cv->getUser() === $this) {
+                $cv->setUser(null);
+            }
+        }
 
         return $this;
     }

@@ -36,4 +36,8 @@ services:
     App\Service\UserService:
         public: true
         arguments: ['@doctrine', '@security.password_encoder', '@mailer', '@twig']
+    
+    App\Service\CVService:
+        public: true
+        arguments: []
         
