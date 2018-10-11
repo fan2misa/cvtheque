@@ -38,8 +38,7 @@ class Entreprise {
      */
     private $experiences;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->experiences = new ArrayCollection();
     }
 
@@ -80,13 +79,11 @@ class Entreprise {
     /**
      * @return Collection|Experience[]
      */
-    public function getExperiences(): Collection
-    {
+    public function getExperiences(): Collection {
         return $this->experiences;
     }
 
-    public function addExperience(Experience $experience): self
-    {
+    public function addExperience(Experience $experience): self {
         if (!$this->experiences->contains($experience)) {
             $this->experiences[] = $experience;
             $experience->setEntreprise($this);
@@ -95,8 +92,7 @@ class Entreprise {
         return $this;
     }
 
-    public function removeExperience(Experience $experience): self
-    {
+    public function removeExperience(Experience $experience): self {
         if ($this->experiences->contains($experience)) {
             $this->experiences->removeElement($experience);
             // set the owning side to null (unless already changed)

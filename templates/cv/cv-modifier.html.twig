@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifiez votre CV{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {{ include('.inc/cv/formulaire.html.twig', { 'cv': cv, 'form': form }) }}
+    </div>
+{% endblock %}

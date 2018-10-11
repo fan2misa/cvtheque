@@ -104,6 +104,10 @@ class User implements UserInterface {
 
         return $this;
     }
+    
+    public function getFullname() {
+        return $this->prenom . ' ' . $this->nom;
+    }
 
     public function getEmail() {
         return $this->email;

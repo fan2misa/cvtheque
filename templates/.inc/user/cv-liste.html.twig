@@ -1,0 +1,18 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>CV</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cv in user.cvs %}
+            <tr>
+                <td>{{ cv.nom }}</td>
+                <td>
+                    <a href="{{ path('cv_modifier', {id: cv.id}) }}" class="btn btn-primary">Modifier</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

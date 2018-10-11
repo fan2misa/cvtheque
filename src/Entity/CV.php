@@ -26,7 +26,7 @@ class CV {
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $avatar;
+    private $avatarPath;
 
     /**
      * @ORM\Column(type="simple_array", nullable=true)
@@ -44,6 +44,15 @@ class CV {
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Experience", mappedBy="cv", orphanRemoval=true)
+     */
+    private $experiences;
+
+    public function __construct() {
+        $this->experiences = new ArrayCollection();
+    }
+
     public function getId() {
         return $this->id;
     }
@@ -58,12 +67,12 @@ class CV {
         return $this;
     }
 
-    public function getAvatar() {
-        return $this->avatar;
+    public function getAvatarPath() {
+        return $this->avatarPath;
     }
 
-    public function setAvatar($avatar): self {
-        $this->avatar = $avatar;
+    public function setAvatarPath($avatarPath): self {
+        $this->avatarPath = $avatarPath;
 
         return $this;
     }
@@ -94,6 +103,34 @@ class CV {
 
     public function setUser($user): self {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Experience[]
+     */
+    public function getExperiences(): Collection {
+        return $this->experiences;
+    }
+
+    public function addExperience(Experience $experience): self {
+        if (!$this->experiences->contains($experience)) {
+            $this->experiences[] = $experience;
+            $experience->setCv($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExperience(Experience $experience): self {
+        if ($this->experiences->contains($experience)) {
+            $this->experiences->removeElement($experience);
+            // set the owning side to null (unless already changed)
+            if ($experience->getCv() === $this) {
+                $experience->setCv(null);
+            }
+        }
 
         return $this;
     }

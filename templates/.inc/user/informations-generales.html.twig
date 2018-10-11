@@ -1,0 +1,14 @@
+<div class="card">
+    <div class="card-body">
+        <div class="media">
+            <img class="mr-3" src="{{ user_avatar(user) }}" alt="Generic placeholder image">
+            <div class="media-body">
+                <h1 class="mt-0">{{ user.fullname }}</h1>
+                <dl>
+                    <dd>{{ user.cvs | length }} CV</dd>
+                </dl>
+                <a href="{{ path('cv_ajouter') }}" class="btn btn-primary btn-lg btn-block" role="button">Ajouter un CV</a>
+            </div>
+        </div>
+    </div>
+</div>

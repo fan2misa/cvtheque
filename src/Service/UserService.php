@@ -33,7 +33,7 @@ class UserService {
 
     public function registration(User $user) {
         $user->setTokenInscription($this->generateToken());
-        $user->setPassword($this->encodePassword($user, $user->getPassword()));
+        $user->setPassword($this->passwordEncoder->encodePassword($user, $user->getPassword()));
         $this->doctrine->getManager()->persist($user);
         $this->doctrine->getManager()->flush();
         $this->sendMailConfirmationInscription($user);
@@ -41,8 +41,15 @@ class UserService {
     
     public function enable(User $user) {
         $user->setEnabled(TRUE);
+        $user->setTokenInscription(NULL);
         $this->doctrine->getManager()->persist($user);
         $this->doctrine->getManager()->flush();
+    }
+    
+    public function getAvatar(User $user) {
+        return $user->getAvatarPath()
+                ? $user->getAvatarPath()
+                : "https://dummyimage.com/100x120/ecf0f1/7f8c8d";
     }
 
     private function sendMailConfirmationInscription(User $user) {
@@ -52,10 +59,6 @@ class UserService {
                 ->setBody($this->getTemplateConfirmationInscription($user), 'text/html');
         
         $this->mailer->send($message);
-    }
-    
-    private function encodePassword(User $user, string $password) {
-        return $this->passwordEncoder->encodePassword($user, $password);
     }
     
     private function getTemplateConfirmationInscription(User $user) {

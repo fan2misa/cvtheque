@@ -24,3 +24,13 @@ dashboard:
 profil:
     path: /profil
     controller: App\Controller\ProfilController::index
+
+cv_ajouter:
+    path: /cv/ajouter
+    controller: App\Controller\CV\AjouterController::index
+
+cv_modifier:
+    path: /cv/modifier/{id}
+    controller: App\Controller\CV\ModifierController::index
+    requirements:
+        id: \d+

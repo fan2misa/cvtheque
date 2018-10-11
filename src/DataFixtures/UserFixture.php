@@ -2,16 +2,19 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\User;
 use App\DataFixtures\AbstractFixture;
+use App\Entity\User;
+use App\Service\UserService;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class UserFixture extends AbstractFixture {
 
+    private $userService;
+
     const PREFIX_REFERENCE = 'user';
     
-    public function getOrder(): integer {
-        
+    public function __construct(UserService $userService) {
+        $this->userService = $userService;
     }
 
     public function load(ObjectManager $manager) {
@@ -26,12 +29,10 @@ class UserFixture extends AbstractFixture {
                     ->setEnabled(!!$data['enabled'])
                     ->setRoles($data['roles']);
             
-            $manager->persist($entity);
+            $this->userService->registration($entity);
             
             $this->addReference($this->getReferencePath(self::PREFIX_REFERENCE, $data['id']), $entity);
         }
-        
-        $manager->flush();
     }
 
     protected function getYamlPath() {

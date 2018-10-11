@@ -27,30 +27,42 @@ class Experience {
      */
     private $entreprise;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CV", inversedBy="experiences")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $cv;
+
     public function getId() {
         return $this->id;
     }
 
-    public function getInformationsGenerales(): ?ExperienceInformationsGenerales
-    {
+    public function getInformationsGenerales() {
         return $this->informationsGenerales;
     }
 
-    public function setInformationsGenerales(ExperienceInformationsGenerales $informationsGenerales): self
-    {
+    public function setInformationsGenerales(ExperienceInformationsGenerales $informationsGenerales): self {
         $this->informationsGenerales = $informationsGenerales;
 
         return $this;
     }
 
-    public function getEntreprise(): ?Entreprise
-    {
+    public function getEntreprise() {
         return $this->entreprise;
     }
 
-    public function setEntreprise(?Entreprise $entreprise): self
-    {
+    public function setEntreprise($entreprise): self {
         $this->entreprise = $entreprise;
+
+        return $this;
+    }
+
+    public function getCv() {
+        return $this->cv;
+    }
+
+    public function setCv($cv): self {
+        $this->cv = $cv;
 
         return $this;
     }
