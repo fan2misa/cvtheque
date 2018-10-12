@@ -29,12 +29,12 @@ class CV {
     private $avatarPath;
 
     /**
-     * @ORM\Column(type="simple_array", nullable=true)
+     * @ORM\Column(type="SituationProfessionnelleEnumType", nullable=true)
      */
     private $situationProfessionnelle;
 
     /**
-     * @ORM\Column(type="simple_array", nullable=true)
+     * @ORM\Column(type="DisponibiliteEnumType", nullable=true)
      */
     private $disponibilite;
 
@@ -49,8 +49,14 @@ class CV {
      */
     private $experiences;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CompetenceDomaine", mappedBy="cv", orphanRemoval=true, cascade={"persist"})
+     */
+    private $domainesCompetence;
+
     public function __construct() {
         $this->experiences = new ArrayCollection();
+        $this->domainesCompetence = new ArrayCollection();
     }
 
     public function getId() {
@@ -77,21 +83,21 @@ class CV {
         return $this;
     }
 
-    public function getSituationProfessionnelle() {
+    public function getSituationProfessionnelle(): string {
         return $this->situationProfessionnelle;
     }
 
-    public function setSituationProfessionnelle(array $situationProfessionnelle): self {
+    public function setSituationProfessionnelle(string $situationProfessionnelle): self {
         $this->situationProfessionnelle = $situationProfessionnelle;
 
         return $this;
     }
 
-    public function getDisponibilite() {
+    public function getDisponibilite(): string {
         return $this->disponibilite;
     }
 
-    public function setDisponibilite(array $disponibilite): self {
+    public function setDisponibilite(string $disponibilite): self {
         $this->disponibilite = $disponibilite;
 
         return $this;
@@ -129,6 +135,34 @@ class CV {
             // set the owning side to null (unless already changed)
             if ($experience->getCv() === $this) {
                 $experience->setCv(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CompetenceDomaine[]
+     */
+    public function getDomainesCompetence(): Collection {
+        return $this->domainesCompetence;
+    }
+
+    public function addDomaineCompetence(CompetenceDomaine $domaineCompetence): self {
+        if (!$this->domainesCompetence->contains($domaineCompetence)) {
+            $this->domainesCompetence[] = $domaineCompetence;
+            $domaineCompetence->setCv($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDomaineCompetence(CompetenceDomaine $domaineCompetence): self {
+        if ($this->domainesCompetence->contains($domaineCompetence)) {
+            $this->domainesCompetence->removeElement($domaineCompetence);
+            // set the owning side to null (unless already changed)
+            if ($domaineCompetence->getCv() === $this) {
+                $domaineCompetence->setCv(null);
             }
         }
 

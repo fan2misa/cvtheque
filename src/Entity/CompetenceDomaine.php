@@ -24,9 +24,15 @@ class CompetenceDomaine {
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Competence", mappedBy="domaine", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Competence", mappedBy="domaine", orphanRemoval=true, cascade={"persist"})
      */
     private $competences;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CV", inversedBy="domaines")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $cv;
 
     public function __construct() {
         $this->competences = new ArrayCollection();
@@ -70,6 +76,16 @@ class CompetenceDomaine {
                 $competence->setDomaine(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCv(): CV {
+        return $this->cv;
+    }
+
+    public function setCv(CV $cv): self {
+        $this->cv = $cv;
 
         return $this;
     }

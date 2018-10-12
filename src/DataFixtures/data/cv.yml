@@ -5,6 +5,8 @@
     id: 1
     nom: PDG
     user_id: 1
+    situation_professionnelle: EN_POSTE
+    disponibilite: OPPORTUNITE
     experiences:
         -
             informations_generales:
@@ -21,6 +23,16 @@
             entreprise_id: 2
             type_contrat: CDD
             ville_id: 1
+    domaines_competence:
+        -
+            nom: Armes
+            competences:
+                -
+                    nom: Poing
+                    note: 5
+                -
+                    nom: Batarang
+                    note: 4
 -
     id: 2
     nom: Journaliste

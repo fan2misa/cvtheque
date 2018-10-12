@@ -5,6 +5,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.initConfig({
@@ -38,13 +39,26 @@ module.exports = function (grunt) {
                 dest: 'public/js/main.js'
             }
         },
+        copy: {
+            fontAwesome: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'node_modules/font-awesome/fonts/',
+                        src: ['**/*'],
+                        dest: 'public/fonts/'
+                    }
+                ]
+            }
+        },
         watch: {
             styles: {
                 files: [
                     'assets/scss/main.scss',
-                    'assets/scss/**/*.scss'
+                    'assets/scss/**/*.scss',
+                    'assets/js/**/*.js'
                 ],
-                tasks: ['sass'],
+                tasks: ['copy', 'sass', 'concat', 'uglify'],
                 options: {
                     nospawn: true
                 }
@@ -52,6 +66,6 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', ['sass', 'concat', 'uglify']);
+    grunt.registerTask('default', ['copy', 'sass', 'concat', 'uglify']);
     grunt.registerTask('watch', ['default', 'watch']);
 };

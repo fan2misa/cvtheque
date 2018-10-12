@@ -9,6 +9,13 @@
     password: azerty
     enabled: 1
     roles: ['ROLE_SUPER_ADMIN']
+    contacts:
+        -
+            type: EMAIL
+            valeur: bruce.wayne@batman.com
+        -
+            type: TEL_MOBILE
+            valeur: "0102030405"
 -
     id: 2
     nom: Kent
@@ -17,6 +24,16 @@
     password: azerty
     enabled: 1
     roles: ['ROLE_USER']
+    contacts:
+        -
+            type: EMAIL
+            valeur: clark.kent@superman.com
+        -
+            type: TEL_MOBILE
+            valeur: "0102030406"
+        -
+            type: SKYPE
+            valeur: "0102030407"
 -
     id: 3
     nom: Croft
@@ -25,3 +42,10 @@
     password: azerty
     enabled: 0
     roles: ['ROLE_USER']
+    contacts:
+        -
+            type: EMAIL
+            valeur: lara.croft@tombraider.com
+        -
+            type: TEL_MOBILE
+            valeur: "0102030408"

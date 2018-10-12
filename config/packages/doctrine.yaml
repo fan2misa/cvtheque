@@ -18,6 +18,9 @@ doctrine:
         url: '%env(resolve:DATABASE_URL)%'
         types:
             TypeContratEnumType: App\DBAL\Types\TypeContratEnumType
+            ContactEnumType: App\DBAL\Types\ContactEnumType
+            SituationProfessionnelleEnumType: App\DBAL\Types\SituationProfessionnelleEnumType
+            DisponibiliteEnumType: App\DBAL\Types\DisponibiliteEnumType
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore

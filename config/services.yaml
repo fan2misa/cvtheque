@@ -40,4 +40,8 @@ services:
     App\Service\CVService:
         public: true
         arguments: []
+    
+    App\Service\ContactService:
+        public: true
+        arguments: []
         

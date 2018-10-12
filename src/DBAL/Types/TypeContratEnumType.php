@@ -39,7 +39,4 @@ class TypeContratEnumType extends AbstractEnumType {
         self::AUTRE => "Autre",
     ];
 
-    public static function getLabel($const) {
-        return self::$choices[$const];
-    }
 }

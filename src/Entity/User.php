@@ -74,11 +74,17 @@ class User implements UserInterface {
      */
     private $cvs;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Contact", mappedBy="user", orphanRemoval=true, cascade={"persist"})
+     */
+    private $contacts;
+
     public function __construct() {
         $this->dateInscription = new DateTime();
         $this->roles = [RoleEnum::ROLE_USER];
         $this->enabled = FALSE;
         $this->cvs = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
     }
 
     public function getId() {
@@ -216,6 +222,37 @@ class User implements UserInterface {
             // set the owning side to null (unless already changed)
             if ($cv->getUser() === $this) {
                 $cv->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contact[]
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts[] = $contact;
+            $contact->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contacts->contains($contact)) {
+            $this->contacts->removeElement($contact);
+            // set the owning side to null (unless already changed)
+            if ($contact->getUser() === $this) {
+                $contact->setUser(null);
             }
         }
 
