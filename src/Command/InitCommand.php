@@ -22,11 +22,11 @@ class InitCommand extends Command {
 
     protected function execute(InputInterface $input, OutputInterface $output) {
         $io = new SymfonyStyle($input, $output);
-
+        $io->section("Initialisation de l'application");
+        
         $this->removeFiles($io, $output);
         $this->dropDatabase($io, $output);
         $this->createDatabase($io, $output);
-        $this->executeSchema($io, $output);
         $this->executeMigration($io, $output);
 
         if ($input->getOption('test')) {
@@ -35,55 +35,47 @@ class InitCommand extends Command {
     }
 
     private function removeFiles(SymfonyStyle $io, OutputInterface $output) {
-        $io->section("Suppression des fichiers");
         $fileSystem = new \Symfony\Component\Filesystem\Filesystem();
         $folders = [];
-                
         foreach ($folders as $folder) {
             $fileSystem->remove($folder);
             $fileSystem->mkdir($folder);
         }
+        $io->success("Suppression des fichiers effectué");
     }
     
     private function dropDatabase(SymfonyStyle $io, OutputInterface $output) {
-        $io->section("Drop de la base de données");
         $command = $this->getApplication()->find('doctrine:database:drop');
-        $argument = new ArrayInput(['--force' => true]);
+        $argument = new ArrayInput([
+            '--force' => true
+        ]);
         $command->run($argument, $output);
+        $io->success("Drop de la base de données effectué");
     }
 
     private function createDatabase(SymfonyStyle $io, OutputInterface $output) {
-        $io->section("Création de la base de données");
         $command = $this->getApplication()->find('doctrine:database:create');
         $argument = new ArrayInput([]);
         $command->run($argument, $output);
-    }
-
-    private function executeSchema(SymfonyStyle $io, OutputInterface $output) {
-        $io->section("Création des tables dans la base de données");
-        $command = $this->getApplication()->find('doctrine:schema:create');
-        $argument = new ArrayInput([]);
-        $argument->setInteractive(false);
-        $command->run($argument, $output);
+        $io->success("Création de la base de données effectué");
     }
     
     private function executeMigration(SymfonyStyle $io, OutputInterface $output) {
-        $io->section("Execution des migrations");
-        $command = $this->getApplication()->find('doctrine:migrations:version');
+        $command = $this->getApplication()->find('doctrine:migrations:migrate');
         $argument = new ArrayInput([
-            '--add' => true,
-            '--all' => true
+            '--no-interaction' => true
         ]);
         $argument->setInteractive(false);
         $command->run($argument, $output);
+        $io->success("Execution des migrations effectué");
     }
     
     private function executeFixture(SymfonyStyle $io, OutputInterface $output) {
-        $io->section("Ajout du jeu de test");
         $command = $this->getApplication()->find('doctrine:fixtures:load');
         $argument = new ArrayInput([
             '--append' => true
         ]);
         $command->run($argument, $output);
+        $io->success("Ajout du jeu de test effectué");
     }
 }

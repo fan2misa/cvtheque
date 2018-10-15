@@ -23,7 +23,7 @@ class Experience {
     private $informationsGenerales;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Entreprise", inversedBy="experiences")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Entreprise", inversedBy="experiences", cascade={"persist"})
      */
     private $entreprise;
 
@@ -40,7 +40,7 @@ class Experience {
     private $typeContrat;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Ville")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ville", cascade={"persist"})
      */
     private $ville;
 
@@ -48,51 +48,96 @@ class Experience {
         return $this->id;
     }
 
-    public function getInformationsGenerales(): ExperienceInformationsGenerales {
+    /**
+     * 
+     * @return \App\Entity\ExperienceInformationsGenerales
+     */
+    public function getInformationsGenerales() {
         return $this->informationsGenerales;
     }
 
+    /**
+     * 
+     * @param \App\Entity\ExperienceInformationsGenerales $informationsGenerales
+     * @return \self
+     */
     public function setInformationsGenerales(ExperienceInformationsGenerales $informationsGenerales): self {
         $this->informationsGenerales = $informationsGenerales;
 
         return $this;
     }
 
+    /**
+     * 
+     * @return \App\Entity\Entreprise
+     */
     public function getEntreprise() {
         return $this->entreprise;
     }
 
+    /**
+     * 
+     * @param \App\Entity\Entreprise $entreprise
+     * @return \self
+     */
     public function setEntreprise($entreprise): self {
         $this->entreprise = $entreprise;
 
         return $this;
     }
 
+    /**
+     * 
+     * @return \App\Entity\CV
+     */
     public function getCv() {
         return $this->cv;
     }
 
+    /**
+     * 
+     * @param \App\Entity\CV $cv
+     * @return \self
+     */
     public function setCv($cv): self {
         $this->cv = $cv;
 
         return $this;
     }
 
+    /**
+     * 
+     * @return string
+     */
     public function getTypeContrat() {
         return $this->typeContrat;
     }
 
+    /**
+     * 
+     * @param string $typeContrat
+     * @return \self
+     */
     public function setTypeContrat(string $typeContrat): self {
         $this->typeContrat = $typeContrat;
 
         return $this;
     }
 
-    public function getVille(): Ville {
+    /**
+     * 
+     * @return \App\Entity\Ville
+     */
+    public function getVille() {
         return $this->ville;
     }
 
-    public function setVille(Ville $ville): self {
+    /**
+     * 
+     * @param \App\Entity\Ville $ville
+     * @return \self
+     */
+    public function setVille($ville): self {
         $this->ville = $ville;
 
         return $this;

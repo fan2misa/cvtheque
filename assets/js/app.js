@@ -4,4 +4,21 @@
  * and open the template in the editor.
  */
 
-alert('boom');
+$(function () {
+
+    $('.modal').on('shown.bs.modal', function () {
+        if (typeof $(this).attr('data-prototype') !== "undefined") {
+            var index = $('[data-container=' + $(this).attr('data-type-container') + '] .modal').length;
+            var form = $(this).attr('data-prototype');
+            $(this).find('.modal-body').html(form.replace(/__name__/g, index));
+        }
+    });
+
+    $('.modal').on('hide.bs.modal', function () {
+        if (typeof $(this).attr('data-prototype') !== "undefined") {
+            $(this).find('.modal-body').empty();
+        }
+    });
+});
+
+    

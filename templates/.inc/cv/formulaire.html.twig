@@ -1,76 +1,63 @@
-<div class="row">
-    <div class="col-3">
-        <div class="card">
-            <div class="card-body">
-                <img class="mx-auto d-block img-fluid" src="{{ cv_avatar(cv) }}" alt="Generic placeholder image" />
+{{ form_start(form) }}
+<div class="modal" id="modal-generale" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    {% for contact in cv.user.contacts %}
-                        <div class="col">
-                            <div class="text-center" data-container="body" data-toggle="popover" data-content="{{ contact.valeur }}">
-                                <i class="{{ contact | contact_icon_class }} fa-fw" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
+            <div class="modal-body">
+                {{ include('.inc/cv/subform/formulaire-generale.html.twig', { 'form': form }) }}
             </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <dl>
-                        <dd>{{ cv.situationProfessionnelle | readable_enum }}</dd>
-                        <dd>{{ cv.disponibilite | readable_enum }}</dd>
-                    </dl>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>
         </div>
     </div>
-    <div class="col-6">
-        <h1>
-            <i class="fa fa-briefcase" aria-hidden="true"></i>
-            Experiences
-        </h1>
-        {% for experience in cv.experiences %}
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title">{{ experience.informationsGenerales.intitulePoste }}</h2>
-                    <h3>{{ experience.entreprise.nom }}</h3>
-                    <div>{{ experience_periode(experience) }}</div>
-                    <div>
-                        <span class="badge badge-secondary">
-                            {{ experience.typeContrat | readable_enum  }}
-                        </span>
-                        <span class="badge badge-secondary">
-                            {{ experience.ville.nom  }}
-                        </span>
+</div>
+<div data-container="experience">
+    {% for experienceField in form.experiences %}
+        <div class="modal" id="modal-experience-{{ experienceField.vars.value.id }}" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modifier l'expérience</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ include('.inc/cv/subform/formulaire-experience.html.twig', { 'form': experienceField }) }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
                     </div>
                 </div>
             </div>
-        {% endfor %}
-    </div>
-    <div class="col-3">
-        <h1>
-            <i class="fa fa-id-card-o" aria-hidden="true"></i>
-            Compétences
-        </h1>
-        {% for domaineCompetence in cv.domainesCompetence %}
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title">{{ domaineCompetence.nom }}</h2>
-                    <ul>
-                        {% for competence in domaineCompetence.competences %}
-                            <li>
-                                {{ competence.nom }}
-                                {{ competence.note }}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="modal" id="modal-experience-new" tabindex="-1" role="dialog" data-type-container="experience" data-prototype="{{ include('.inc/cv/subform/formulaire-experience.html.twig', { 'form': form.experiences.vars.prototype }) | e}}">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ajouter une nouvelle expérience</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-        {% endfor %}
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
     </div>
 </div>
+
+{{ form_end(form) }}

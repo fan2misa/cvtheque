@@ -3,8 +3,60 @@
 
 -
     id: 1
-    nom: PDG
+    nom: Développeur web
     user_id: 1
+    situation_professionnelle: EN_POSTE
+    disponibilite: OPPORTUNITE
+    experiences:
+        -
+            informations_generales:
+                intitule_poste: Développeur web
+                date_debut: 2011-03-01
+                date_fin: 2013-06-01
+            entreprise_id: 1
+            type_contrat: CDD
+            ville_id: 1
+        -
+            informations_generales:
+                intitule_poste: Développeur web
+                date_debut: 2013-06-01
+                date_fin: 2015-11-01
+            entreprise_id: 2
+            type_contrat: CDI
+            ville_id: 2
+    domaines_competence:
+        -
+            nom: Framework
+            competences:
+                - { nom: Symfony, note: 4.5 }
+                - { nom: CodeIgniter, note: 4 }
+                - { nom: Slim Framework, note: 3.5 }
+        -
+            nom: Programmation web
+            competences:
+                - { nom: HTML5, note: 4.5 }
+                - { nom: CSS3, note: 4 }
+                - { nom: PHP, note: 4.5 }
+                - { nom: Java, note: 3.5 }
+                - { nom: Javascript, note: 4 }
+                - { nom: SQL, note: 4 }
+                - { nom: C/C++, note: 2.5 }
+        -
+            nom: CMS
+            competences:
+                - { nom: Drupal, note: 3.5 }
+                - { nom: WordPress, note: 3.5 }
+        -
+            nom: Autres
+            competences:
+                - { nom: UML, note: 4 }
+                - { nom: MVC, note: 4.5 }
+                - { nom: Git, note: 4 }
+                - { nom: Jenkins, note: 3 }
+-
+    id: 2
+    nom: PDG
+    user_id: 2
     situation_professionnelle: EN_POSTE
     disponibilite: OPPORTUNITE
     experiences:
@@ -13,27 +65,23 @@
                 intitule_poste: PDG
                 date_debut: 2016-09-01
                 date_fin: 2018-06-10
-            entreprise_id: 1
+            entreprise_id: 3
             type_contrat: CDI
-            ville_id: 1
+            ville_id: 3
         -
             informations_generales:
                 intitule_poste: Batman
                 date_debut: 2017-01-01
-            entreprise_id: 2
+            entreprise_id: 4
             type_contrat: CDD
-            ville_id: 1
+            ville_id: 3
     domaines_competence:
         -
             nom: Armes
             competences:
-                -
-                    nom: Poing
-                    note: 5
-                -
-                    nom: Batarang
-                    note: 4
+                - { nom: Poing, note: 5 }
+                - { nom: Batarang, note: 4 }
 -
-    id: 2
+    id: 3
     nom: Journaliste
-    user_id: 2
+    user_id: 3

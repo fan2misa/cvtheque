@@ -118,3 +118,17 @@ php bin/console app:init --test
 exit
 php bin/console make:twig-extension
 exit
+php bin/console make:migration
+php bin/console app:init --test
+php bin/console app:init --test
+clear
+php bin/console app:init --test
+php bin/console doctrine:migration:migrate
+php bin/console doctrine:migration:migrate --help
+php bin/console app:init --test
+php bin/console doctrine:migration:migrate --help
+php bin/console app:init --test
+php bin/console doctrine:migration:migrate --help
+php bin/console
+clear
+exit

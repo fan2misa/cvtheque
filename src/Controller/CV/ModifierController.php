@@ -15,7 +15,11 @@ class ModifierController extends AbstractController {
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            
+            $this->getDoctrine()->getManager()->persist($cv);
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success', 'Votre CV a été modifié');
+            return $this->redirectToRoute('cv_modifier', ['id' => $cv->getId()]);
         }
 
         return $this->render('cv/cv-modifier.html.twig', [

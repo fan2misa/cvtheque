@@ -36,45 +36,85 @@ class ExperienceInformationsGenerales {
      */
     private $enCours;
 
+    public function __construct() {
+        $this->enCours = false;
+    }
+
     public function getId() {
         return $this->id;
     }
 
+    /**
+     * 
+     * @return string
+     */
     public function getIntitulePoste() {
         return $this->intitulePoste;
     }
 
-    public function setIntitulePoste(string $intitulePoste): self {
+    /**
+     * 
+     * @param string $intitulePoste
+     * @return \self
+     */
+    public function setIntitulePoste($intitulePoste): self {
         $this->intitulePoste = $intitulePoste;
 
         return $this;
     }
 
+    /**
+     * 
+     * @return \DateTimeInterface
+     */
     public function getDateDebut() {
         return $this->dateDebut;
     }
 
-    public function setDateDebut(\DateTimeInterface $dateDebut): self {
+    /**
+     * 
+     * @param \DateTimeInterface $dateDebut
+     * @return \self
+     */
+    public function setDateDebut($dateDebut): self {
         $this->dateDebut = $dateDebut;
 
         return $this;
     }
 
+    /**
+     * 
+     * @return \DateTimeInterface
+     */
     public function getDateFin() {
         return $this->dateFin;
     }
 
-    public function setDateFin(\DateTimeInterface $dateFin): self {
+    /**
+     * 
+     * @param \DateTimeInterface $dateFin
+     * @return \self
+     */
+    public function setDateFin($dateFin): self {
         $this->dateFin = $dateFin;
 
         return $this;
     }
 
+    /**
+     * 
+     * @return bool
+     */
     public function enCours() {
         return $this->enCours;
     }
 
-    public function setEnCours(bool $enCours): self {
+    /**
+     * 
+     * @param bool $enCours
+     * @return \self
+     */
+    public function setEnCours($enCours): self {
         $this->enCours = $enCours;
 
         return $this;

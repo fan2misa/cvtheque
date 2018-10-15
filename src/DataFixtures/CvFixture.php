@@ -17,7 +17,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 class CvFixture extends AbstractFixture implements DependentFixtureInterface {
 
     const PREFIX_REFERENCE = 'cv';
-
+    
     public function load(ObjectManager $manager) {
         foreach ($this->getData() as $data) {
             $entity = new CV();
