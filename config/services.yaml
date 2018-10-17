@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    cv:
+        avatar_path: 'uploads/cv'
 
 services:
     # default configuration for services in *this* file
@@ -39,7 +41,7 @@ services:
     
     App\Service\CVService:
         public: true
-        arguments: ['@doctrine']
+        arguments: ['@doctrine', '@assets.packages', '%kernel.project_dir%/public', '%cv%']
     
     App\Service\ContactService:
         public: true

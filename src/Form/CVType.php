@@ -26,7 +26,8 @@ class CVType extends AbstractType {
         $builder
                 ->add('nom', TextType::class)
                 ->add('avatarPath', FileType::class, [
-                    'required' => false
+                    'required' => false,
+                    'data' => null
                 ])
                 ->add('situationProfessionnelle', ChoiceType::class, [
                     'choices' => SituationProfessionnelleEnumType::getChoices()

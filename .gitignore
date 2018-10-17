@@ -33,3 +33,7 @@
 /public/js/*
 /.sass-cache/
 ###< Grunt ###
+
+###> files ###
+/public/uploads/
+###< files ###
