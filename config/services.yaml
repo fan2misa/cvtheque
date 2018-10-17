@@ -39,9 +39,8 @@ services:
     
     App\Service\CVService:
         public: true
-        arguments: []
+        arguments: ['@doctrine']
     
     App\Service\ContactService:
         public: true
         arguments: []
-        

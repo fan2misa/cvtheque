@@ -9,8 +9,16 @@
         {% for cv in user.cvs %}
             <tr>
                 <td>{{ cv.nom }}</td>
-                <td>
-                    <a href="{{ path('cv_modifier', {id: cv.id}) }}" class="btn btn-primary">Modifier</a>
+                <td class="text-right">
+                    <a href="{{ path('cv_modifier', {id: cv.id}) }}" class="btn btn-primary">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{ path('cv_modifier', {id: cv.id}) }}" class="btn btn-primary">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{ path('cv_modifier', {id: cv.id}) }}" class="btn btn-primary">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
                 </td>
             </tr>
         {% endfor %}

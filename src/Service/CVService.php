@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\CV;
 use App\Entity\Experience;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 
 /**
  * Description of CVService
@@ -11,17 +12,22 @@ use App\Entity\Experience;
  * @author gjean
  */
 class CVService {
-    
-    public function __construct() {
-        
+
+    private $doctrine;
+
+    public function __construct(Registry $doctrine) {
+        $this->doctrine = $doctrine;
+    }
+
+    public function save(CV $cv) {
+        $this->doctrine->getManager()->persist($cv);
+        $this->doctrine->getManager()->flush();
     }
 
     public function getAvatar(CV $cv) {
-        return $cv->getAvatarPath()
-                ? $user->getAvatarPath()
-                : "https://dummyimage.com/200x250/ecf0f1/7f8c8d";
+        return $cv->getAvatarPath() ? $cv->getUser()->getAvatarPath() : "https://dummyimage.com/200x250/ecf0f1/7f8c8d";
     }
-    
+
     public function getExperiencePeriode(Experience $experience) {
         if ($experience->getInformationsGenerales()->enCours()) {
             return "Depuis le " . $experience->getInformationsGenerales()->getDateDebut()->format('d/m/Y');
