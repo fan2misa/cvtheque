@@ -37,3 +37,7 @@
 ###> files ###
 /public/uploads/
 ###< files ###
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
