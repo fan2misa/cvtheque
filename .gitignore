@@ -35,9 +35,5 @@
 ###< Grunt ###
 
 ###> files ###
-/public/uploads/
+/public/media/
 ###< files ###
-
-###> liip/imagine-bundle ###
-/public/media/cache/
-###< liip/imagine-bundle ###

@@ -6,7 +6,7 @@
 parameters:
     locale: 'en'
     cv:
-        avatar_path: 'uploads/cv'
+        avatar_path: 'media/cv'
 
 services:
     # default configuration for services in *this* file
@@ -35,14 +35,18 @@ services:
     App\Provider\UserProvider:
         arguments: ['@doctrine']
 
+    App\Command\InitCommand:
+      public: true
+      arguments: ['%kernel.project_dir%']
+
     App\Service\UserService:
         public: true
         arguments: ['@doctrine', '@security.password_encoder', '@mailer', '@twig']
-    
+
     App\Service\CVService:
         public: true
-        arguments: ['@doctrine', '@assets.packages', '%kernel.project_dir%/public', '%cv%']
-    
+        arguments: ['@doctrine', '@assets.packages', '@liip_imagine.cache.manager', '%kernel.project_dir%/public', '%cv%']
+
     App\Service\ContactService:
         public: true
         arguments: []

@@ -8,10 +8,18 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Filesystem\Filesystem;
 
 class InitCommand extends Command {
 
+    private $rootDir;
+
     protected static $defaultName = 'app:init';
+
+    public function __construct($rootDir) {
+      parent::__construct();
+      $this->rootDir = $rootDir;
+    }
 
     protected function configure() {
         $this
@@ -23,7 +31,7 @@ class InitCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output) {
         $io = new SymfonyStyle($input, $output);
         $io->section("Initialisation de l'application");
-        
+
         $this->removeFiles($io, $output);
         $this->dropDatabase($io, $output);
         $this->createDatabase($io, $output);
@@ -35,15 +43,18 @@ class InitCommand extends Command {
     }
 
     private function removeFiles(SymfonyStyle $io, OutputInterface $output) {
-        $fileSystem = new \Symfony\Component\Filesystem\Filesystem();
-        $folders = [];
+        $folders = [
+            $this->rootDir . '/public/media'
+        ];
+
+        $fileSystem = new Filesystem();
         foreach ($folders as $folder) {
             $fileSystem->remove($folder);
             $fileSystem->mkdir($folder);
         }
         $io->success("Suppression des fichiers effectué");
     }
-    
+
     private function dropDatabase(SymfonyStyle $io, OutputInterface $output) {
         $command = $this->getApplication()->find('doctrine:database:drop');
         $argument = new ArrayInput([
@@ -59,7 +70,7 @@ class InitCommand extends Command {
         $command->run($argument, $output);
         $io->success("Création de la base de données effectué");
     }
-    
+
     private function executeMigration(SymfonyStyle $io, OutputInterface $output) {
         $command = $this->getApplication()->find('doctrine:migrations:migrate');
         $argument = new ArrayInput([
@@ -69,7 +80,7 @@ class InitCommand extends Command {
         $command->run($argument, $output);
         $io->success("Execution des migrations effectué");
     }
-    
+
     private function executeFixture(SymfonyStyle $io, OutputInterface $output) {
         $command = $this->getApplication()->find('doctrine:fixtures:load');
         $argument = new ArrayInput([
@@ -78,4 +89,5 @@ class InitCommand extends Command {
         $command->run($argument, $output);
         $io->success("Ajout du jeu de test effectué");
     }
+
 }
