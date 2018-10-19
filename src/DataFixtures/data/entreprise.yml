@@ -3,13 +3,21 @@
 
 -
     id: 1
+    nom: Télécom ParisTech
+    description: Description de Télécom ParisTech
+-
+    id: 2
+    nom: NextFormation
+    description: Description de NextFormation
+-
+    id: 3
     nom: Wayne Enterprise
     description: Description de Wayne Enterprise
 -
-    id: 2
+    id: 4
     nom: Manoir Wayne
     description: Description de Manoir Wayne
 -
-    id: 3
+    id: 5
     nom: The Daily Planet
     description: Description de The Daily Planet

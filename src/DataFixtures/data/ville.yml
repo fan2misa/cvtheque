@@ -3,11 +3,21 @@
 
 -
     id: 1
+    nom: Paris
+    code_postal: 76000
+    pays: France
+-
+    id: 2
+    nom: Vincennes
+    code_postal: 76100
+    pays: France
+-
+    id: 3
     nom: Gotham
     code_postal: 76480
     pays: USA
 -
-    id: 2
+    id: 4
     nom: Metropolis
     code_postal: 76481
     pays: USA

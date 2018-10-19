@@ -39,7 +39,7 @@ class Ville {
         return $this->nom;
     }
 
-    public function setNom(string $nom): self {
+    public function setNom($nom): self {
         $this->nom = $nom;
 
         return $this;
@@ -49,7 +49,7 @@ class Ville {
         return $this->pays;
     }
 
-    public function setPays(string $pays): self {
+    public function setPays($pays): self {
         $this->pays = $pays;
 
         return $this;
@@ -65,4 +65,7 @@ class Ville {
         return $this;
     }
 
+    public function __toString() {
+        return $this->nom;
+    }
 }

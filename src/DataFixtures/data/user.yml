@@ -3,25 +3,70 @@
 
 -
     id: 1
+    nom: Jean
+    prenom: Gwennael
+    email: gwennael.jean@gmail.com
+    password: azerty
+    enabled: 1
+    roles: ['ROLE_SUPER_ADMIN']
+    contacts:
+        -
+            type: EMAIL
+            valeur: gwennael.jean@gmail.com
+        -
+            type: TEL_MOBILE
+            valeur: "0644307434"
+        -
+            type: TEL_FIXE
+            valeur: "0232357585"
+        -
+            type: SKYPE
+            valeur: "007"
+-
+    id: 2
     nom: Wayne
     prenom: Bruce
     email: bruce.wayne@batman.com
     password: azerty
     enabled: 1
-    roles: ['ROLE_SUPER_ADMIN']
+    roles: ['ROLE_ADMIN']
+    contacts:
+        -
+            type: EMAIL
+            valeur: bruce.wayne@batman.com
+        -
+            type: TEL_MOBILE
+            valeur: "0102030405"
 -
-    id: 2
+    id: 3
     nom: Kent
     prenom: Clark
     email: clark.kent@superman.com
     password: azerty
     enabled: 1
     roles: ['ROLE_USER']
+    contacts:
+        -
+            type: EMAIL
+            valeur: clark.kent@superman.com
+        -
+            type: TEL_MOBILE
+            valeur: "0102030406"
+        -
+            type: SKYPE
+            valeur: "0102030407"
 -
-    id: 3
+    id: 4
     nom: Croft
     prenom: Lara
     email: lara.croft@tombraider.com
     password: azerty
     enabled: 0
     roles: ['ROLE_USER']
+    contacts:
+        -
+            type: EMAIL
+            valeur: lara.croft@tombraider.com
+        -
+            type: TEL_MOBILE
+            valeur: "0102030408"

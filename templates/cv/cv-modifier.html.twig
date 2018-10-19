@@ -4,6 +4,7 @@
 
 {% block body %}
     <div class="container">
-        {{ include('.inc/cv/formulaire.html.twig', { 'cv': cv, 'form': form }) }}
+        {{ include('.inc/cv/edition.html.twig', { 'form': form, 'cv': cv }) }}
+        {{ include('.inc/cv/formulaire.html.twig', { 'form': form, 'cv': cv }) }}
     </div>
 {% endblock %}

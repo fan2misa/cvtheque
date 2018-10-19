@@ -3,6 +3,8 @@
 namespace App\DataFixtures;
 
 use App\DataFixtures\AbstractFixture;
+use App\DBAL\Types\ContactEnumType;
+use App\Entity\Contact;
 use App\Entity\User;
 use App\Service\UserService;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -29,10 +31,27 @@ class UserFixture extends AbstractFixture {
                     ->setEnabled(!!$data['enabled'])
                     ->setRoles($data['roles']);
             
+            if (isset($data['contacts'])) {
+                foreach ($data['contacts'] as $contactData) {
+                    $contact = $this->getContact($contactData);
+                    $entity->addContact($contact);
+                }
+            }
+            
             $this->userService->registration($entity);
             
             $this->addReference($this->getReferencePath(self::PREFIX_REFERENCE, $data['id']), $entity);
         }
+    }
+    
+    private function getContact(array $data): Contact {
+        $contact = new Contact();
+        
+        $contact
+                ->setType(constant(ContactEnumType::class . '::' . $data['type']))
+                ->setValeur($data['valeur']);
+        
+        return $contact;
     }
 
     protected function getYamlPath() {

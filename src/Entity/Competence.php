@@ -23,6 +23,12 @@ class Competence {
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Symfony\Component\Validator\Constraints\Range(
+     *      min=0,
+     *      max=5,
+     *      minMessage="La valeur doit être superieur à {{ limit }}",
+     *       maxMessage="La valeur doit être inferieur à {{ limit }}"
+     * )
      */
     private $note;
 
