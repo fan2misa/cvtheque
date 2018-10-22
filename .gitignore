@@ -19,6 +19,10 @@
 /nbproject/
 ###< Netbeans ###
 
+###> PHPStorm ###
+/.idea/
+###< PHPStorm ###
+
 ###> Docker ###
 /.docker/dockerfiles/database/data
 /.docker/dockerfiles/database/import

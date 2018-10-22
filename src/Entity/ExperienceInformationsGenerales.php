@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ExperienceInformationsGeneralesRepository")
  */
-class ExperienceInformationsGenerales {
+class ExperienceInformationsGenerales
+{
 
     /**
      * @ORM\Id()
@@ -36,85 +37,95 @@ class ExperienceInformationsGenerales {
      */
     private $enCours;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->enCours = false;
     }
 
-    public function getId() {
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
     /**
-     * 
+     *
      * @return string
      */
-    public function getIntitulePoste() {
+    public function getIntitulePoste(): ?string
+    {
         return $this->intitulePoste;
     }
 
     /**
-     * 
+     *
      * @param string $intitulePoste
      * @return \self
      */
-    public function setIntitulePoste($intitulePoste): self {
+    public function setIntitulePoste(string $intitulePoste): self
+    {
         $this->intitulePoste = $intitulePoste;
 
         return $this;
     }
 
     /**
-     * 
+     *
      * @return \DateTimeInterface
      */
-    public function getDateDebut() {
+    public function getDateDebut(): ?\DateTimeInterface
+    {
         return $this->dateDebut;
     }
 
     /**
-     * 
+     *
      * @param \DateTimeInterface $dateDebut
      * @return \self
      */
-    public function setDateDebut($dateDebut): self {
+    public function setDateDebut(\DateTimeInterface $dateDebut): self
+    {
         $this->dateDebut = $dateDebut;
 
         return $this;
     }
 
     /**
-     * 
+     *
      * @return \DateTimeInterface
      */
-    public function getDateFin() {
+    public function getDateFin(): ?\DateTimeInterface
+    {
         return $this->dateFin;
     }
 
     /**
-     * 
+     *
      * @param \DateTimeInterface $dateFin
      * @return \self
      */
-    public function setDateFin($dateFin): self {
+    public function setDateFin(?\DateTimeInterface $dateFin): self
+    {
         $this->dateFin = $dateFin;
 
         return $this;
     }
 
     /**
-     * 
+     *
      * @return bool
      */
-    public function enCours() {
+    public function enCours(): ?bool
+    {
         return $this->enCours;
     }
 
     /**
-     * 
+     *
      * @param bool $enCours
      * @return \self
      */
-    public function setEnCours($enCours): self {
+    public function setEnCours(bool $enCours): self
+    {
         $this->enCours = $enCours;
 
         return $this;

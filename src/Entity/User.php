@@ -15,7 +15,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(fields="email", message="Cette adresse email existe déjà")
  */
-class User implements UserInterface {
+class User implements UserInterface
+{
 
     /**
      * @ORM\Id()
@@ -79,7 +80,8 @@ class User implements UserInterface {
      */
     private $contacts;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->dateInscription = new DateTime();
         $this->roles = [RoleEnum::ROLE_USER];
         $this->enabled = FALSE;
@@ -87,111 +89,134 @@ class User implements UserInterface {
         $this->contacts = new ArrayCollection();
     }
 
-    public function getId() {
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
-    public function getNom() {
+    public function getNom(): ?string
+    {
         return $this->nom;
     }
 
-    public function setNom(string $nom): self {
+    public function setNom(string $nom): self
+    {
         $this->nom = $nom;
 
         return $this;
     }
 
-    public function getPrenom() {
+    public function getPrenom(): ?string
+    {
         return $this->prenom;
     }
 
-    public function setPrenom(string $prenom): self {
+    public function setPrenom(string $prenom): self
+    {
         $this->prenom = $prenom;
 
         return $this;
     }
-    
-    public function getFullname() {
+
+    public function getFullname(): ?string
+    {
         return $this->prenom . ' ' . $this->nom;
     }
 
-    public function getEmail() {
+    public function getEmail(): string
+    {
         return $this->email;
     }
 
-    public function setEmail(string $email): self {
+    public function setEmail(string $email): self
+    {
         $this->email = $email;
 
         return $this;
     }
 
-    public function getPassword() {
+    public function getPassword(): ?string
+    {
         return $this->password;
     }
 
-    public function setPassword(string $password): self {
+    public function setPassword(string $password): self
+    {
         $this->password = $password;
 
         return $this;
     }
 
-    public function getDateInscription(): DateTimeInterface {
+    public function getDateInscription(): DateTimeInterface
+    {
         return $this->dateInscription;
     }
 
-    public function setDateInscription(DateTimeInterface $dateInscription): self {
+    public function setDateInscription(DateTimeInterface $dateInscription): self
+    {
         $this->dateInscription = $dateInscription;
 
         return $this;
     }
 
-    public function getRoles(): array {
+    public function getRoles(): array
+    {
         return $this->roles;
     }
 
-    public function setRoles(array $roles): self {
+    public function setRoles(array $roles): self
+    {
         $this->roles = $roles;
 
         return $this;
     }
 
-    public function eraseCredentials() {
-        
+    public function eraseCredentials()
+    {
+
     }
 
-    public function getSalt() {
-        
+    public function getSalt()
+    {
+
     }
 
-    public function getUsername() {
+    public function getUsername(): ?string
+    {
         return $this->email;
     }
 
-    public function getEnabled() {
+    public function getEnabled(): bool
+    {
         return $this->enabled;
     }
 
-    public function setEnabled(bool $enabled): self {
+    public function setEnabled(bool $enabled): self
+    {
         $this->enabled = $enabled;
 
         return $this;
     }
 
-    public function getTokenInscription() {
+    public function getTokenInscription(): ?string
+    {
         return $this->tokenInscription;
     }
 
-    public function setTokenInscription($tokenInscription): self {
+    public function setTokenInscription(?string $tokenInscription): self
+    {
         $this->tokenInscription = $tokenInscription;
 
         return $this;
     }
 
-    public function getAvatarPath() {
+    public function getAvatarPath(): ?string
+    {
         return $this->avatarPath;
     }
 
-    public function setAvatarPath($avatarPath): self {
+    public function setAvatarPath(?string $avatarPath): self
+    {
         $this->avatarPath = $avatarPath;
 
         return $this;

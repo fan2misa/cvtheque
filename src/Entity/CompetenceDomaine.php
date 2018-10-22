@@ -9,7 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CompetenceDomaineRepository")
  */
-class CompetenceDomaine {
+class CompetenceDomaine
+{
 
     /**
      * @ORM\Id()
@@ -29,24 +30,28 @@ class CompetenceDomaine {
     private $competences;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CV", inversedBy="domaines")
+     * @ORM\ManyToOne(targetEntity="App\Entity\CV", inversedBy="domainesCompetence")
      * @ORM\JoinColumn(nullable=false)
      */
     private $cv;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->competences = new ArrayCollection();
     }
 
-    public function getId() {
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
-    public function getNom() {
+    public function getNom(): ?string
+    {
         return $this->nom;
     }
 
-    public function setNom(string $nom): self {
+    public function setNom(string $nom): self
+    {
         $this->nom = $nom;
 
         return $this;
@@ -55,11 +60,13 @@ class CompetenceDomaine {
     /**
      * @return Collection|Competence[]
      */
-    public function getCompetences(): Collection {
+    public function getCompetences(): Collection
+    {
         return $this->competences;
     }
 
-    public function addCompetence(Competence $competence): self {
+    public function addCompetence(Competence $competence): self
+    {
         if (!$this->competences->contains($competence)) {
             $this->competences[] = $competence;
             $competence->setDomaine($this);
@@ -68,7 +75,8 @@ class CompetenceDomaine {
         return $this;
     }
 
-    public function removeCompetence(Competence $competence): self {
+    public function removeCompetence(Competence $competence): self
+    {
         if ($this->competences->contains($competence)) {
             $this->competences->removeElement($competence);
             // set the owning side to null (unless already changed)
@@ -80,11 +88,13 @@ class CompetenceDomaine {
         return $this;
     }
 
-    public function getCv(): CV {
+    public function getCv(): ?CV
+    {
         return $this->cv;
     }
 
-    public function setCv(CV $cv): self {
+    public function setCv(CV $cv): self
+    {
         $this->cv = $cv;
 
         return $this;

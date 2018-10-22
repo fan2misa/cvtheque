@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ContactRepository")
  */
-class Contact {
+class Contact
+{
 
     /**
      * @ORM\Id()
@@ -36,46 +37,53 @@ class Contact {
      */
     private $cV;
 
-    public function getId(): int {
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
-    public function getType() {
+    public function getType(): ?string
+    {
         return $this->type;
     }
 
-    public function setType($type): self {
+    public function setType(string $type): self
+    {
         $this->type = $type;
 
         return $this;
     }
 
-    public function getValeur() {
+    public function getValeur(): ?string
+    {
         return $this->valeur;
     }
 
-    public function setValeur(string $valeur): self {
+    public function setValeur(string $valeur): self
+    {
         $this->valeur = $valeur;
 
         return $this;
     }
 
-    public function getUser() {
+    public function getUser(): ?User
+    {
         return $this->user;
     }
 
-    public function setUser(User $user = null): self {
+    public function setUser(?User $user): self
+    {
         $this->user = $user;
 
         return $this;
     }
 
-    public function getCV()
+    public function getCV(): ?CV
     {
         return $this->cV;
     }
 
-    public function setCV(CV $cV = null): self
+    public function setCV(?CV $cV = null): self
     {
         $this->cV = $cV;
 

@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VilleRepository")
  */
-class Ville {
+class Ville
+{
 
     /**
      * @ORM\Id()
@@ -31,41 +32,49 @@ class Ville {
      */
     private $codePostal;
 
-    public function getId() {
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
-    public function getNom() {
+    public function getNom(): ?string
+    {
         return $this->nom;
     }
 
-    public function setNom($nom): self {
+    public function setNom(string $nom): self
+    {
         $this->nom = $nom;
 
         return $this;
     }
 
-    public function getPays() {
+    public function getPays(): ?string
+    {
         return $this->pays;
     }
 
-    public function setPays($pays): self {
+    public function setPays(?string $pays): self
+    {
         $this->pays = $pays;
 
         return $this;
     }
 
-    public function getCodePostal() {
+    public function getCodePostal(): ?string
+    {
         return $this->codePostal;
     }
 
-    public function setCodePostal($codePostal): self {
+    public function setCodePostal(?string $codePostal): self
+    {
         $this->codePostal = $codePostal;
 
         return $this;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->nom;
     }
 }
