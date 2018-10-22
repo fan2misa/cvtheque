@@ -28,9 +28,13 @@ class Contact {
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="contacts")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CV", inversedBy="contacts")
+     */
+    private $cV;
 
     public function getId(): int {
         return $this->id;
@@ -46,7 +50,7 @@ class Contact {
         return $this;
     }
 
-    public function getValeur(): string {
+    public function getValeur() {
         return $this->valeur;
     }
 
@@ -56,12 +60,24 @@ class Contact {
         return $this;
     }
 
-    public function getUser(): User {
+    public function getUser() {
         return $this->user;
     }
 
-    public function setUser(User $user): self {
+    public function setUser(User $user = null): self {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCV()
+    {
+        return $this->cV;
+    }
+
+    public function setCV(CV $cV = null): self
+    {
+        $this->cV = $cV;
 
         return $this;
     }

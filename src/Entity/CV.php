@@ -54,9 +54,15 @@ class CV {
      */
     private $domainesCompetence;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Contact", mappedBy="cV", orphanRemoval=true, cascade={"persist"})
+     */
+    private $contacts;
+
     public function __construct() {
         $this->experiences = new ArrayCollection();
         $this->domainesCompetence = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
     }
 
     public function getId() {
@@ -163,6 +169,37 @@ class CV {
             // set the owning side to null (unless already changed)
             if ($domaineCompetence->getCv() === $this) {
                 $domaineCompetence->setCv(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contact[]
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts[] = $contact;
+            $contact->setCV($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contacts->contains($contact)) {
+            $this->contacts->removeElement($contact);
+            // set the owning side to null (unless already changed)
+            if ($contact->getCV() === $this) {
+                $contact->setCV(null);
             }
         }
 
