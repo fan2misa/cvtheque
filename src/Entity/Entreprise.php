@@ -9,7 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EntrepriseRepository")
  */
-class Entreprise {
+class Entreprise
+{
 
     /**
      * @ORM\Id()
@@ -38,39 +39,47 @@ class Entreprise {
      */
     private $experiences;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->experiences = new ArrayCollection();
     }
 
-    public function getId() {
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
-    public function getNom() {
+    public function getNom(): ?string
+    {
         return $this->nom;
     }
 
-    public function setNom(string $nom): self {
+    public function setNom(string $nom): self
+    {
         $this->nom = $nom;
 
         return $this;
     }
 
-    public function getLogo() {
+    public function getLogo(): ?string
+    {
         return $this->logo;
     }
 
-    public function setLogo(string $logo): self {
+    public function setLogo(?string $logo): self
+    {
         $this->logo = $logo;
 
         return $this;
     }
 
-    public function getDescription() {
+    public function getDescription(): ?string
+    {
         return $this->description;
     }
 
-    public function setDescription($description): self {
+    public function setDescription(?string $description): self
+    {
         $this->description = $description;
 
         return $this;
@@ -79,11 +88,13 @@ class Entreprise {
     /**
      * @return Collection|Experience[]
      */
-    public function getExperiences(): Collection {
+    public function getExperiences(): Collection
+    {
         return $this->experiences;
     }
 
-    public function addExperience(Experience $experience): self {
+    public function addExperience(Experience $experience): self
+    {
         if (!$this->experiences->contains($experience)) {
             $this->experiences[] = $experience;
             $experience->setEntreprise($this);
@@ -92,7 +103,8 @@ class Entreprise {
         return $this;
     }
 
-    public function removeExperience(Experience $experience): self {
+    public function removeExperience(Experience $experience): self
+    {
         if ($this->experiences->contains($experience)) {
             $this->experiences->removeElement($experience);
             // set the owning side to null (unless already changed)
@@ -104,7 +116,8 @@ class Entreprise {
         return $this;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->nom;
     }
 }

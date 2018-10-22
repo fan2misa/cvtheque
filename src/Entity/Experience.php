@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ExperienceRepository")
  */
-class Experience {
+class Experience
+{
 
     /**
      * @ORM\Id()
@@ -28,7 +29,7 @@ class Experience {
     private $entreprise;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CV", inversedBy="experiences")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Cv", inversedBy="experiences")
      * @ORM\JoinColumn(nullable=false)
      */
     private $cv;
@@ -44,100 +45,111 @@ class Experience {
      */
     private $ville;
 
-    public function getId() {
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
     /**
-     * 
+     *
      * @return \App\Entity\ExperienceInformationsGenerales
      */
-    public function getInformationsGenerales() {
+    public function getInformationsGenerales(): ExperienceInformationsGenerales
+    {
         return $this->informationsGenerales;
     }
 
     /**
-     * 
+     *
      * @param \App\Entity\ExperienceInformationsGenerales $informationsGenerales
      * @return \self
      */
-    public function setInformationsGenerales(ExperienceInformationsGenerales $informationsGenerales): self {
+    public function setInformationsGenerales(ExperienceInformationsGenerales $informationsGenerales): self
+    {
         $this->informationsGenerales = $informationsGenerales;
 
         return $this;
     }
 
     /**
-     * 
+     *
      * @return \App\Entity\Entreprise
      */
-    public function getEntreprise() {
+    public function getEntreprise(): Entreprise
+    {
         return $this->entreprise;
     }
 
     /**
-     * 
+     *
      * @param \App\Entity\Entreprise $entreprise
      * @return \self
      */
-    public function setEntreprise($entreprise): self {
+    public function setEntreprise(Entreprise $entreprise): self
+    {
         $this->entreprise = $entreprise;
 
         return $this;
     }
 
     /**
-     * 
-     * @return \App\Entity\CV
+     *
+     * @return \App\Entity\Cv
      */
-    public function getCv() {
+    public function getCv(): Cv
+    {
         return $this->cv;
     }
 
     /**
-     * 
-     * @param \App\Entity\CV $cv
+     *
+     * @param \App\Entity\Cv $cv
      * @return \self
      */
-    public function setCv($cv): self {
+    public function setCv(Cv $cv): self
+    {
         $this->cv = $cv;
 
         return $this;
     }
 
     /**
-     * 
+     *
      * @return string
      */
-    public function getTypeContrat() {
+    public function getTypeContrat(): string
+    {
         return $this->typeContrat;
     }
 
     /**
-     * 
+     *
      * @param string $typeContrat
      * @return \self
      */
-    public function setTypeContrat(string $typeContrat): self {
+    public function setTypeContrat(string $typeContrat): self
+    {
         $this->typeContrat = $typeContrat;
 
         return $this;
     }
 
     /**
-     * 
+     *
      * @return \App\Entity\Ville
      */
-    public function getVille() {
+    public function getVille(): ?Ville
+    {
         return $this->ville;
     }
 
     /**
-     * 
+     *
      * @param \App\Entity\Ville $ville
      * @return \self
      */
-    public function setVille($ville): self {
+    public function setVille(?Ville $ville): self
+    {
         $this->ville = $ville;
 
         return $this;

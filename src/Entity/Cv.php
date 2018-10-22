@@ -9,7 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CVRepository")
  */
-class CV {
+class Cv
+{
 
     /**
      * @ORM\Id()
@@ -54,60 +55,78 @@ class CV {
      */
     private $domainesCompetence;
 
-    public function __construct() {
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Contact", mappedBy="cV", orphanRemoval=true, cascade={"persist"})
+     */
+    private $contacts;
+
+    public function __construct()
+    {
         $this->experiences = new ArrayCollection();
         $this->domainesCompetence = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
     }
 
-    public function getId() {
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
-    public function getNom() {
+    public function getNom(): ?string
+    {
         return $this->nom;
     }
 
-    public function setNom(string $nom): self {
+    public function setNom(string $nom): self
+    {
         $this->nom = $nom;
 
         return $this;
     }
 
-    public function getAvatarPath() {
+    public function getAvatarPath(): ?string
+    {
         return $this->avatarPath;
     }
 
-    public function setAvatarPath($avatarPath): self {
+    public function setAvatarPath(?string $avatarPath): self
+    {
         $this->avatarPath = $avatarPath;
 
         return $this;
     }
 
-    public function getSituationProfessionnelle(): string {
+    public function getSituationProfessionnelle()
+    {
         return $this->situationProfessionnelle;
     }
 
-    public function setSituationProfessionnelle(string $situationProfessionnelle): self {
+    public function setSituationProfessionnelle($situationProfessionnelle): self
+    {
         $this->situationProfessionnelle = $situationProfessionnelle;
 
         return $this;
     }
 
-    public function getDisponibilite(): string {
+    public function getDisponibilite()
+    {
         return $this->disponibilite;
     }
 
-    public function setDisponibilite(string $disponibilite): self {
+    public function setDisponibilite($disponibilite): self
+    {
         $this->disponibilite = $disponibilite;
 
         return $this;
     }
 
-    public function getUser() {
+    public function getUser(): ?User
+    {
         return $this->user;
     }
 
-    public function setUser($user): self {
+    public function setUser(?User $user): self
+    {
         $this->user = $user;
 
         return $this;
@@ -116,11 +135,13 @@ class CV {
     /**
      * @return Collection|Experience[]
      */
-    public function getExperiences(): Collection {
+    public function getExperiences(): Collection
+    {
         return $this->experiences;
     }
 
-    public function addExperience(Experience $experience): self {
+    public function addExperience(Experience $experience): self
+    {
         if (!$this->experiences->contains($experience)) {
             $this->experiences[] = $experience;
             $experience->setCv($this);
@@ -129,7 +150,8 @@ class CV {
         return $this;
     }
 
-    public function removeExperience(Experience $experience): self {
+    public function removeExperience(Experience $experience): self
+    {
         if ($this->experiences->contains($experience)) {
             $this->experiences->removeElement($experience);
             // set the owning side to null (unless already changed)
@@ -144,25 +166,59 @@ class CV {
     /**
      * @return Collection|CompetenceDomaine[]
      */
-    public function getDomainesCompetence(): Collection {
+    public function getDomainesCompetence(): Collection
+    {
         return $this->domainesCompetence;
     }
 
-    public function addDomaineCompetence(CompetenceDomaine $domaineCompetence): self {
+    public function addDomaineCompetence(CompetenceDomaine $domaineCompetence): self
+    {
         if (!$this->domainesCompetence->contains($domaineCompetence)) {
             $this->domainesCompetence[] = $domaineCompetence;
-            $domaineCompetence->setCv($this);
+            $domaineCompetence->setCV($this);
         }
 
         return $this;
     }
 
-    public function removeDomaineCompetence(CompetenceDomaine $domaineCompetence): self {
+    public function removeDomaineCompetence(CompetenceDomaine $domaineCompetence): self
+    {
         if ($this->domainesCompetence->contains($domaineCompetence)) {
             $this->domainesCompetence->removeElement($domaineCompetence);
             // set the owning side to null (unless already changed)
-            if ($domaineCompetence->getCv() === $this) {
-                $domaineCompetence->setCv(null);
+            if ($domaineCompetence->getCV() === $this) {
+                $domaineCompetence->setCV(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contact[]
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts[] = $contact;
+            $contact->setCV($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contacts->contains($contact)) {
+            $this->contacts->removeElement($contact);
+            // set the owning side to null (unless already changed)
+            if ($contact->getCV() === $this) {
+                $contact->setCV(null);
             }
         }
 

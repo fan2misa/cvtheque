@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\Entity\CV;
+use App\Entity\Cv;
 use App\Entity\Experience;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
@@ -42,19 +42,19 @@ class CVService {
         $this->fileSystem = new Filesystem();
     }
 
-    public function save(CV $cv) {
+    public function save(Cv $cv) {
         $this->uploadAvatar($cv);
         $this->doctrine->getManager()->persist($cv);
         $this->doctrine->getManager()->flush();
     }
 
-    public function getAvatar(CV $cv) {
+    public function getAvatar(Cv $cv) {
         return $cv->getAvatarPath() && !($cv->getAvatarPath() instanceof UploadedFile)
                 ? $this->imagineCacheManager->getBrowserPath($this->packages->getUrl($cv->getAvatarPath()), self::IMAGINE_FILTER)
                 : $this->getDefaultAvatar($cv);
     }
 
-    public function getDefaultAvatar(CV $cv) {
+    public function getDefaultAvatar(Cv $cv) {
         return $cv->getUser()->getAvatarPath()
                 ? $this->imagineCacheManager->getBrowserPath($this->packages->getUrl($cv->getUser()->getAvatarPath()), self::IMAGINE_FILTER)
                 : "https://dummyimage.com/200x250/ecf0f1/7f8c8d";
@@ -66,7 +66,7 @@ class CVService {
                 : "Du " . $experience->getInformationsGenerales()->getDateDebut()->format('d/m/Y') . " au " . $experience->getInformationsGenerales()->getDateFin()->format('d/m/Y');
     }
 
-    private function uploadAvatar(CV $cv) {
+    private function uploadAvatar(Cv $cv) {
         if ($cv->getAvatarPath() instanceof UploadedFile) {
             $filename = $this->uploadFile($cv->getAvatarPath());
             $cv->setAvatarPath($filename);

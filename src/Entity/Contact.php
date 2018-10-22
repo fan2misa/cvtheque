@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ContactRepository")
  */
-class Contact {
+class Contact
+{
 
     /**
      * @ORM\Id()
@@ -28,40 +29,63 @@ class Contact {
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="contacts")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
-    public function getId(): int {
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Cv", inversedBy="contacts")
+     */
+    private $cV;
+
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
-    public function getType() {
+    public function getType(): ?string
+    {
         return $this->type;
     }
 
-    public function setType($type): self {
+    public function setType(string $type): self
+    {
         $this->type = $type;
 
         return $this;
     }
 
-    public function getValeur(): string {
+    public function getValeur(): ?string
+    {
         return $this->valeur;
     }
 
-    public function setValeur(string $valeur): self {
+    public function setValeur(string $valeur): self
+    {
         $this->valeur = $valeur;
 
         return $this;
     }
 
-    public function getUser(): User {
+    public function getUser(): ?User
+    {
         return $this->user;
     }
 
-    public function setUser(User $user): self {
+    public function setUser(?User $user): self
+    {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCV(): ?Cv
+    {
+        return $this->cV;
+    }
+
+    public function setCV(?Cv $cV = null): self
+    {
+        $this->cV = $cV;
 
         return $this;
     }
