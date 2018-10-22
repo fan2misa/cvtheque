@@ -27,10 +27,10 @@ profil:
 
 cv_ajouter:
     path: /cv/ajouter
-    controller: App\Controller\CV\AjouterController::index
+    controller: App\Controller\Cv\AjouterController::index
 
 cv_modifier:
     path: /cv/modifier/{id}
-    controller: App\Controller\CV\ModifierController::index
+    controller: App\Controller\Cv\ModifierController::index
     requirements:
         id: \d+

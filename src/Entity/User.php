@@ -71,7 +71,7 @@ class User implements UserInterface
     private $avatarPath;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\CV", mappedBy="user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Cv", mappedBy="user", orphanRemoval=true)
      */
     private $cvs;
 
@@ -223,14 +223,14 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|CV[]
+     * @return Collection|Cv[]
      */
     public function getCvs(): Collection
     {
         return $this->cvs;
     }
 
-    public function addCv(CV $cv): self
+    public function addCv(Cv $cv): self
     {
         if (!$this->cvs->contains($cv)) {
             $this->cvs[] = $cv;
@@ -240,7 +240,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removeCv(CV $cv): self
+    public function removeCv(Cv $cv): self
     {
         if ($this->cvs->contains($cv)) {
             $this->cvs->removeElement($cv);

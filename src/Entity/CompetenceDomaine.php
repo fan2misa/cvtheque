@@ -30,7 +30,7 @@ class CompetenceDomaine
     private $competences;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CV", inversedBy="domainesCompetence")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Cv", inversedBy="domainesCompetence")
      * @ORM\JoinColumn(nullable=false)
      */
     private $cv;
@@ -88,12 +88,12 @@ class CompetenceDomaine
         return $this;
     }
 
-    public function getCv(): ?CV
+    public function getCv(): ?Cv
     {
         return $this->cv;
     }
 
-    public function setCv(CV $cv): self
+    public function setCv(Cv $cv): self
     {
         $this->cv = $cv;
 

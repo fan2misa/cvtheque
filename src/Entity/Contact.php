@@ -33,7 +33,7 @@ class Contact
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CV", inversedBy="contacts")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Cv", inversedBy="contacts")
      */
     private $cV;
 
@@ -78,12 +78,12 @@ class Contact
         return $this;
     }
 
-    public function getCV(): ?CV
+    public function getCV(): ?Cv
     {
         return $this->cV;
     }
 
-    public function setCV(?CV $cV = null): self
+    public function setCV(?Cv $cV = null): self
     {
         $this->cV = $cV;
 

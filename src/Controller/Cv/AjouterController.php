@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller\CV;
+namespace App\Controller\Cv;
 
-use App\Entity\CV;
+use App\Entity\Cv;
 use App\Form\CVType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class AjouterController extends AbstractController {
 
     public function index(Request $request) {
-        $cv = new CV();
+        $cv = new Cv();
 
         $form = $this->createForm(CVType::class, $cv);
 

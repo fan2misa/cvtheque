@@ -29,7 +29,7 @@ class Experience
     private $entreprise;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CV", inversedBy="experiences")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Cv", inversedBy="experiences")
      * @ORM\JoinColumn(nullable=false)
      */
     private $cv;
@@ -94,19 +94,19 @@ class Experience
 
     /**
      *
-     * @return \App\Entity\CV
+     * @return \App\Entity\Cv
      */
-    public function getCv(): CV
+    public function getCv(): Cv
     {
         return $this->cv;
     }
 
     /**
      *
-     * @param \App\Entity\CV $cv
+     * @param \App\Entity\Cv $cv
      * @return \self
      */
-    public function setCv(CV $cv): self
+    public function setCv(Cv $cv): self
     {
         $this->cv = $cv;
 

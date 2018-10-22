@@ -9,7 +9,7 @@ use App\DBAL\Types\SituationProfessionnelleEnumType;
 use App\DBAL\Types\TypeContratEnumType;
 use App\Entity\Competence;
 use App\Entity\CompetenceDomaine;
-use App\Entity\CV;
+use App\Entity\Cv;
 use App\Entity\Contact;
 use App\Entity\Experience;
 use App\Entity\ExperienceInformationsGenerales;
@@ -22,7 +22,7 @@ class CvFixture extends AbstractFixture implements DependentFixtureInterface {
 
     public function load(ObjectManager $manager) {
         foreach ($this->getData() as $data) {
-            $entity = new CV();
+            $entity = new Cv();
 
             $entity
                     ->setNom($data['nom'])

@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\CV;
+use App\Entity\Cv;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method CV|null find($id, $lockMode = null, $lockVersion = null)
- * @method CV|null findOneBy(array $criteria, array $orderBy = null)
- * @method CV[]    findAll()
- * @method CV[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Cv|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Cv|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Cv[]    findAll()
+ * @method Cv[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class CVRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, CV::class);
+        parent::__construct($registry, Cv::class);
     }
 
 //    /**
-//     * @return CV[] Returns an array of CV objects
+//     * @return Cv[] Returns an array of Cv objects
 //     */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class CVRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?CV
+    public function findOneBySomeField($value): ?Cv
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')

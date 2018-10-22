@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\DBAL\Types\DisponibiliteEnumType;
 use App\DBAL\Types\SituationProfessionnelleEnumType;
-use App\Entity\CV;
+use App\Entity\Cv;
 use App\Form\DataTransformer\AvatarToStringTransformer;
 use App\Form\ContactType;
 use Symfony\Component\Form\AbstractType;
@@ -34,7 +34,8 @@ class CVType extends AbstractType {
                     'entry_type' => ContactType::class,
                     'by_reference' => false,
                     'allow_add' => true,
-                    'prototype' => true
+                    'allow_delete' => true,
+                    'prototype' => true,
                 ])
                 ->add('situationProfessionnelle', ChoiceType::class, [
                     'choices' => SituationProfessionnelleEnumType::getChoices()
@@ -46,13 +47,14 @@ class CVType extends AbstractType {
                     'entry_type' => ExperienceType::class,
                     'by_reference' => false,
                     'allow_add' => true,
+                    'allow_delete' => true,
                     'prototype' => true
                 ]);
     }
 
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults([
-            'data_class' => CV::class,
+            'data_class' => Cv::class,
         ]);
     }
 
