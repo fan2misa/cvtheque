@@ -5,14 +5,15 @@
     <div class="col-3">
         <div class="card">
             <div class="card-body">
-                <button data-toggle="modal" data-target="#modal-generale">Modifier</button>
+                <button type="button" data-toggle="modal" data-target="#modal-generale">Modifier</button>
                 <img class="mx-auto d-block img-fluid" src="{{ cv_avatar(cv) }}" alt="Generic placeholder image" />
             </div>
         </div>
         <div class="card">
             <div class="card-body">
+                <button type="button" data-toggle="modal" data-target="#modal-contacts">Modifier</button>
                 <div class="row">
-                    {% for contact in cv.user.contacts %}
+                    {% for contact in cv.contacts %}
                         <div class="col">
                             <div class="text-center" data-container="body" data-toggle="popover" data-content="{{ contact.valeur }}">
                                 <i class="{{ contact | contact_icon_class }} fa-fw" aria-hidden="true"></i>
@@ -39,7 +40,7 @@
         {% for experience in cv.experiences %}
             <div class="card">
                 <div class="card-body">
-                    <button data-toggle="modal" data-target="#modal-experience-{{ experience.id }}">Modifier</button>
+                    <button type="button" data-toggle="modal" data-target="#modal-experience-{{ experience.id }}">Modifier</button>
                     <h2 class="card-title">{{ experience.informationsGenerales.intitulePoste }}</h2>
                     <h3>{{ experience.entreprise.nom }}</h3>
                     <div>{{ experience_periode(experience) }}</div>
