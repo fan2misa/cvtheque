@@ -22,7 +22,7 @@ module.exports = function (grunt) {
                 dest: 'public/js/jquery.js'
             },
             bootstrap: {
-                src: ['node_modules/bootstrap/dist/js/bootstrap.js'],
+                src: ['node_modules/bootstrap/dist/js/bootstrap.bundle.js'],
                 dest: 'public/js/bootstrap.js'
             },
             dist: {
