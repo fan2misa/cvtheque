@@ -1,21 +1,23 @@
 <div data-prototype-line>
-  <div class="media">
-      <div class="media-body">
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="form-group">
-              {{ form_label(form.type) }}
-              {{ form_widget(form.type, { attr: { class: 'form-control' } }) }}
+    <div class="media">
+        <div class="media-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        {{ form_label(form.type) }}
+                        {{ form_widget(form.type, { attr: { class: 'form-control' } }) }}
+                        {{ form_errors(form.type) }}
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        {{ form_label(form.valeur) }}
+                        {{ form_widget(form.valeur, { attr: { class: 'form-control' } }) }}
+                        {{ form_errors(form.valeur) }}
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-sm-8">
-            <div class="form-group">
-              {{ form_label(form.valeur) }}
-              {{ form_widget(form.valeur, { attr: { class: 'form-control' } }) }}
-            </div>
-          </div>
         </div>
-      </div>
-      <button type="button" data-prototype-button-remove>Supprimer</button>
-  </div>
+        <button type="button" data-prototype-button-remove>Supprimer</button>
+    </div>
 </div>

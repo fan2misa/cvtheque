@@ -37,6 +37,25 @@
         </div>
     </div>
 </div>
+<div class="modal" id="modal-disponibilite" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Situation professionnelle & disponibilité</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ include('.inc/cv/subform/formulaire-disponibilite.html.twig', { 'form': form }) }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div data-container="experience">
     {% for experienceField in form.experiences %}
         <div class="modal" id="modal-experience-{{ experienceField.vars.value.id }}" tabindex="-1" role="dialog">
