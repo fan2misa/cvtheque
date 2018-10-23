@@ -73,7 +73,7 @@ class Competence
         return $this->domaine;
     }
 
-    public function setDomaine(CompetenceDomaine $domaine): self
+    public function setDomaine(?CompetenceDomaine $domaine): self
     {
         $this->domaine = $domaine;
 

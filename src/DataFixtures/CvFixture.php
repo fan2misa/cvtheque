@@ -53,7 +53,7 @@ class CvFixture extends AbstractFixture implements DependentFixtureInterface {
             if (isset($data['domaines_competence'])) {
                 foreach ($data['domaines_competence'] as $domainesCompetenceData) {
                     $domainesCompetence = $this->getDomaineCompetence($domainesCompetenceData);
-                    $entity->addDomaineCompetence($domainesCompetence);
+                    $entity->addDomainesCompetence($domainesCompetence);
                 }
             }
 
