@@ -171,7 +171,7 @@ class Cv
         return $this->domainesCompetence;
     }
 
-    public function addDomaineCompetence(CompetenceDomaine $domaineCompetence): self
+    public function addDomainesCompetence(CompetenceDomaine $domaineCompetence): self
     {
         if (!$this->domainesCompetence->contains($domaineCompetence)) {
             $this->domainesCompetence[] = $domaineCompetence;
@@ -181,7 +181,7 @@ class Cv
         return $this;
     }
 
-    public function removeDomaineCompetence(CompetenceDomaine $domaineCompetence): self
+    public function removeDomainesCompetence(CompetenceDomaine $domaineCompetence): self
     {
         if ($this->domainesCompetence->contains($domaineCompetence)) {
             $this->domainesCompetence->removeElement($domaineCompetence);
