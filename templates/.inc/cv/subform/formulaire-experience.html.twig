@@ -4,6 +4,7 @@
     </div>
     <div class="col-sm-9">
         {{ form_widget(form.typeContrat, { attr: { class: 'form-control' } }) }}
+        {{ form_errors(form.typeContrat) }}
     </div>
 </div>
 
@@ -13,6 +14,7 @@
     </div>
     <div class="col-sm-9">
         {{ form_widget(form.informationsGenerales.intitulePoste, { attr: { class: 'form-control' } }) }}
+        {{ form_errors(form.informationsGenerales.intitulePoste) }}
     </div>
 </div>
 
@@ -20,16 +22,19 @@
     <div class="form-group col">
         {{ form_label(form.informationsGenerales.dateDebut) }}
         {{ form_widget(form.informationsGenerales.dateDebut, { attr: { class: 'form-control' } }) }}
+        {{ form_errors(form.informationsGenerales.dateDebut) }}
     </div>
     <div class="form-group col">
         {{ form_label(form.informationsGenerales.dateFin) }}
         {{ form_widget(form.informationsGenerales.dateFin, { attr: { class: 'form-control' } }) }}
+        {{ form_errors(form.informationsGenerales.dateFin) }}
     </div>
 </div>
 
 <div class="form-check">
-  {{ form_widget(form.informationsGenerales.enCours, { attr: { class: 'form-check-input' } }) }}
-  {{ form_label(form.informationsGenerales.enCours) }}
+    {{ form_widget(form.informationsGenerales.enCours, { attr: { class: 'form-check-input' } }) }}
+    {{ form_label(form.informationsGenerales.enCours) }}
+    {{ form_errors(form.informationsGenerales.enCours) }}
 </div>
 
 <div class="form-group row">
@@ -38,6 +43,7 @@
     </div>
     <div class="col-sm-9">
         {{ form_widget(form.entreprise, { attr: { class: 'form-control' } }) }}
+        {{ form_errors(form.entreprise) }}
     </div>
 </div>
 
@@ -47,5 +53,6 @@
     </div>
     <div class="col-sm-9">
         {{ form_widget(form.ville, { attr: { class: 'form-control' } }) }}
+        {{ form_errors(form.ville) }}
     </div>
 </div>
