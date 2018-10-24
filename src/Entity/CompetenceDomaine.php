@@ -93,7 +93,7 @@ class CompetenceDomaine
         return $this->cv;
     }
 
-    public function setCv(Cv $cv): self
+    public function setCv(?Cv $cv): self
     {
         $this->cv = $cv;
 

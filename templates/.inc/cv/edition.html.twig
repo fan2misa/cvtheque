@@ -42,6 +42,7 @@
             <div class="card">
                 <div class="card-body">
                     <button type="button" data-toggle="modal" data-target="#modal-experience-{{ experience.id }}">Modifier</button>
+                    <button type="button" data-remove="#modal-experience-{{ experience.id }}" data-remove-title="Attention" data-remove-body="Êtes-vous sur de vouloir supprimer cette expérience ?">Supprimer</button>
                     <h2 class="card-title">{{ experience.informationsGenerales.intitulePoste }}</h2>
                     <h3>{{ experience.entreprise.nom }}</h3>
                     <div>{{ experience_periode(experience) }}</div>
@@ -67,6 +68,7 @@
             <div class="card">
                 <div class="card-body">
                     <button type="button" data-toggle="modal" data-target="#modal-domaine-{{ domaineCompetence.id }}">Modifier</button>
+                    <button type="button" data-remove="#modal-domaine-{{ domaineCompetence.id }}" data-remove-title="Attention" data-remove-body="Êtes-vous sur de vouloir supprimer ce domaine de compétence ?">Supprimer</button>
                     <h2 class="card-title">{{ domaineCompetence.nom }}</h2>
                     <ul>
                         {% for competence in domaineCompetence.competences %}

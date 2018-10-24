@@ -106,7 +106,7 @@ class Experience
      * @param \App\Entity\Cv $cv
      * @return \self
      */
-    public function setCv(Cv $cv): self
+    public function setCv(?Cv $cv): self
     {
         $this->cv = $cv;
 
