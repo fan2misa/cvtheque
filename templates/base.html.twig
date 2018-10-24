@@ -37,17 +37,9 @@
             </ul>
         </div>
     </nav>
-                
-    {% for label, messages in app.flashes %}
-        {% for message in messages %}
-            <div class="alert alert-{{ label }} m-3">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endfor %}
 
     {% block body %}{% endblock %}
-    
+
     <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
