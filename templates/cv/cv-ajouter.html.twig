@@ -3,8 +3,5 @@
 {% block title %}Créez votre CV{% endblock %}
 
 {% block body %}
-    <div class="container">
-        {{ include('.inc/cv/edition.html.twig', { 'form': form, 'cv': cv }) }}
-        {{ include('.inc/cv/formulaire.html.twig', { 'form': form, 'cv': cv}) }}
-    </div>
+    {{ include('.inc/cv/edition.html.twig', { 'form': form, 'cv': cv }) }}
 {% endblock %}

@@ -3,10 +3,5 @@
 {% block title %}Modifiez votre CV{% endblock %}
 
 {% block body %}
-    <div class="container">
-        {{ form_start(form) }}
-            {{ include('.inc/cv/edition.html.twig', { 'form': form, 'cv': cv }) }}
-            {{ include('.inc/cv/formulaire.html.twig', { 'form': form, 'cv': cv }) }}
-        {{ form_end(form) }}
-    </div>
+    {{ include('.inc/cv/edition.html.twig', { 'form': form, 'cv': cv }) }}
 {% endblock %}

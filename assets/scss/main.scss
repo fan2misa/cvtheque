@@ -3,3 +3,10 @@
 
 @import "bootstrap";
 @import "font-awesome";
+
+.jumbotron.jumbotron-cv {
+    padding: 1rem;
+
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.4rem; }
+}
