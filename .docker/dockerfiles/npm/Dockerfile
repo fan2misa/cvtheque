@@ -7,4 +7,4 @@ RUN npm install -g grunt-cli sass
 WORKDIR /data
 
 # Define default command.
-CMD ["grunt", "watch"]
+CMD ["grunt", "dev"]

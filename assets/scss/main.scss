@@ -4,9 +4,7 @@
 @import "bootstrap";
 @import "font-awesome";
 
-.jumbotron.jumbotron-cv {
-    padding: 1rem;
+@import "components/main-topbar";
 
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.4rem; }
-}
+@import "./components/cv-topbar";
+@import "./components/cv-jumbotron";
