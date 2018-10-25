@@ -1,0 +1,12 @@
+.btn.btn-round { border-radius: 50% !important; }
+
+.buttons-group-edition {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: none;
+}
+
+.buttons-group-edition-container:hover .buttons-group-edition  {
+    display: block;
+}

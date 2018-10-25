@@ -27,11 +27,15 @@
 
 <div class="container">
 
-    <div class="jumbotron jumbotron-fluid jumbotron-cv">
+    <div class="jumbotron jumbotron-fluid jumbotron-cv buttons-group-edition-container">
         <div class="container">
             <h1>{{ cv.user.fullName }}</h1>
             <h2>{{ cv.nom }}</h2>
-            <button type="button" data-toggle="modal" data-target="#modal-nom">Modifier</button>
+            <div class="buttons-group-edition">
+                <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#modal-nom">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -41,15 +45,24 @@
 
     <div class="row">
         <div class="col-3">
-            <div class="card">
+            <div class="card buttons-group-edition-container">
                 <div class="card-body">
-                    <button type="button" data-toggle="modal" data-target="#modal-generale">Modifier</button>
+                    <div class="buttons-group-edition">
+                        <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#modal-generale">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </div>
                     <img class="mx-auto d-block img-fluid" src="{{ cv_avatar(cv) }}" alt="Generic placeholder image" />
                 </div>
             </div>
-            <div class="card">
+            <div class="card buttons-group-edition-container">
                 <div class="card-body">
-                    <button type="button" data-toggle="modal" data-target="#modal-contacts">Modifier</button>
+                    <h5 class="card-title">Contacts</h5>
+                    <div class="buttons-group-edition">
+                        <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#modal-contacts">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </div>
                     <div class="row">
                         {% for contact in cv.contacts %}
                             <div class="col">
@@ -61,9 +74,14 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card buttons-group-edition-container">
                 <div class="card-body">
-                    <button type="button" data-toggle="modal" data-target="#modal-disponibilite">Modifier</button>
+                    <h5 class="card-title">Situation professionnelle</h5>
+                    <div class="buttons-group-edition">
+                        <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#modal-disponibilite">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </div>
                     <dl>
                         <dd>{{ cv.situationProfessionnelle | readable_enum }}</dd>
                         <dd>{{ cv.disponibilite | readable_enum }}</dd>
@@ -77,15 +95,20 @@
                 Experiences
             </h1>
             {% for experience in cv.experiences %}
-                <div class="card">
+                <div class="card buttons-group-edition-container">
                     <div class="card-body">
-                        <button type="button" data-toggle="modal" data-target="#modal-experience-{{ experience.id }}">Modifier</button>
-                        <button type="button"
-                                data-remove="#modal-experience-{{ experience.id }}"
-                                data-remove-title="Attention"
-                                data-remove-body="Êtes-vous sur de vouloir supprimer cette expérience ?">
-                            Supprimer
-                        </button>
+                        <div class="buttons-group-edition">
+                            <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#modal-experience-{{ experience.id }}">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </button>
+                            <button type="button"
+                                    class="btn btn-primary btn-round"
+                                    data-remove="#modal-experience-{{ experience.id }}"
+                                    data-remove-title="Attention"
+                                    data-remove-body="Êtes-vous sur de vouloir supprimer cette expérience ?">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        </div>
                         <h2 class="card-title">{{ experience.informationsGenerales.intitulePoste }}</h2>
                         <h3>{{ experience.entreprise.nom }}</h3>
                         <div>{{ experience_periode(experience) }}</div>
@@ -100,7 +123,7 @@
                     </div>
                 </div>
             {% endfor %}
-            <button data-toggle="modal" data-target="#modal-experience-new">Ajouter</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-experience-new">Ajouter</button>
         </div>
         <div class="col-3">
             <h1>
@@ -108,15 +131,20 @@
                 Compétences
             </h1>
             {% for domaineCompetence in cv.domainesCompetence %}
-                <div class="card">
+                <div class="card buttons-group-edition-container">
                     <div class="card-body">
-                        <button type="button" data-toggle="modal" data-target="#modal-domaine-{{ domaineCompetence.id }}">Modifier</button>
-                        <button type="button"
-                                data-remove="#modal-domaine-{{ domaineCompetence.id }}"
-                                data-remove-title="Attention"
-                                data-remove-body="Êtes-vous sur de vouloir supprimer ce domaine de compétence ?">
-                            Supprimer
-                        </button>
+                        <div class="buttons-group-edition">
+                            <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#modal-domaine-{{ domaineCompetence.id }}">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </button>
+                            <button type="button"
+                                    class="btn btn-primary btn-round"
+                                    data-remove="#modal-domaine-{{ domaineCompetence.id }}"
+                                    data-remove-title="Attention"
+                                    data-remove-body="Êtes-vous sur de vouloir supprimer ce domaine de compétence ?">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        </div>
                         <h2 class="card-title">{{ domaineCompetence.nom }}</h2>
                         <ul>
                             {% for competence in domaineCompetence.competences %}
@@ -129,7 +157,7 @@
                     </div>
                 </div>
             {% endfor %}
-            <button data-toggle="modal" data-target="#modal-domaine-new">Ajouter</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-domaine-new">Ajouter</button>
         </div>
     </div>
 
@@ -137,4 +165,3 @@
 
     {{ form_end(form) }}
 </div>
-
