@@ -67,5 +67,5 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('default', ['copy', 'sass', 'concat', 'uglify']);
-    grunt.registerTask('watch', ['default', 'watch']);
+    grunt.registerTask('dev', ['default', 'watch']);
 };

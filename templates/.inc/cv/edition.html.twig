@@ -3,15 +3,37 @@
 
 {{ form_start(form) }}
 
-<div class="jumbotron jumbotron-fluid jumbotron-cv">
+<nav class="navbar navbar-expand-lg navbar-edition-cv">
     <div class="container">
-        <h1>{{ cv.user.fullName }}</h1>
-        <h2>{{ cv.nom }}</h2>
-        <button type="button" data-toggle="modal" data-target="#modal-nom">Modifier</button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Choisir un design</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Télécharger le CV</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Partager mon CV</a>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
+</nav>
 
 <div class="container">
+
+    <div class="jumbotron jumbotron-fluid jumbotron-cv">
+        <div class="container">
+            <h1>{{ cv.user.fullName }}</h1>
+            <h2>{{ cv.nom }}</h2>
+            <button type="button" data-toggle="modal" data-target="#modal-nom">Modifier</button>
+        </div>
+    </div>
 
     {{ block('flash') }}
 
