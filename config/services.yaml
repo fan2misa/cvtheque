@@ -32,12 +32,19 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    App\Theme\Cv\:
+        resource: '../src/Theme/Cv'
+        public: true
+
     App\Provider\UserProvider:
         arguments: ['@doctrine']
 
     App\Command\InitCommand:
       public: true
       arguments: ['%kernel.project_dir%']
+
+    App\Maker\CvMaker:
+        arguments: ['%kernel.project_dir%']
 
     App\Service\UserService:
         public: true

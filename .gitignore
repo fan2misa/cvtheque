@@ -41,4 +41,6 @@
 ###> files ###
 /public/media/
 /public/fonts/
+/src/Theme/Cv/*
+!/src/Theme/Cv/StandardTheme.php
 ###< files ###

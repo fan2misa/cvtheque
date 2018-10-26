@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Theme\Cv\StandardTheme;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -60,11 +61,17 @@ class Cv
      */
     private $contacts;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $theme;
+
     public function __construct()
     {
         $this->experiences = new ArrayCollection();
         $this->domainesCompetence = new ArrayCollection();
         $this->contacts = new ArrayCollection();
+        $this->theme = StandardTheme::class;
     }
 
     public function getId(): ?int
@@ -221,6 +228,18 @@ class Cv
                 $contact->setCV(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTheme(): ?string
+    {
+        return $this->theme;
+    }
+
+    public function setTheme(string $theme): self
+    {
+        $this->theme = $theme;
 
         return $this;
     }
