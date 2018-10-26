@@ -1,0 +1,13 @@
+.modal-dialog.modal-super-lg {
+    margin: 0;
+    max-width: inherit;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    right: 2rem;
+    bottom: 2rem;
+
+    .modal-content {
+        height: 100%;
+    }
+}
