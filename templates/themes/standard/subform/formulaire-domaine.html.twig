@@ -9,5 +9,5 @@
 </div>
 
 <div class="competences">
-    {{ include('.inc/cv/subform/formulaire-competences.html.twig', { 'form': form.competences }) }}
+    {{ include(cv.theme.getTemplatePath() ~ '/subform/formulaire-competences.html.twig', { 'form': form.competences }) }}
 </div>

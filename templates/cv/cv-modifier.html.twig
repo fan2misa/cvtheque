@@ -3,5 +3,33 @@
 {% block title %}Modifiez votre CV{% endblock %}
 
 {% block body %}
-    {{ include('.inc/cv/edition.html.twig', { 'form': form, 'cv': cv }) }}
+
+    {% use 'flash.html.twig' %}
+
+    {{ form_start(form) }}
+
+    <nav class="navbar navbar-expand-lg navbar-edition-cv">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-selection-design">Choisir un design</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Télécharger le CV</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Partager mon CV</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {{ include(cv.theme.getTemplatePath() ~ '/edition.html.twig', { 'form': form, 'cv': cv }) }}
+
 {% endblock %}

@@ -37,7 +37,7 @@ services:
 
     App\Command\InitCommand:
       public: true
-      arguments: ['%kernel.project_dir%']
+      arguments: ['@doctrine', '%kernel.project_dir%']
 
     App\Maker\ThemeMaker:
         arguments: ['@doctrine', '%kernel.project_dir%']
