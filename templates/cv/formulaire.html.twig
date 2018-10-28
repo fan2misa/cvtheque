@@ -2,6 +2,10 @@
 
 {% block title %}Modifiez votre CV{% endblock %}
 
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/handlebars.js') }}"></script>
+{% endblock %}
+
 {% block body %}
 
     <nav class="navbar navbar-expand-lg navbar-edition-cv">
@@ -37,7 +41,11 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body"></div>
+                <div class="modal-body">
+                    <div class="row">
+
+                    </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                     <button type="submit" class="btn btn-primary">Enregistrer</button>
@@ -45,5 +53,26 @@
             </div>
         </div>
     </div>
+
+    <script id="theme-template" type="text/x-handlebars-template">
+        {% verbatim %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <div class="media">
+                    <img class="mr-3" src="{{avatar}}" alt="Generic placeholder image">
+                    <div class="media-body">
+                        <h5 class="mt-0">{{nom}}</h5>
+                        {{description}}
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="text-right">
+                    <button type="button" class="btn btn-primary">Appliquer</button>
+                </div>
+            </div>
+        </div>
+        {% endverbatim %}
+    </script>
 
 {% endblock %}

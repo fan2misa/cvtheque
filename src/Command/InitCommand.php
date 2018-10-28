@@ -87,6 +87,7 @@ class InitCommand extends Command {
         $entity = new Theme();
         $entity
             ->setNom('Standard')
+            ->setDescription('Thème standard du site')
             ->setSlug(Str::asSnakeCase($entity->getNom()))
             ->setTemplatePath(Str::asFilePath('themes/' . $entity->getSlug()));
 

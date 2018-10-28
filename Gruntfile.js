@@ -25,6 +25,10 @@ module.exports = function (grunt) {
                 src: ['node_modules/bootstrap/dist/js/bootstrap.bundle.js'],
                 dest: 'public/js/bootstrap.js'
             },
+            handlebars: {
+                src: ['node_modules/handlebars/dist/handlebars.js'],
+                dest: 'public/js/handlebars.js'
+            },
             dist: {
                 src: [
                     'assets/js/app.js',
