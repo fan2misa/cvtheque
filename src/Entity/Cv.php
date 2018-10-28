@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Theme\Cv\StandardTheme;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -62,7 +61,7 @@ class Cv
     private $contacts;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Theme")
      */
     private $theme;
 
@@ -71,7 +70,6 @@ class Cv
         $this->experiences = new ArrayCollection();
         $this->domainesCompetence = new ArrayCollection();
         $this->contacts = new ArrayCollection();
-        $this->theme = StandardTheme::class;
     }
 
     public function getId(): ?int
@@ -232,12 +230,12 @@ class Cv
         return $this;
     }
 
-    public function getTheme(): ?string
+    public function getTheme(): ?Theme
     {
         return $this->theme;
     }
 
-    public function setTheme(string $theme): self
+    public function setTheme(?Theme $theme): self
     {
         $this->theme = $theme;
 

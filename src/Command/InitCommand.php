@@ -36,6 +36,7 @@ class InitCommand extends Command {
         $this->dropDatabase($io, $output);
         $this->createDatabase($io, $output);
         $this->executeMigration($io, $output);
+        $this->addThemeStandard($io, $output);
 
         if ($input->getOption('test')) {
             $this->executeFixture($io, $output);
@@ -44,7 +45,8 @@ class InitCommand extends Command {
 
     private function removeFiles(SymfonyStyle $io, OutputInterface $output) {
         $folders = [
-            $this->rootDir . '/public/media'
+            $this->rootDir . '/public/media',
+            $this->rootDir . '/templates/themes',
         ];
 
         $fileSystem = new Filesystem();
@@ -79,6 +81,16 @@ class InitCommand extends Command {
         $argument->setInteractive(false);
         $command->run($argument, $output);
         $io->success("Execution des migrations effectué");
+    }
+
+    private function addThemeStandard(SymfonyStyle $io, OutputInterface $output) {
+        $command = $this->getApplication()->find('make:theme');
+        $argument = new ArrayInput([
+            'theme-name' => 'Standard'
+        ]);
+        $argument->setInteractive(false);
+        $command->run($argument, $output);
+        $io->success("Création du thème Standard effectué");
     }
 
     private function executeFixture(SymfonyStyle $io, OutputInterface $output) {
