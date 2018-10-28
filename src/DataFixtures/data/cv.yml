@@ -4,6 +4,7 @@
 -
     id: 1
     nom: Développeur web
+    theme: standard
     user_id: 1
     situation_professionnelle: EN_POSTE
     disponibilite: OPPORTUNITE
@@ -69,6 +70,7 @@
 -
     id: 2
     nom: PDG
+    theme: standard
     user_id: 2
     situation_professionnelle: EN_POSTE
     disponibilite: OPPORTUNITE
@@ -97,4 +99,5 @@
 -
     id: 3
     nom: Journaliste
+    theme: standard
     user_id: 3
