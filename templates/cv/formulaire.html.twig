@@ -4,10 +4,6 @@
 
 {% block body %}
 
-    {% use 'flash.html.twig' %}
-
-    {{ form_start(form) }}
-
     <nav class="navbar navbar-expand-lg navbar-edition-cv">
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,5 +27,23 @@
     </nav>
 
     {{ include(cv.theme.getTemplatePath() ~ '/edition.html.twig', { 'form': form, 'cv': cv }) }}
+
+    <div class="modal" id="modal-selection-design" tabindex="-1" role="dialog" data-modal-ajax="{{ path('theme_list_json') }}">
+        <div class="modal-dialog modal-super-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Selection du design de votre CV</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

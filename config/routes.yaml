@@ -34,3 +34,8 @@ cv_modifier:
     controller: App\Controller\Cv\ModifierController::index
     requirements:
         id: \d+
+
+theme_list_json:
+    path: /themes
+    controller: App\Controller\ThemeController::list
+
