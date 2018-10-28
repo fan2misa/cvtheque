@@ -89,7 +89,7 @@ class ThemeMaker extends AbstractMaker {
         $entity
             ->setNom($input->getArgument('theme-name'))
             ->setSlug(Str::asSnakeCase($entity->getNom()))
-            ->setTemplatePath(Str::asFilePath('templates/themes/' . $entity->getSlug()));
+            ->setTemplatePath(Str::asFilePath('themes/' . $entity->getSlug()));
 
         $this->doctrine->getManager()->persist($entity);
         $this->doctrine->getManager()->flush();
@@ -98,16 +98,20 @@ class ThemeMaker extends AbstractMaker {
     }
 
     private function generateTemplateEdition(Theme $theme, InputInterface $input, ConsoleStyle $io, Generator $generator): void {
-        $generator->generateFile($theme->getTemplatePathEdition(), $this->getTemplateName('edition'), [
+        $generator->generateFile($this->getTargetPath($theme->getTemplatePathEdition()), $this->getTemplateName('edition'), [
             'theme_name' => $input->getArgument('theme-name')
         ]);
     }
 
     private function generateTemplateVisualisation(Theme $theme, InputInterface $input, ConsoleStyle $io, Generator $generator): void {
-        $generator->generateFile($theme->getTemplatePathVisualisation(), $this->getTemplateName('visualisation'), [
+        $generator->generateFile($this->getTargetPath($theme->getTemplatePathVisualisation()), $this->getTemplateName('visualisation'), [
             'parent_class_name' => 'AbstractTheme',
             'theme_name' => $input->getArgument('theme-name')
         ]);
+    }
+
+    private function getTargetPath($path) {
+        return 'templates/' . $path;
     }
 
     private function getTemplateName($filename) {
