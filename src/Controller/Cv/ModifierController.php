@@ -21,7 +21,8 @@ class ModifierController extends AbstractController {
             return $this->redirectToRoute('cv_modifier', ['id' => $cv->getId()]);
         }
 
-        return $this->render('cv/cv-modifier.html.twig', [
+        return $this->render('cv/formulaire.html.twig', [
+                    'title' => "Modifiez votre CV",
                     'cv' => $cv,
                     'form' => $form->createView()
         ]);

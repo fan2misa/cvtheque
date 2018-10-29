@@ -7,6 +7,9 @@ parameters:
     locale: 'en'
     cv:
         avatar_path: 'media/cv'
+    theme:
+        default: 'https://dummyimage.com/298x421/ecf0f1/7f8c8d'
+        avatar_path: 'media/theme'
 
 services:
     # default configuration for services in *this* file
@@ -37,7 +40,15 @@ services:
 
     App\Command\InitCommand:
       public: true
-      arguments: ['%kernel.project_dir%']
+      arguments: ['@doctrine', '%kernel.project_dir%']
+
+    App\Maker\ThemeMaker:
+        arguments: ['@doctrine', '%kernel.project_dir%']
+
+    App\EventListener\ThemeListener:
+        arguments: ['@assets.packages', '@liip_imagine.cache.manager', '%kernel.project_dir%/public', '%theme%']
+        tags:
+            - { name: doctrine.orm.entity_listener }
 
     App\Service\UserService:
         public: true

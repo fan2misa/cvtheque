@@ -2,6 +2,9 @@
 
 namespace App\Command;
 
+use App\Entity\Theme;
+use Doctrine\Bundle\DoctrineBundle\Registry;
+use Symfony\Bundle\MakerBundle\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -9,15 +12,19 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 
 class InitCommand extends Command {
+
+    private $doctrine;
 
     private $rootDir;
 
     protected static $defaultName = 'app:init';
 
-    public function __construct($rootDir) {
+    public function __construct(Registry $doctrine, $rootDir) {
       parent::__construct();
+      $this->doctrine = $doctrine;
       $this->rootDir = $rootDir;
     }
 
@@ -36,6 +43,7 @@ class InitCommand extends Command {
         $this->dropDatabase($io, $output);
         $this->createDatabase($io, $output);
         $this->executeMigration($io, $output);
+        $this->resetTemplates($io, $output);
 
         if ($input->getOption('test')) {
             $this->executeFixture($io, $output);
@@ -44,7 +52,7 @@ class InitCommand extends Command {
 
     private function removeFiles(SymfonyStyle $io, OutputInterface $output) {
         $folders = [
-            $this->rootDir . '/public/media'
+            $this->rootDir . '/public/media',
         ];
 
         $fileSystem = new Filesystem();
@@ -52,7 +60,41 @@ class InitCommand extends Command {
             $fileSystem->remove($folder);
             $fileSystem->mkdir($folder);
         }
+
         $io->success("Suppression des fichiers effectué");
+    }
+
+    private function resetTemplates(SymfonyStyle $io, OutputInterface $output) {
+        $folders = [
+            $this->rootDir . '/templates/themes',
+        ];
+
+        $fileSystem = new Filesystem();
+        $finder = new Finder();
+        $finder
+            ->directories()
+            ->in($this->rootDir . '/templates/themes')
+            ->depth(0);
+
+        foreach ($finder as $folder) {
+            if (!in_array($folder->getRelativePathname(), ['standard'])) {
+                $fileSystem->remove($folder);
+            }
+        }
+
+        $io->success("Suppression des templates de thème effectué");
+
+        $entity = new Theme();
+        $entity
+            ->setNom('Standard')
+            ->setDescription('Thème standard du site')
+            ->setSlug(Str::asSnakeCase($entity->getNom()))
+            ->setTemplatePath(Str::asFilePath('themes/' . $entity->getSlug()));
+
+        $this->doctrine->getManager()->persist($entity);
+        $this->doctrine->getManager()->flush();
+
+        $io->success("Création du thème standard effectué");
     }
 
     private function dropDatabase(SymfonyStyle $io, OutputInterface $output) {

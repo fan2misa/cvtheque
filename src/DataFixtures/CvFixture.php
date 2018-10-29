@@ -13,6 +13,7 @@ use App\Entity\Cv;
 use App\Entity\Contact;
 use App\Entity\Experience;
 use App\Entity\ExperienceInformationsGenerales;
+use App\Entity\Theme;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -26,7 +27,8 @@ class CvFixture extends AbstractFixture implements DependentFixtureInterface {
 
             $entity
                     ->setNom($data['nom'])
-                    ->setUser($this->getReference($this->getReferencePath(UserFixture::PREFIX_REFERENCE, $data['user_id'])));
+                    ->setUser($this->getReference($this->getReferencePath(UserFixture::PREFIX_REFERENCE, $data['user_id'])))
+                    ->setTheme($this->getTheme($manager, $data['theme']));
 
             if (isset($data['disponibilite'])) {
                 $entity->setDisponibilite(constant(DisponibiliteEnumType::class . '::' . $data['disponibilite']));
@@ -62,7 +64,13 @@ class CvFixture extends AbstractFixture implements DependentFixtureInterface {
             $this->addReference($this->getReferencePath(self::PREFIX_REFERENCE, $data['id']), $entity);
         }
 
+
+
         $manager->flush();
+    }
+
+    private function getTheme(ObjectManager $manager, string $slug): Theme {
+        return $manager->getRepository(Theme::class)->findOneBy(['slug' => $slug]);
     }
 
     private function getContact(array $data): Contact {

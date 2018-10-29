@@ -19,7 +19,8 @@ class AjouterController extends AbstractController {
             
         }
 
-        return $this->render('cv/cv-ajouter.html.twig', [
+        return $this->render('cv/formulaire.html.twig', [
+                    'title' => "Créez votre CV",
                     'cv' => $cv,
                     'form' => $form->createView()
         ]);

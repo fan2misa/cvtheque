@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifiez votre CV{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/handlebars.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <nav class="navbar navbar-expand-lg navbar-edition-cv">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-selection-design">Choisir un design</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Télécharger le CV</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Partager mon CV</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {{ form_start(form) }}
+        {{ include(cv.theme.getTemplatePath() ~ '/edition.html.twig', { 'form': form, 'cv': cv }) }}
+    {{ form_end(form) }}
+
+    <div class="modal" id="modal-selection-design" tabindex="-1" role="dialog" data-modal-ajax="{{ path('theme_list_json', {cv: cv.id}) }}">
+        <div class="modal-dialog modal-super-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Selection du design de votre CV</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script id="theme-template" type="text/x-handlebars-template">
+        {% verbatim %}
+        <div class="card w-100">
+            <div class="card-body">
+                <div class="media">
+                    <img class="mr-3" src="{{theme.avatarCropped}}" alt="Generic placeholder image">
+                    <div class="media-body">
+                        <h5 class="mt-0">{{theme.nom}}</h5>
+                        {{theme.description}}
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="text-right">
+                    <form method="post" action="/themes/set">
+                        <input type="hidden" name="theme_id" value="{{theme.id}}" />
+                        <input type="hidden" name="cv_id" value="{{cv}}" />
+                        <button type="submit" class="btn btn-primary">Appliquer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endverbatim %}
+    </script>
+
+{% endblock %}

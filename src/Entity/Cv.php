@@ -60,6 +60,11 @@ class Cv
      */
     private $contacts;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Theme")
+     */
+    private $theme;
+
     public function __construct()
     {
         $this->experiences = new ArrayCollection();
@@ -221,6 +226,18 @@ class Cv
                 $contact->setCV(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTheme(): ?Theme
+    {
+        return $this->theme;
+    }
+
+    public function setTheme(?Theme $theme): self
+    {
+        $this->theme = $theme;
 
         return $this;
     }

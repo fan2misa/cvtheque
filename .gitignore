@@ -41,4 +41,6 @@
 ###> files ###
 /public/media/
 /public/fonts/
+/templates/themes/*
+!/templates/themes/standard/
 ###< files ###
