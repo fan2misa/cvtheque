@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ThemeRepository")
+ * @ORM\EntityListeners({"App\EventListener\ThemeListener"})
  */
 class Theme
 {
@@ -25,6 +26,11 @@ class Theme
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $avatar;
+
+    /**
+     *
+     */
+    private $avatarCropped;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -66,6 +72,18 @@ class Theme
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getAvatarCropped(): ?string
+    {
+        return $this->avatarCropped;
+    }
+
+    public function setAvatarCropped(?string $avatarCropped): self
+    {
+        $this->avatarCropped = $avatarCropped;
 
         return $this;
     }

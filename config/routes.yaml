@@ -36,6 +36,12 @@ cv_modifier:
         id: \d+
 
 theme_list_json:
-    path: /themes
+    path: /themes/{cv}
     controller: App\Controller\ThemeController::list
+    requirements:
+        cv: \d+
+
+change_theme:
+    path: /themes/set
+    controller: App\Controller\ThemeController::change
 

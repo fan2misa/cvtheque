@@ -30,9 +30,11 @@
         </div>
     </nav>
 
-    {{ include(cv.theme.getTemplatePath() ~ '/edition.html.twig', { 'form': form, 'cv': cv }) }}
+    {{ form_start(form) }}
+        {{ include(cv.theme.getTemplatePath() ~ '/edition.html.twig', { 'form': form, 'cv': cv }) }}
+    {{ form_end(form) }}
 
-    <div class="modal" id="modal-selection-design" tabindex="-1" role="dialog" data-modal-ajax="{{ path('theme_list_json') }}">
+    <div class="modal" id="modal-selection-design" tabindex="-1" role="dialog" data-modal-ajax="{{ path('theme_list_json', {cv: cv.id}) }}">
         <div class="modal-dialog modal-super-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -41,11 +43,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-
-                    </div>
-                </div>
+                <div class="modal-body"></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                     <button type="submit" class="btn btn-primary">Enregistrer</button>
@@ -56,19 +54,23 @@
 
     <script id="theme-template" type="text/x-handlebars-template">
         {% verbatim %}
-        <div class="card" style="width: 18rem;">
+        <div class="card w-100">
             <div class="card-body">
                 <div class="media">
-                    <img class="mr-3" src="{{avatar}}" alt="Generic placeholder image">
+                    <img class="mr-3" src="{{theme.avatarCropped}}" alt="Generic placeholder image">
                     <div class="media-body">
-                        <h5 class="mt-0">{{nom}}</h5>
-                        {{description}}
+                        <h5 class="mt-0">{{theme.nom}}</h5>
+                        {{theme.description}}
                     </div>
                 </div>
             </div>
             <div class="card-footer">
                 <div class="text-right">
-                    <button type="button" class="btn btn-primary">Appliquer</button>
+                    <form method="post" action="/themes/set">
+                        <input type="hidden" name="theme_id" value="{{theme.id}}" />
+                        <input type="hidden" name="cv_id" value="{{cv}}" />
+                        <button type="submit" class="btn btn-primary">Appliquer</button>
+                    </form>
                 </div>
             </div>
         </div>
