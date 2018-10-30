@@ -27,7 +27,6 @@ class AvatarToStringTransformer implements DataTransformerInterface {
      */
     public function reverseTransform($value) {
         if ($value instanceof UploadedFile) {
-            dump($value); exit;
             $value->move($this->getParameter('brochures_directory'), $fileName);
         }
     }

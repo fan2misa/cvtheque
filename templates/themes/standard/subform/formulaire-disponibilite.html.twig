@@ -2,12 +2,12 @@
     <div class="contacts-container">
         <div class="form-group">
             {{ form_label(form.situationProfessionnelle) }}
-            {{ form_widget(form.situationProfessionnelle, { attr: { class: 'form-control' } }) }}
+            {{ form_widget(form.situationProfessionnelle) }}
             {{ form_errors(form.situationProfessionnelle) }}
         </div>
         <div class="form-group">
             {{ form_label(form.disponibilite) }}
-            {{ form_widget(form.disponibilite, { attr: { class: 'form-control' } }) }}
+            {{ form_widget(form.disponibilite) }}
             {{ form_errors(form.disponibilite) }}
         </div>
     </div>
