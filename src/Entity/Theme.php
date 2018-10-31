@@ -47,6 +47,11 @@ class Theme
      */
     private $templatePath;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $cssPath;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -112,6 +117,33 @@ class Theme
         return $this;
     }
 
+    public function getCssPath(): ?string
+    {
+        return $this->cssPath;
+    }
+
+    public function setCssPath(?string $cssPath): self
+    {
+        $this->cssPath = $cssPath;
+
+        return $this;
+    }
+
+    public function getCssPathGlobal(): ?string
+    {
+        return null !== $this->getCssPath() ? $this->getCssPath() . '/theme.css' : null;
+    }
+
+    public function getCssPathEdition(): ?string
+    {
+        return null !== $this->getCssPath() ? $this->getCssPath() . '/theme-edition.css' : null;
+    }
+
+    public function getCssPathVidualisation(): ?string
+    {
+        return null !== $this->getCssPath() ? $this->getCssPath() . '/theme-visualisation.css' : null;
+    }
+
     public function getTemplatePath(): ?string
     {
         return $this->templatePath;
@@ -119,12 +151,12 @@ class Theme
 
     public function getTemplatePathEdition(): ?string
     {
-        return $this->getTemplatePath() . '/edition.html.twig';
+        return null !== $this->getTemplatePath() ? $this->getTemplatePath() . '/edition.html.twig' : null;
     }
 
     public function getTemplatePathVisualisation(): ?string
     {
-        return $this->getTemplatePath() . '/visualisation.html.twig';
+        return null !== $this->getTemplatePath() ? $this->getTemplatePath() . '/visualisation.html.twig' : null;
     }
 
     public function setTemplatePath(?string $templatePath): self

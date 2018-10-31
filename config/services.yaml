@@ -9,7 +9,7 @@ parameters:
         avatar_path: 'media/cv'
     theme:
         default: 'https://dummyimage.com/298x421/ecf0f1/7f8c8d'
-        avatar_path: 'media/theme'
+        avatar_path: 'media/themes'
 
 services:
     # default configuration for services in *this* file

@@ -27,7 +27,7 @@ class ThemeController extends AbstractController
         $cv = $this->getDoctrine()->getRepository(Cv::class)->find($request->get('cv_id'));
 
         if ($cv->getUser() != $this->getUser()) {
-            return $this->createNotFoundException("You can change CV's theme of other user !");
+            return $this->createNotFoundException("You can change CV's themes of other user !");
         }
 
         $theme = $this->getDoctrine()->getRepository(Theme::class)->find($request->get('theme_id'));

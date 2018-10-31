@@ -29,7 +29,7 @@ class ThemeToIntTransformer implements DataTransformerInterface {
         $entity = $this->entityManager->getRepository(Theme::class)->find($value);
 
         if (null === $entity) {
-            throw new TransformationFailedException(sprintf('No theme exist!'));
+            throw new TransformationFailedException(sprintf('No themes exist!'));
         }
 
         return $entity;

@@ -6,7 +6,7 @@ $(function () {
 
     $('.modal[data-modal-ajax]').on('shown.bs.modal', function () {
         var modal = $(this);
-        var template = Handlebars.compile($('#theme-template').html());
+        var template = Handlebars.compile($('#themes-template').html());
         var row = $('<div />', {'class': 'row'});
 
         $.ajax({
