@@ -24,6 +24,7 @@
 ###< PHPStorm ###
 
 ###> Docker ###
+/.docker/.env
 /.docker/dockerfiles/database/data
 /.docker/dockerfiles/database/import
 ###< Docker ###
