@@ -28,7 +28,7 @@ class CvFixture extends AbstractFixture implements DependentFixtureInterface {
             $entity
                     ->setNom($data['nom'])
                     ->setUser($this->getReference($this->getReferencePath(UserFixture::PREFIX_REFERENCE, $data['user_id'])))
-                    ->setTheme($this->getTheme($manager, $data['themes']));
+                    ->setTheme($this->getTheme($manager, $data['theme']));
 
             if (isset($data['disponibilite'])) {
                 $entity->setDisponibilite(constant(DisponibiliteEnumType::class . '::' . $data['disponibilite']));
