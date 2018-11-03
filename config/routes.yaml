@@ -35,6 +35,12 @@ cv_modifier:
     requirements:
         id: \d+
 
+cv_partage:
+    path: /cv/{id}
+    controller: App\Controller\Cv\PartageController::index
+    requirements:
+        id: \d+
+
 theme_list_json:
     path: /themes/{cv}
     controller: App\Controller\ThemeController::list
