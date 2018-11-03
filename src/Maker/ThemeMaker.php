@@ -50,6 +50,7 @@ class ThemeMaker extends AbstractMaker {
         $command
             ->setDescription('Creates a new CV Theme')
             ->addArgument('themes-name', InputArgument::OPTIONAL, sprintf('Choose a name for your Theme', Str::getRandomTerm()))
+            ->addArgument('themes-description', InputArgument::OPTIONAL, sprintf('Set a description for your Theme'))
         ;
     }
 
@@ -83,16 +84,17 @@ class ThemeMaker extends AbstractMaker {
 
         $io->text('Your Theme is created with name : ' . $entity->getNom());
         $io->text('You can find template at : ' . $entity->getTemplatePath());
-        $io->text('You can find css files at : ' . $entity->getCssPath());
+        $io->text('You can find css files at : ' . $entity->getPublicPath());
     }
 
     private function generateEntity(InputInterface $input, ConsoleStyle $io, Generator $generator): Theme {
         $entity = new Theme();
         $entity
             ->setNom($input->getArgument('themes-name'))
+            ->setDescription($input->getArgument('themes-description'))
             ->setSlug(Str::asSnakeCase($entity->getNom()))
             ->setTemplatePath(Str::asFilePath('themes/' . $entity->getSlug()))
-            ->setCssPath(Str::asFilePath('css/themes/' . $entity->getSlug()));
+            ->setPublicPath(Str::asFilePath('themes/' . $entity->getSlug()));
 
         $this->doctrine->getManager()->persist($entity);
         $this->doctrine->getManager()->flush();

@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ThemeRepository")
  * @ORM\EntityListeners({"App\EventListener\ThemeListener"})
+ * @UniqueEntity("slug")
  */
 class Theme
 {
@@ -50,7 +52,7 @@ class Theme
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $cssPath;
+    private $publicPath;
 
     public function getId(): ?int
     {
@@ -117,31 +119,31 @@ class Theme
         return $this;
     }
 
-    public function getCssPath(): ?string
+    public function getPublicPath(): ?string
     {
-        return $this->cssPath;
+        return $this->publicPath;
     }
 
-    public function setCssPath(?string $cssPath): self
+    public function setPublicPath(?string $publicPath): self
     {
-        $this->cssPath = $cssPath;
+        $this->publicPath = $publicPath;
 
         return $this;
     }
 
     public function getCssPathGlobal(): ?string
     {
-        return null !== $this->getCssPath() ? $this->getCssPath() . '/theme.css' : null;
+        return null !== $this->getPublicPath() ? $this->getPublicPath() . '/css/theme.css' : null;
     }
 
     public function getCssPathEdition(): ?string
     {
-        return null !== $this->getCssPath() ? $this->getCssPath() . '/theme-edition.css' : null;
+        return null !== $this->getPublicPath() ? $this->getPublicPath() . '/css/theme-edition.css' : null;
     }
 
     public function getCssPathVidualisation(): ?string
     {
-        return null !== $this->getCssPath() ? $this->getCssPath() . '/theme-visualisation.css' : null;
+        return null !== $this->getPublicPath() ? $this->getPublicPath() . '/css/theme-visualisation.css' : null;
     }
 
     public function getTemplatePath(): ?string

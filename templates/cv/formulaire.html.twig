@@ -3,7 +3,7 @@
 {% block title %}Modifiez votre CV{% endblock %}
 
 {% block stylesheets %}
-    {% if cv.theme.getCssPath() is not null %}
+    {% if cv.theme.getPublicPath() is not null %}
         <link type="text/css" rel="stylesheet" href="{{ asset(cv.theme.getCssPathGlobal()) }}" />
         <link type="text/css" rel="stylesheet" href="{{ asset(cv.theme.getCssPathEdition()) }}" />
     {% endif %}
