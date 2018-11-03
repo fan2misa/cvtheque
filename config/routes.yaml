@@ -36,7 +36,7 @@ cv_modifier:
         id: \d+
 
 cv_partage:
-    path: /cv/{id}
+    path: /cv/{cv}
     controller: App\Controller\Cv\PartageController::index
     requirements:
         id: \d+
