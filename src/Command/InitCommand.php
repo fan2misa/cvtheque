@@ -66,6 +66,7 @@ class InitCommand extends Command {
 
     private function resetTemplates(SymfonyStyle $io, OutputInterface $output) {
         $folders = [
+            $this->rootDir . '/public/themes',
             $this->rootDir . '/templates/themes',
         ];
 
@@ -73,7 +74,7 @@ class InitCommand extends Command {
         $finder = new Finder();
         $finder
             ->directories()
-            ->in($this->rootDir . '/templates/themes')
+            ->in($folders)
             ->depth(0);
 
         foreach ($finder as $folder) {

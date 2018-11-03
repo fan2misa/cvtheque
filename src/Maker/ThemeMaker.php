@@ -33,7 +33,7 @@ class ThemeMaker extends AbstractMaker {
      */
     public static function getCommandName(): string
     {
-        return 'make:theme';
+        return 'make:themes';
     }
 
     /**
@@ -49,7 +49,8 @@ class ThemeMaker extends AbstractMaker {
     {
         $command
             ->setDescription('Creates a new CV Theme')
-            ->addArgument('theme-name', InputArgument::OPTIONAL, sprintf('Choose a name for your Theme', Str::getRandomTerm()))
+            ->addArgument('themes-name', InputArgument::OPTIONAL, sprintf('Choose a name for your Theme', Str::getRandomTerm()))
+            ->addArgument('themes-description', InputArgument::OPTIONAL, sprintf('Set a description for your Theme'))
         ;
     }
 
@@ -75,6 +76,7 @@ class ThemeMaker extends AbstractMaker {
         $entity = $this->generateEntity($input, $io, $generator);
         $this->generateTemplateEdition($entity, $input, $io, $generator);
         $this->generateTemplateVisualisation($entity, $input, $io, $generator);
+        $this->generateCssFiles($entity, $input, $io, $generator);
 
         $generator->writeChanges();
 
@@ -82,14 +84,17 @@ class ThemeMaker extends AbstractMaker {
 
         $io->text('Your Theme is created with name : ' . $entity->getNom());
         $io->text('You can find template at : ' . $entity->getTemplatePath());
+        $io->text('You can find css files at : ' . $entity->getPublicPath());
     }
 
     private function generateEntity(InputInterface $input, ConsoleStyle $io, Generator $generator): Theme {
         $entity = new Theme();
         $entity
-            ->setNom($input->getArgument('theme-name'))
+            ->setNom($input->getArgument('themes-name'))
+            ->setDescription($input->getArgument('themes-description'))
             ->setSlug(Str::asSnakeCase($entity->getNom()))
-            ->setTemplatePath(Str::asFilePath('themes/' . $entity->getSlug()));
+            ->setTemplatePath(Str::asFilePath('themes/' . $entity->getSlug()))
+            ->setPublicPath(Str::asFilePath('themes/' . $entity->getSlug()));
 
         $this->doctrine->getManager()->persist($entity);
         $this->doctrine->getManager()->flush();
@@ -97,21 +102,37 @@ class ThemeMaker extends AbstractMaker {
         return $entity;
     }
 
+    private function generateCssFiles(Theme $theme, InputInterface $input, ConsoleStyle $io, Generator $generator): void {
+        $generator->generateFile($this->getTargetPublicPath($theme->getCssPathGlobal()), $this->getTemplateName('theme'), [
+            'theme_name' => $input->getArgument('themes-name')
+        ]);
+        $generator->generateFile($this->getTargetPublicPath($theme->getCssPathEdition()), $this->getTemplateName('theme-edition'), [
+            'theme_name' => $input->getArgument('themes-name')
+        ]);
+        $generator->generateFile($this->getTargetPublicPath($theme->getCssPathVidualisation()), $this->getTemplateName('theme-visualisation'), [
+            'theme_name' => $input->getArgument('themes-name')
+        ]);
+    }
+
     private function generateTemplateEdition(Theme $theme, InputInterface $input, ConsoleStyle $io, Generator $generator): void {
-        $generator->generateFile($this->getTargetPath($theme->getTemplatePathEdition()), $this->getTemplateName('edition'), [
-            'theme_name' => $input->getArgument('theme-name')
+        $generator->generateFile($this->getTargetTemplatePath($theme->getTemplatePathEdition()), $this->getTemplateName('edition'), [
+            'theme_name' => $input->getArgument('themes-name')
         ]);
     }
 
     private function generateTemplateVisualisation(Theme $theme, InputInterface $input, ConsoleStyle $io, Generator $generator): void {
-        $generator->generateFile($this->getTargetPath($theme->getTemplatePathVisualisation()), $this->getTemplateName('visualisation'), [
+        $generator->generateFile($this->getTargetTemplatePath($theme->getTemplatePathVisualisation()), $this->getTemplateName('visualisation'), [
             'parent_class_name' => 'AbstractTheme',
-            'theme_name' => $input->getArgument('theme-name')
+            'theme_name' => $input->getArgument('themes-name')
         ]);
     }
 
-    private function getTargetPath($path) {
+    private function getTargetTemplatePath($path) {
         return 'templates/' . $path;
+    }
+
+    private function getTargetPublicPath($path) {
+        return 'public/' . $path;
     }
 
     private function getTemplateName($filename) {

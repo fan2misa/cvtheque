@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ThemeRepository")
  * @ORM\EntityListeners({"App\EventListener\ThemeListener"})
+ * @UniqueEntity("slug")
  */
 class Theme
 {
@@ -46,6 +48,11 @@ class Theme
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $templatePath;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $publicPath;
 
     public function getId(): ?int
     {
@@ -112,6 +119,33 @@ class Theme
         return $this;
     }
 
+    public function getPublicPath(): ?string
+    {
+        return $this->publicPath;
+    }
+
+    public function setPublicPath(?string $publicPath): self
+    {
+        $this->publicPath = $publicPath;
+
+        return $this;
+    }
+
+    public function getCssPathGlobal(): ?string
+    {
+        return null !== $this->getPublicPath() ? $this->getPublicPath() . '/css/theme.css' : null;
+    }
+
+    public function getCssPathEdition(): ?string
+    {
+        return null !== $this->getPublicPath() ? $this->getPublicPath() . '/css/theme-edition.css' : null;
+    }
+
+    public function getCssPathVidualisation(): ?string
+    {
+        return null !== $this->getPublicPath() ? $this->getPublicPath() . '/css/theme-visualisation.css' : null;
+    }
+
     public function getTemplatePath(): ?string
     {
         return $this->templatePath;
@@ -119,12 +153,12 @@ class Theme
 
     public function getTemplatePathEdition(): ?string
     {
-        return $this->getTemplatePath() . '/edition.html.twig';
+        return null !== $this->getTemplatePath() ? $this->getTemplatePath() . '/edition.html.twig' : null;
     }
 
     public function getTemplatePathVisualisation(): ?string
     {
-        return $this->getTemplatePath() . '/visualisation.html.twig';
+        return null !== $this->getTemplatePath() ? $this->getTemplatePath() . '/visualisation.html.twig' : null;
     }
 
     public function setTemplatePath(?string $templatePath): self
