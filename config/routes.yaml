@@ -36,10 +36,13 @@ cv_modifier:
         id: \d+
 
 cv_partage:
-    path: /cv/{cv}
+    path: /cv/{cv}/{extension}
     controller: App\Controller\Cv\PartageController::index
+    defaults:
+        extension: html
     requirements:
         id: \d+
+        extension: pdf
 
 theme_list_json:
     path: /themes/{cv}

@@ -3,15 +3,14 @@
 namespace App\Controller\Cv;
 
 use App\Entity\Cv;
+use App\Service\PartageResponseService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PartageController extends AbstractController
 {
 
-    public function index(Cv $cv)
+    public function index(PartageResponseService $partageResponseService, Cv $cv, $extension)
     {
-        return $this->render('cv/partage.html.twig', [
-            'cv' => $cv,
-        ]);
+        return $partageResponseService->render($cv, $extension);
     }
 }
