@@ -54,10 +54,24 @@ services:
         public: true
         arguments: ['@doctrine', '@security.password_encoder', '@mailer', '@twig']
 
+    App\Service\ContactService:
+        public: true
+        arguments: []
+
     App\Service\CVService:
         public: true
         arguments: ['@doctrine', '@assets.packages', '@liip_imagine.cache.manager', '%kernel.project_dir%/public', '%cv%']
 
-    App\Service\ContactService:
+    App\Service\PartageResponseService:
         public: true
-        arguments: []
+
+    App\PartageResponse\HtmlPartageResponse:
+        public: true
+        arguments: ['@twig']
+        tags:
+            - { name: app.partage_response, extension: 'html' }
+
+    App\PartageResponse\PdfPartageResponse:
+        public: true
+        tags:
+        - { name: app.partage_response, extension: 'pdf' }

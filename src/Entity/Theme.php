@@ -141,7 +141,7 @@ class Theme
         return null !== $this->getPublicPath() ? $this->getPublicPath() . '/css/theme-edition.css' : null;
     }
 
-    public function getCssPathVidualisation(): ?string
+    public function getCssPathVisualisation(): ?string
     {
         return null !== $this->getPublicPath() ? $this->getPublicPath() . '/css/theme-visualisation.css' : null;
     }

@@ -90,7 +90,8 @@ class InitCommand extends Command {
             ->setNom('Standard')
             ->setDescription('Thème standard du site')
             ->setSlug(Str::asSnakeCase($entity->getNom()))
-            ->setTemplatePath(Str::asFilePath('themes/' . $entity->getSlug()));
+            ->setTemplatePath(Str::asFilePath('themes/' . $entity->getSlug()))
+            ->setPublicPath(Str::asFilePath('themes/' . $entity->getSlug()));
 
         $this->doctrine->getManager()->persist($entity);
         $this->doctrine->getManager()->flush();

@@ -30,7 +30,7 @@
                         <a class="nav-link" href="#">Télécharger le CV</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Partager mon CV</a>
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-partage">Partager mon CV</a>
                     </li>
                 </ul>
             </div>
@@ -56,6 +56,33 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                     <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-partage" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-super-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Partagez votre CV</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <h2>Visibilité sur le web</h2>
+                        <p>
+                            Votre CV est accessible à cette adresse :
+                            <a href="{{ path('cv_partage', { cv: cv.id }) }}">
+                                {{ url('cv_partage', { cv: cv.id }) }}
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                 </div>
             </div>
         </div>
