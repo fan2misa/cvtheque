@@ -72,9 +72,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <a href="{{ path('cv_partage', { cv: cv.id }) }}">
-                            {{ url('cv_partage', { cv: cv.id }) }}
-                        </a>
+                        <h2>Visibilité sur le web</h2>
+                        <p>
+                            Votre CV est accessible à cette adresse :
+                            <a href="{{ path('cv_partage', { cv: cv.id }) }}">
+                                {{ url('cv_partage', { cv: cv.id }) }}
+                            </a>
+                        </p>
                     </div>
                 </div>
                 <div class="modal-footer">

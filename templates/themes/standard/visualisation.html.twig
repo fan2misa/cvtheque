@@ -8,8 +8,49 @@
     </head>
     <body>
         <div class="cv cv-visualisation">
-            {{ cv.user.fullName }}
-            {{ cv.nom }}
+            <div class="header">
+                <img class="" src="{{ cv_avatar(cv) }}" alt="Portrait de {{ cv.user.fullName }}" />
+                <div class="header-content">
+                    <h1>{{ cv.user.fullName }}</h1>
+                    <h2>{{ cv.nom }}</h2>
+                </div>
+            </div>
+            <div class="sidebar">
+
+
+
+                <div class="competences">
+                    <h3>Compétences</h3>
+                    {% for domaineCompetence in cv.domainesCompetence %}
+                        <div>
+                            <h4>{{ domaineCompetence.nom }}</h4>
+                            <ul>
+                                {% for competence in domaineCompetence.competences %}
+                                    <li>
+                                        {{ competence.nom }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div class="content">
+                <div class="experiences">
+                    <h3>Experiences</h3>
+                    {% for experience in cv.experiences %}
+                        <div>
+                            <h4>{{ experience.informationsGenerales.intitulePoste }} - {{ experience_periode(experience) }}</h4>
+                            <h5>{{ experience.entreprise.nom }}</h5>
+                            <div>
+                                <span>{{ experience.typeContrat | readable_enum  }}</span>
+                                <span>{{ experience.ville.nom  }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </body>
 </html>
