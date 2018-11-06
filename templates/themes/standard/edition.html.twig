@@ -107,6 +107,34 @@
                 </div>
             {% endfor %}
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-experience-new">Ajouter</button>
+
+            <h1>
+                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                Formations
+            </h1>
+            {% for formation in cv.formations %}
+                <div class="card buttons-group-edition-container">
+                    <div class="card-body">
+                        <div class="buttons-group-edition">
+                            <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#modal-formation-{{ formation.id }}">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </button>
+                            <button type="button"
+                                    class="btn btn-primary btn-round"
+                                    data-remove="#modal-formation-{{ formation.id }}"
+                                    data-remove-title="Attention"
+                                    data-remove-body="Êtes-vous sur de vouloir supprimer cette formation ?">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <h2 class="card-title">{{ formation.formation }}</h2>
+                        <h3>{{ formation.etablissement }}</h3>
+                        <div>{{ formation_periode(formation) }}</div>
+                        <div>{{ formation.description }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-formation-new">Ajouter</button>
         </div>
         <div class="col-3">
             <h1>
@@ -220,6 +248,49 @@
             </div>
         </div>
     </div>
+
+    <div data-container="formation">
+        {% for formationField in form.formations %}
+            <div class="modal" id="modal-formation-{{ formationField.vars.value.id }}" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modifier la formation</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{ include(cv.theme.getTemplatePath() ~ '/subform/formulaire-formation.html.twig', { 'form': formationField }) }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="modal" id="modal-formation-new" tabindex="-1" role="dialog" data-type-container="formation" data-prototype="{{ include(cv.theme.getTemplatePath() ~ '/subform/formulaire-formation.html.twig', { 'form': form.formations.vars.prototype }) | e}}">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ajouter une nouvelle formation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div data-container="experience">
         {% for experienceField in form.experiences %}
             <div class="modal" id="modal-experience-{{ experienceField.vars.value.id }}" tabindex="-1" role="dialog">

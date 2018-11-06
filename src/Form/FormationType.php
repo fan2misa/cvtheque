@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Formation;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,11 +14,16 @@ class FormationType extends AbstractType
     {
         $builder
             ->add('formation')
-            ->add('Etablissement')
+            ->add('etablissement')
             ->add('description')
-            ->add('dateDebut')
-            ->add('dateFin')
-            ->add('cv')
+            ->add('dateDebut', DateType::class, [
+                'required' => false,
+                'widget' => 'single_text'
+            ])
+            ->add('dateFin', DateType::class, [
+                'required' => false,
+                'widget' => 'single_text'
+            ])
         ;
     }
 

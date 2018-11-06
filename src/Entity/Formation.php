@@ -30,7 +30,7 @@ class Formation
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
      */
-    private $Etablissement;
+    private $etablissement;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -78,12 +78,12 @@ class Formation
 
     public function getEtablissement(): ?string
     {
-        return $this->Etablissement;
+        return $this->etablissement;
     }
 
-    public function setEtablissement(?string $Etablissement): self
+    public function setEtablissement(?string $etablissement): self
     {
-        $this->Etablissement = $Etablissement;
+        $this->etablissement = $etablissement;
 
         return $this;
     }
