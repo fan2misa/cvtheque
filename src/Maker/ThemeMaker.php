@@ -109,7 +109,7 @@ class ThemeMaker extends AbstractMaker {
         $generator->generateFile($this->getTargetPublicPath($theme->getCssPathEdition()), $this->getTemplateName('theme-edition'), [
             'theme_name' => $input->getArgument('themes-name')
         ]);
-        $generator->generateFile($this->getTargetPublicPath($theme->getCssPathVidualisation()), $this->getTemplateName('theme-visualisation'), [
+        $generator->generateFile($this->getTargetPublicPath($theme->getCssPathVisualisation()), $this->getTemplateName('theme-visualisation'), [
             'theme_name' => $input->getArgument('themes-name')
         ]);
     }
