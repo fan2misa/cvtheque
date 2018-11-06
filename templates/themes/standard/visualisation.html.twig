@@ -47,6 +47,13 @@
                                 <span>{{ experience.typeContrat | readable_enum  }}</span>
                                 <span>{{ experience.ville.nom  }}</span>
                             </div>
+                            <div>
+                                <ul>
+                                    {% for mission in experience.missions %}
+                                        <li>{{ mission.contenu }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>

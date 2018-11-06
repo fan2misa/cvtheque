@@ -48,7 +48,7 @@ class Experience
     private $ville;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Mission", mappedBy="experience", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Mission", mappedBy="experience", orphanRemoval=true, cascade={"persist"})
      */
     private $missions;
 

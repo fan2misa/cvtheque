@@ -33,7 +33,7 @@ class ExperienceType extends AbstractType {
                 ->add('entreprise', TextType::class)
                 ->add('ville', TextType::class)
                 ->add('missions', CollectionType::class, [
-                    'entry_type' => TextType::class,
+                    'entry_type' => MissionType::class,
                     'by_reference' => false,
                     'allow_add' => true,
                     'allow_delete' => true,
