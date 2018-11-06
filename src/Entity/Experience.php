@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -44,6 +46,16 @@ class Experience
      * @ORM\ManyToOne(targetEntity="App\Entity\Ville", cascade={"persist"})
      */
     private $ville;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Mission", mappedBy="experience", orphanRemoval=true)
+     */
+    private $missions;
+
+    public function __construct()
+    {
+        $this->missions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -151,6 +163,37 @@ class Experience
     public function setVille(?Ville $ville): self
     {
         $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Mission[]
+     */
+    public function getMissions(): Collection
+    {
+        return $this->missions;
+    }
+
+    public function addMission(Mission $mission): self
+    {
+        if (!$this->missions->contains($mission)) {
+            $this->missions[] = $mission;
+            $mission->setExperience($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMission(Mission $mission): self
+    {
+        if ($this->missions->contains($mission)) {
+            $this->missions->removeElement($mission);
+            // set the owning side to null (unless already changed)
+            if ($mission->getExperience() === $this) {
+                $mission->setExperience(null);
+            }
+        }
 
         return $this;
     }
