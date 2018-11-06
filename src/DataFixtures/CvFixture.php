@@ -13,6 +13,7 @@ use App\Entity\Cv;
 use App\Entity\Contact;
 use App\Entity\Experience;
 use App\Entity\ExperienceInformationsGenerales;
+use App\Entity\Mission;
 use App\Entity\Theme;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -94,7 +95,22 @@ class CvFixture extends AbstractFixture implements DependentFixtureInterface {
                 ->setEntreprise($this->getReference($this->getReferencePath(EntrepriseFixture::PREFIX_REFERENCE, $data['entreprise_id'])))
                 ->setVille($this->getReference($this->getReferencePath(VilleFixture::PREFIX_REFERENCE, $data['ville_id'])));
 
+        if (isset($data['missions'])) {
+            foreach ($data['missions'] as $missionData) {
+                $mission = $this->getMission($missionData);
+                $experience->addMission($mission);
+            }
+        }
+
         return $experience;
+    }
+
+    private function getMission(array $data): Mission {
+        $mission = new Mission();
+        $mission
+            ->setContenu($data['contenu']);
+
+        return $mission;
     }
 
     private function getExperienceInformationsGenerales(array $data): ExperienceInformationsGenerales {

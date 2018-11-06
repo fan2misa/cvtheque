@@ -30,6 +30,10 @@
             entreprise_id: 1
             type_contrat: CDD
             ville_id: 1
+            missions:
+                - { contenu: "Développement du projet EOLE-ENFI destiné aux écoles d’ingénieurs de Paris" }
+                - { contenu: "Analyse, conception, réalisation, maintenance et évolution de 4 modules EOLE-ENFI destiné aux gestionnaires des écoles" }
+                - { contenu: "Encadrement et formation d’un développeur débutant" }
         -
             informations_generales:
                 intitule_poste: Développeur web
@@ -38,6 +42,11 @@
             entreprise_id: 2
             type_contrat: CDI
             ville_id: 2
+            missions:
+                - { contenu: "Analyse, conception, réalisation, maintenance et évolution de l’application intranet de l’entreprise" }
+                - { contenu: "Analyse, conception, réalisation, maintenance et évolution du site internet next-village destiné aux stagiaires et formateurs" }
+                - { contenu: "Analyse, conception, réalisation, maintenance et évolution des sites portail de Nextformation" }
+                - { contenu: "Maintenance et évolution des applications pour les clients de CFDInformatique" }
     domaines_competence:
         -
             nom: Framework

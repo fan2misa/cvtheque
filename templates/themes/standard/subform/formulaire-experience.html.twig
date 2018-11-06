@@ -56,3 +56,6 @@
         {{ form_errors(form.ville) }}
     </div>
 </div>
+
+{{ form_label(form.missions) }}
+{{ include(cv.theme.getTemplatePath() ~ '/subform/formulaire-missions.html.twig', { 'form': form.missions }) }}

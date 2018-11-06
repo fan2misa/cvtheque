@@ -96,6 +96,13 @@
                                 {{ experience.ville.nom  }}
                             </span>
                         </div>
+                        <div>
+                            <ul>
+                                {% for mission in experience.missions %}
+                                    <li>{{ mission.contenu }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
