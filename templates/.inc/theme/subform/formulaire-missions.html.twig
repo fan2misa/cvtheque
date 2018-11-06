@@ -1,0 +1,8 @@
+<div data-prototype-container=".missions-container" data-prototype="{{ include(get_template_path(cv) ~ '/subform/formulaire-mission.html.twig', { 'form': form.vars.prototype }) | e }}">
+    <div class="missions-container">
+        {% for missionField in form %}
+            {{ include(get_template_path(cv) ~ '/subform/formulaire-mission.html.twig', { 'form': missionField }) }}
+        {% endfor %}
+    </div>
+    <button type="button" class="btn btn-default" data-prototype-button-add>Ajouter</button>
+</div>

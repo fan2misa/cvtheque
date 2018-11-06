@@ -39,7 +39,7 @@
 
     {{ form_start(form) }}
         <div class="cv cv-edition">
-            {{ include(cv.theme.getTemplatePath() ~ '/edition.html.twig', { 'form': form, 'cv': cv }) }}
+            {{ include(get_template_edition(cv), { 'form': form, 'cv': cv }) }}
         </div>
     {{ form_end(form) }}
 

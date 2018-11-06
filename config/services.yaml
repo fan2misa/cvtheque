@@ -60,7 +60,7 @@ services:
 
     App\Service\CVService:
         public: true
-        arguments: ['@doctrine', '@assets.packages', '@liip_imagine.cache.manager', '%kernel.project_dir%/public', '%cv%']
+        arguments: ['@doctrine', '@assets.packages', '@liip_imagine.cache.manager', '%kernel.project_dir%', '%cv%']
 
     App\Service\PartageResponseService:
         public: true
