@@ -17,7 +17,15 @@
             </div>
             <div class="sidebar">
 
-
+                <div class="formations">
+                    <h3>Formations</h3>
+                    {% for formation in cv.formations %}
+                        <div>
+                            <h4>{{ formation.formation }}</h4>
+                            <h5>{{ formation.etablissement }}</h5>
+                        </div>
+                    {% endfor %}
+                </div>
 
                 <div class="competences">
                     <h3>Compétences</h3>

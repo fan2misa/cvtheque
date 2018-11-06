@@ -38,6 +38,13 @@ class CVType extends AbstractType
             ->add('disponibilite', ChoiceType::class, [
                 'choices' => DisponibiliteEnumType::getChoices()
             ])
+            ->add('formations', CollectionType::class, [
+                'entry_type' => FormationType::class,
+                'by_reference' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true
+            ])
             ->add('experiences', CollectionType::class, [
                 'entry_type' => ExperienceType::class,
                 'by_reference' => false,

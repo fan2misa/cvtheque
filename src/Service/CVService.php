@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\Cv;
 use App\Entity\Experience;
+use App\Entity\Formation;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Bundle\MakerBundle\Str;
@@ -64,6 +65,10 @@ class CVService {
         return $experience->getInformationsGenerales()->enCours()
                 ? "Depuis le " . $experience->getInformationsGenerales()->getDateDebut()->format('d/m/Y')
                 : "Du " . $experience->getInformationsGenerales()->getDateDebut()->format('d/m/Y') . " au " . $experience->getInformationsGenerales()->getDateFin()->format('d/m/Y');
+    }
+
+    public function getFormationPeriode(Formation $formation) {
+        return "Du " . $formation->getDateDebut()->format('d/m/Y') . " au " . $formation->getDateFin()->format('d/m/Y');
     }
 
     private function uploadAvatar(Cv $cv) {
