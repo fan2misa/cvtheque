@@ -83,8 +83,9 @@ class ThemeMaker extends AbstractMaker {
         $this->writeSuccessMessage($io);
 
         $io->text('Your Theme is created with name : ' . $entity->getNom());
-        $io->text('You can find template at : ' . $entity->getTemplatePath());
-        $io->text('You can find css files at : ' . $entity->getPublicPath());
+        $io->text('You can find template at : ' . $this->getTargetTemplatePath($entity->getTemplatePath()));
+        $io->text('You can find css files at : ' . $this->getTargetPublicPath($entity->getPublicPath()));
+        $io->text('If you don\'t want to edit edition part, remove file: ' . $this->getTargetTemplatePath($entity->getTemplatePathEdition()));
     }
 
     private function generateEntity(InputInterface $input, ConsoleStyle $io, Generator $generator): Theme {
