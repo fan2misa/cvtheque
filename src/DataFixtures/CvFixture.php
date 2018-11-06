@@ -13,6 +13,7 @@ use App\Entity\Cv;
 use App\Entity\Contact;
 use App\Entity\Experience;
 use App\Entity\ExperienceInformationsGenerales;
+use App\Entity\Formation;
 use App\Entity\Mission;
 use App\Entity\Theme;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -43,6 +44,13 @@ class CvFixture extends AbstractFixture implements DependentFixtureInterface {
                 foreach ($data['contacts'] as $contactData) {
                     $contact = $this->getContact($contactData);
                     $entity->addContact($contact);
+                }
+            }
+
+            if (isset($data['formations'])) {
+                foreach ($data['formations'] as $formationData) {
+                    $formation = $this->getFormation($formationData);
+                    $entity->addFormation($formation);
                 }
             }
 
@@ -82,6 +90,25 @@ class CvFixture extends AbstractFixture implements DependentFixtureInterface {
                 ->setValeur($data['valeur']);
 
         return $contact;
+    }
+
+    private function getFormation(array $data): Formation {
+        $formation = new Formation();
+
+        $formation
+            ->setFormation($data['formation'])
+            ->setEtablissement($data['etablissement'])
+            ->setDateDebut($this->getDateTime($data['date_debut']));
+
+        if (isset($data['date_fin'])) {
+            $formation->setDateFin($this->getDateTime($data['date_fin']));
+        }
+
+        if (isset($data['description'])) {
+            $formation->setDescription($data['description']);
+        }
+
+        return $formation;
     }
 
     private function getExperience(array $data): Experience {

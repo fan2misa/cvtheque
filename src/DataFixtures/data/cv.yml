@@ -21,6 +21,19 @@
         -
             type: SKYPE
             valeur: "007"
+    formations:
+        -
+            formation: BTS Informatique et Réseaux
+            etablissement: Lycée Modeste Leroy, Evreux
+            description: ~
+            date_debut: 2008-09-01
+            date_fin: 2010-06-01
+        -
+            formation: BAC STI Génie Électronique
+            etablissement: Lycée Les Fontenelles, Louviers
+            description: ~
+            date_debut: 2004-09-01
+            date_fin: 2008-06-01
     experiences:
         -
             informations_generales:
