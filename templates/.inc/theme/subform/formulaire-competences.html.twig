@@ -1,0 +1,8 @@
+<div data-prototype-container=".competences-container" data-prototype="{{ include(get_template_path(cv) ~ '/subform/formulaire-competence.html.twig', { 'form': form.vars.prototype }) | e }}">
+    <div class="competences-container">
+        {% for competenceField in form %}
+            {{ include(get_template_path(cv) ~ '/subform/formulaire-competence.html.twig', { 'form': competenceField }) }}
+        {% endfor %}
+    </div>
+    <button type="button" class="btn btn-default" data-prototype-button-add>Ajouter</button>
+</div>

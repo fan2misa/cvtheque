@@ -26,6 +26,8 @@ class CVService {
 
     private $imagineCacheManager;
 
+    private $appPath;
+
     private $publicPath;
 
     private $parameters;
@@ -34,11 +36,12 @@ class CVService {
 
     const IMAGINE_FILTER = 'cv_avatar';
 
-    public function __construct(Registry $doctrine, Packages $packages, CacheManager $imagineCacheManager, $public_path, $parameters) {
+    public function __construct(Registry $doctrine, Packages $packages, CacheManager $imagineCacheManager, $app_path, $parameters) {
         $this->doctrine = $doctrine;
         $this->packages = $packages;
         $this->imagineCacheManager = $imagineCacheManager;
-        $this->publicPath = $public_path;
+        $this->appPath = $app_path;
+        $this->publicPath = $this->appPath . '/public';
         $this->parameters = $parameters;
         $this->fileSystem = new Filesystem();
     }
@@ -59,6 +62,19 @@ class CVService {
         return $cv->getUser()->getAvatarPath()
                 ? $this->imagineCacheManager->getBrowserPath($this->packages->getUrl($cv->getUser()->getAvatarPath()), self::IMAGINE_FILTER)
                 : "https://dummyimage.com/200x250/ecf0f1/7f8c8d";
+    }
+
+    public function hasCustomTemplateEdition(Cv $cv): bool {
+        return null !==  $cv->getTheme()->getTemplatePathEdition()
+            && file_exists($this->appPath . '/templates/' . $cv->getTheme()->getTemplatePathEdition());
+    }
+
+    public function getTemplatePath(Cv $cv): string {
+        return $this->hasCustomTemplateEdition($cv) ? $cv->getTheme()->getTemplatePath() : '.inc/theme';
+    }
+
+    public function getTemplateEdition(Cv $cv): string {
+        return $this->getTemplatePath($cv) . '/edition.html.twig';
     }
 
     public function getExperiencePeriode(Experience $experience) {

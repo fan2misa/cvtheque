@@ -1,8 +1,0 @@
-<div data-prototype-container=".contacts-container" data-prototype="{{ include(cv.theme.getTemplatePath() ~ '/subform/formulaire-contact.html.twig', { 'form': form.contacts.vars.prototype }) | e }}">
-    <div class="contacts-container">
-        {% for contactField in form.contacts %}
-            {{ include(cv.theme.getTemplatePath() ~ '/subform/formulaire-contact.html.twig', { 'form': contactField }) }}
-        {% endfor %}
-    </div>
-    <button type="button" class="btn btn-default" data-prototype-button-add>Ajouter</button>
-</div>

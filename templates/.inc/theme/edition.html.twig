@@ -182,7 +182,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ include(cv.theme.getTemplatePath() ~ '/subform/formulaire-nom.html.twig', { 'form': form }) }}
+                    {{ include(get_template_path(cv) ~ '/subform/formulaire-nom.html.twig', { 'form': form }) }}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -201,7 +201,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ include(cv.theme.getTemplatePath() ~ '/subform/formulaire-generale.html.twig', { 'form': form }) }}
+                    {{ include(get_template_path(cv) ~ '/subform/formulaire-generale.html.twig', { 'form': form }) }}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -220,7 +220,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ include(cv.theme.getTemplatePath() ~ '/subform/formulaire-contacts.html.twig', { 'form': form }) }}
+                    {{ include(get_template_path(cv) ~ '/subform/formulaire-contacts.html.twig', { 'form': form }) }}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -239,7 +239,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ include(cv.theme.getTemplatePath() ~ '/subform/formulaire-disponibilite.html.twig', { 'form': form }) }}
+                    {{ include(get_template_path(cv) ~ '/subform/formulaire-disponibilite.html.twig', { 'form': form }) }}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -261,7 +261,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            {{ include(cv.theme.getTemplatePath() ~ '/subform/formulaire-formation.html.twig', { 'form': formationField }) }}
+                            {{ include(get_template_path(cv) ~ '/subform/formulaire-formation.html.twig', { 'form': formationField }) }}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -273,7 +273,7 @@
         {% endfor %}
     </div>
 
-    <div class="modal" id="modal-formation-new" tabindex="-1" role="dialog" data-type-container="formation" data-prototype="{{ include(cv.theme.getTemplatePath() ~ '/subform/formulaire-formation.html.twig', { 'form': form.formations.vars.prototype }) | e}}">
+    <div class="modal" id="modal-formation-new" tabindex="-1" role="dialog" data-type-container="formation" data-prototype="{{ include(get_template_path(cv) ~ '/subform/formulaire-formation.html.twig', { 'form': form.formations.vars.prototype }) | e}}">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -303,7 +303,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            {{ include(cv.theme.getTemplatePath() ~ '/subform/formulaire-experience.html.twig', { 'form': experienceField }) }}
+                            {{ include(get_template_path(cv) ~ '/subform/formulaire-experience.html.twig', { 'form': experienceField }) }}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -315,7 +315,7 @@
         {% endfor %}
     </div>
 
-    <div class="modal" id="modal-experience-new" tabindex="-1" role="dialog" data-type-container="experience" data-prototype="{{ include(cv.theme.getTemplatePath() ~ '/subform/formulaire-experience.html.twig', { 'form': form.experiences.vars.prototype }) | e}}">
+    <div class="modal" id="modal-experience-new" tabindex="-1" role="dialog" data-type-container="experience" data-prototype="{{ include(get_template_path(cv) ~ '/subform/formulaire-experience.html.twig', { 'form': form.experiences.vars.prototype }) | e}}">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -345,7 +345,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            {{ include(cv.theme.getTemplatePath() ~ '/subform/formulaire-domaine.html.twig', { 'form': domaineField }) }}
+                            {{ include(get_template_path(cv) ~ '/subform/formulaire-domaine.html.twig', { 'form': domaineField }) }}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -357,7 +357,7 @@
         {% endfor %}
     </div>
 
-    <div class="modal" id="modal-domaine-new" tabindex="-1" role="dialog" data-type-container="domaine" data-prototype="{{ include(cv.theme.getTemplatePath() ~ '/subform/formulaire-domaine.html.twig', { 'form': form.domainesCompetence.vars.prototype }) | e}}">
+    <div class="modal" id="modal-domaine-new" tabindex="-1" role="dialog" data-type-container="domaine" data-prototype="{{ include(get_template_path(cv) ~ '/subform/formulaire-domaine.html.twig', { 'form': form.domainesCompetence.vars.prototype }) | e}}">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
