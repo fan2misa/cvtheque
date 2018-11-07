@@ -7,7 +7,6 @@ use App\Entity\Experience;
 use App\Entity\Formation;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
-use Symfony\Bundle\MakerBundle\Str;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;

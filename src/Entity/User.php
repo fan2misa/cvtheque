@@ -80,6 +80,11 @@ class User implements UserInterface
      */
     private $contacts;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $dateAnniversaire;
+
     public function __construct()
     {
         $this->dateInscription = new DateTime();
@@ -210,12 +215,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getAvatarPath(): ?string
+    public function getAvatarPath()
     {
         return $this->avatarPath;
     }
 
-    public function setAvatarPath(?string $avatarPath): self
+    public function setAvatarPath($avatarPath): self
     {
         $this->avatarPath = $avatarPath;
 
@@ -280,6 +285,18 @@ class User implements UserInterface
                 $contact->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDateAnniversaire(): ?\DateTimeInterface
+    {
+        return $this->dateAnniversaire;
+    }
+
+    public function setDateAnniversaire(?\DateTimeInterface $dateAnniversaire): self
+    {
+        $this->dateAnniversaire = $dateAnniversaire;
 
         return $this;
     }

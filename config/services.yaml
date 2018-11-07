@@ -5,6 +5,9 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    user:
+        default: 'https://dummyimage.com/100x120/ecf0f1/7f8c8d'
+        avatar_path: 'media/user'
     cv:
         avatar_path: 'media/cv'
     theme:
@@ -52,7 +55,7 @@ services:
 
     App\Service\UserService:
         public: true
-        arguments: ['@doctrine', '@security.password_encoder', '@mailer', '@twig']
+        arguments: ['@doctrine', '@security.password_encoder', '@mailer', '@twig', '@assets.packages', '@liip_imagine.cache.manager', '%kernel.project_dir%', '%user%']
 
     App\Service\ContactService:
         public: true

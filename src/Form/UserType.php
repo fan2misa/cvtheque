@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,8 +17,14 @@ class UserType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('email')
-            ->add('dateInscription')
-            ->add('avatarPath')
+            ->add('dateAnniversaire', DateType::class, [
+                'required' => false,
+                'widget' => 'single_text'
+            ])
+            ->add('avatarPath', FileType::class, [
+                'required' => false,
+                'data' => null
+            ])
         ;
     }
 
