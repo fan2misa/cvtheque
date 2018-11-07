@@ -1,20 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block title %}Modifiez votre Profil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="container">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        {{ form_start(form) }}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'src/Controller/ProfilController.php'|file_link(0) }}">src/Controller/ProfilController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'templates/profil/index.html.twig'|file_link(0) }}">templates/profil/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <div class="form-group">
+            {{ form_label(form.nom) }}
+            {{ form_widget(form.nom) }}
+            {{ form_errors(form.nom) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.prenom) }}
+            {{ form_widget(form.prenom) }}
+            {{ form_errors(form.prenom) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email) }}
+            {{ form_errors(form.email) }}
+            <small id="emailHelp" class="form-text text-muted">
+                Vous aurez la possibilité de ne pas afficher votre adresse mail dans vos CV
+            </small>
+        </div>
+
+        <div class="media">
+            <img class="mr-3" src="{{ user_avatar(app.user) }}" alt="Generic placeholder image">
+            <div class="media-body">
+                <div class="form-group">
+                    {{ form_label(form.avatarPath) }}
+                    {{ form_widget(form.avatarPath) }}
+                    {{ form_errors(form.avatarPath) }}
+                    <small id="emailHelp" class="form-text text-muted"></small>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.dateAnniversaire) }}
+            {{ form_widget(form.dateAnniversaire) }}
+            {{ form_errors(form.dateAnniversaire) }}
+            <small id="emailHelp" class="form-text text-muted">Vous aurez la possibilité de ne pas afficher votre age
+                dans vos CV
+            </small>
+        </div>
+
+        {{ form_rest(form) }}
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
