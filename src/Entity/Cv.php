@@ -71,12 +71,18 @@ class Cv
      */
     private $formations;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $active;
+
     public function __construct()
     {
         $this->experiences = new ArrayCollection();
         $this->domainesCompetence = new ArrayCollection();
         $this->contacts = new ArrayCollection();
         $this->formations = new ArrayCollection();
+        $this->active = false;
     }
 
     public function getId(): ?int
@@ -276,6 +282,18 @@ class Cv
                 $formation->setCv(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
 
         return $this;
     }
