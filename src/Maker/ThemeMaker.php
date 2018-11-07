@@ -82,10 +82,15 @@ class ThemeMaker extends AbstractMaker {
 
         $this->writeSuccessMessage($io);
 
+        $io->section("Informations");
         $io->text('Your Theme is created with name : ' . $entity->getNom());
-        $io->text('You can find template at : ' . $this->getTargetTemplatePath($entity->getTemplatePath()));
-        $io->text('You can find css files at : ' . $this->getTargetPublicPath($entity->getPublicPath()));
-        $io->text('If you don\'t want to edit edition part, remove file: ' . $this->getTargetTemplatePath($entity->getTemplatePathEdition()));
+        $io->newLine();
+        $io->listing([
+            'You can find template at : ' . $this->getTargetTemplatePath($entity->getTemplatePath()),
+            'You can find css files at : ' . $this->getTargetPublicPath($entity->getPublicPath()),
+            'You can add screenshot image at : ' . $this->getTargetPublicPath($entity->getAvatar()),
+            'If you don\'t want to edit edition part, remove file: ' . $this->getTargetTemplatePath($entity->getTemplatePathEdition())
+        ]);
     }
 
     private function generateEntity(InputInterface $input, ConsoleStyle $io, Generator $generator): Theme {
@@ -95,7 +100,8 @@ class ThemeMaker extends AbstractMaker {
             ->setDescription($input->getArgument('themes-description'))
             ->setSlug(Str::asSnakeCase($entity->getNom()))
             ->setTemplatePath(Str::asFilePath('themes/' . $entity->getSlug()))
-            ->setPublicPath(Str::asFilePath('themes/' . $entity->getSlug()));
+            ->setPublicPath(Str::asFilePath('themes/' . $entity->getSlug()))
+            ->setAvatar(Str::asFilePath('themes/' . $entity->getSlug()) . '/screenshot.png');
 
         $this->doctrine->getManager()->persist($entity);
         $this->doctrine->getManager()->flush();

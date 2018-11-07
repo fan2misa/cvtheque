@@ -33,7 +33,9 @@ class ThemeListener
 
     public function postLoad(Theme $theme, LifecycleEventArgs $event)
     {
-        $avatar = null !== $theme->getAvatar() ? $theme->getAvatar() : $this->parameters['default'];
+        $avatar = null !== $theme->getAvatar() && file_exists($this->publicPath . '/' . $theme->getAvatar())
+            ? $theme->getAvatar()
+            : $this->parameters['default'];
 
         if (!preg_match('/^(http|https)/', $avatar)) {
             $avatar = $this->imagineCacheManager->getBrowserPath($this->packages->getUrl($avatar), self::IMAGINE_FILTER);
