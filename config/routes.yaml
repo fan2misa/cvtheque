@@ -44,6 +44,15 @@ cv_partage:
         id: \d+
         extension: pdf
 
+cv_activation:
+    path: /cv/{cv}/activation
+    controller: App\Controller\Cv\PartageController::activation
+    defaults:
+        extension: html
+    requirements:
+        id: \d+
+        extension: pdf
+
 theme_list_json:
     path: /themes/{cv}
     controller: App\Controller\ThemeController::list
