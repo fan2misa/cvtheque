@@ -38,6 +38,9 @@ module.exports = function (grunt) {
             }
         },
         uglify: {
+            options: {
+                compress: false
+            },
             build: {
                 src: 'public/js/main.js',
                 dest: 'public/js/main.js'
@@ -70,6 +73,7 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', ['copy', 'sass', 'concat', 'uglify']);
+    grunt.registerTask('default', ['copy', 'sass', 'concat']);
+    grunt.registerTask('prod', ['default', 'uglify']);
     grunt.registerTask('dev', ['default', 'watch']);
 };

@@ -1,5 +1,5 @@
 /*
- * Gestion des modals
+ * Gestion des modals avec appel ajax
  */
 
 $(function () {

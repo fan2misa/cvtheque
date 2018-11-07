@@ -62,7 +62,7 @@
     </div>
 
     <div class="modal" id="modal-partage" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-super-lg" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Partagez votre CV</h5>
@@ -71,8 +71,18 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="container">
-                        <h2>Visibilité sur le web</h2>
+                    <h2>Visibilité sur le web</h2>
+                    <div class="form-check">
+                        <input type="checkbox"
+                               class="form-check-input"
+                               id="cv-activation" {{ cv.active ? 'checked' : '' }}
+                               data-on-click
+                               data-on-click-container="#cv-activation-information"
+                               data-on-click-ajax="{{ path('cv_activation', {cv: cv.id}) }}" />
+                        <label class="form-check-label" for="cv-activation">Activer mon CV</label>
+                    </div>
+                    <div id="cv-activation-information" class="loader-container mt-4">
+                        <h2>Information sur votre CV activé</h2>
                         <p>
                             Votre CV est accessible à cette adresse :
                             <a href="{{ path('cv_partage', { cv: cv.id }) }}">
