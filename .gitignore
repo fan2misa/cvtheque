@@ -43,7 +43,7 @@
 /public/media/
 /public/fonts/
 /public/themes/
-!/public/themes/standard/
+!/public/themes/standard/*
 /templates/themes/*
 !/templates/themes/standard/
 ###< files ###

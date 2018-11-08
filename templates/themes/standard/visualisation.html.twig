@@ -50,11 +50,7 @@
                     {% for experience in cv.experiences %}
                         <div>
                             <h4>{{ experience.informationsGenerales.intitulePoste }} - {{ experience_periode(experience) }}</h4>
-                            <h5>{{ experience.entreprise.nom }}</h5>
-                            <div>
-                                <span>{{ experience.typeContrat | readable_enum  }}</span>
-                                <span>{{ experience.ville.nom  }}</span>
-                            </div>
+                            <h5>{{ experience.entreprise.nom }} - {{ experience.ville.nom  }} - {{ experience.typeContrat | readable_enum }}</h5>
                             <div>
                                 <ul>
                                     {% for mission in experience.missions %}

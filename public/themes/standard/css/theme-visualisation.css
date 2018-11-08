@@ -1,35 +1,41 @@
 
 /* Theme : Standard */
 
+.cv-visualisation * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
 body {
     background-color: #efefef;
     font-family: sans-serif;
 }
 
-.cv {
+.cv-visualisation {
     position: relative;
     background-color: white;
     width: 210mm;
     height: 297mm;
     margin: 1em auto;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.75);
-    padding: 2mm;
+    padding: 3mm;
 }
 
-.cv .header {
+.cv-visualisation .header {
     background-color: #e67e22;
     color: white;
     height: 50mm;
     padding: 2mm;
 }
 
-.cv .header img {
+.cv-visualisation .header img {
     height: 100%;
     width: auto;
     float: left;
 }
 
-.cv .header-content {
+.cv-visualisation .header-content {
     float: left;
 }
 
@@ -52,9 +58,12 @@ h4 {
 
 h5 {
     margin: 0 0 1mm 0;
+    color: #777777;
+    font-style: italic;
+    font-size: 12px;
 }
 
-.cv .sidebar {
+.cv-visualisation .sidebar {
     float: left;
     position: absolute;
     padding: 3mm;
@@ -62,9 +71,10 @@ h5 {
     bottom: 0;
     left: 0;
     right: 150mm;
+    margin-right: 1mm;
 }
 
-.cv .content {
+.cv-visualisation .content {
     float: right;
     position: absolute;
     top: 50mm;
@@ -72,15 +82,31 @@ h5 {
     left: 60mm;
     right: 0;
     padding: 3mm;
+    margin-left: 1mm;
 }
 
-.cv .sidebar img {
+.cv-visualisation .sidebar img {
     display: block;
     margin: 0 auto;
 }
 
-.cv .competences ul {
+.cv-visualisation .formations h4 {
+    color: black;
+    font-size: 14px;
+}
+
+.cv-visualisation .competences ul {
     margin: 0 0 3mm 0;
     padding-left: 3mm;
     list-style-type: none;
+}
+
+.cv-visualisation .experiences ul {
+    margin: 3mm 0 5mm 0;
+    padding-left: 5mm;
+    list-style-type: circle;
+}
+
+.cv-visualisation .experiences li {
+    margin-bottom: 1mm;
 }
