@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Bienvenue | CVThèque</title>
+        <link type="text/css" rel="stylesheet" href="{{ asset(cv.theme.getCssPathGlobal()) }}" />
+        <link type="text/css" rel="stylesheet" href="{{ asset(cv.theme.getCssPathVisualisation()) }}" />
+    </head>
+    <body>
+        <div class="cv cv-visualisation">
+            <div class="header">
+                <img class="" src="{{ cv_avatar(cv) }}" alt="Portrait de {{ cv.user.fullName }}" />
+                <div class="header-content">
+                    <h1>{{ cv.user.fullName }}</h1>
+                    <h2>{{ cv.nom }}</h2>
+                </div>
+            </div>
+            <div class="sidebar">
+
+                <div class="formations">
+                    <h3>Formations</h3>
+                    {% for formation in cv.formations %}
+                        <div>
+                            <h4>{{ formation.formation }}</h4>
+                            <h5>{{ formation.etablissement }}</h5>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="competences">
+                    <h3>Compétences</h3>
+                    {% for domaineCompetence in cv.domainesCompetence %}
+                        <div>
+                            <h4>{{ domaineCompetence.nom }}</h4>
+                            <ul>
+                                {% for competence in domaineCompetence.competences %}
+                                    <li>
+                                        {{ competence.nom }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div class="content">
+                <div class="experiences">
+                    <h3>Experiences</h3>
+                    {% for experience in cv.experiences %}
+                        <div>
+                            <h4>{{ experience.informationsGenerales.intitulePoste }} - {{ experience_periode(experience) }}</h4>
+                            <h5>{{ experience.entreprise.nom }}</h5>
+                            <div>
+                                <span>{{ experience.typeContrat | readable_enum  }}</span>
+                                <span>{{ experience.ville.nom  }}</span>
+                            </div>
+                            <div>
+                                <ul>
+                                    {% for mission in experience.missions %}
+                                        <li>{{ mission.contenu }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
