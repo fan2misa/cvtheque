@@ -45,4 +45,5 @@
 /public/themes/
 !/public/themes/standard/
 /templates/themes/*
+!/templates/themes/standard/
 ###< files ###
