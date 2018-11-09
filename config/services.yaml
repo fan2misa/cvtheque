@@ -76,5 +76,6 @@ services:
 
     App\PartageResponse\PdfPartageResponse:
         public: true
+        arguments: ['@twig', '%kernel.project_dir%']
         tags:
         - { name: app.partage_response, extension: 'pdf' }
