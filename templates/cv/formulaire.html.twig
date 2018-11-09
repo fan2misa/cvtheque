@@ -27,7 +27,7 @@
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-selection-design">Choisir un design</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Télécharger le CV</a>
+                        <a class="nav-link" href="{{ path('cv_partage', { cv: cv.id, extension: 'pdf' }) }}">Télécharger le CV</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-partage">Partager mon CV</a>
