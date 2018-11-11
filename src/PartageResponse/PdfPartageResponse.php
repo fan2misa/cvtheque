@@ -2,13 +2,13 @@
 
 namespace App\PartageResponse;
 
-use App\Entity\Cv;
-use App\Service\PartageResponseInterface;
+use App\Service\Wrapper\Entity\Cv;
+use App\Service\PartageResponse;
 use Dompdf\Css\Stylesheet;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-class PdfPartageResponse implements PartageResponseInterface {
+class PdfPartageResponse extends PartageResponse {
 
     private $templating;
 

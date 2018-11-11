@@ -2,12 +2,12 @@
 
 namespace App\PartageResponse;
 
-use App\Entity\Cv;
-use App\Service\PartageResponseInterface;
+use App\Service\Wrapper\Entity\Cv;
+use App\Service\PartageResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Twig_Environment;
 
-class HtmlPartageResponse implements PartageResponseInterface {
+class HtmlPartageResponse extends PartageResponse {
 
     private $templating;
 

@@ -65,8 +65,19 @@ services:
         public: true
         arguments: ['@doctrine', '@assets.packages', '@liip_imagine.cache.manager', '%kernel.project_dir%', '%cv%']
 
+    App\Service\Wrapper\CvWrapperService:
+        public: true
+        arguments: ['@App\Service\CVService', '@App\Service\Wrapper\UserWrapperService', '@App\Service\Wrapper\ThemeWrapperService']
+
+    App\Service\Wrapper\UserWrapperService:
+        public: true
+
+    App\Service\Wrapper\ThemeWrapperService:
+        public: true
+
     App\Service\PartageResponseService:
         public: true
+        arguments: ['@App\Service\Wrapper\CvWrapperService']
 
     App\PartageResponse\HtmlPartageResponse:
         public: true
