@@ -4,6 +4,8 @@ namespace App\Service\Wrapper\Entity;
 
 class Cv {
 
+    private $basePath;
+
     private $nom;
 
     private $avatar;
@@ -23,6 +25,24 @@ class Cv {
     private $theme;
 
     private $formations;
+
+    /**
+     * @param mixed $basePath
+     */
+    public function __construct()
+    {
+        $this->basePath = '';
+    }
+
+    /**
+     * @param string $basePath
+     * @return Cv
+     */
+    public function setBasePath(string $basePath): self
+    {
+        $this->basePath = $basePath;
+        return $this;
+    }
 
     /**
      * @return mixed
@@ -47,7 +67,7 @@ class Cv {
      */
     public function getAvatar()
     {
-        return $this->avatar;
+        return rtrim($this->basePath, '/') . '/' . trim($this->avatar, '/');
     }
 
     /**

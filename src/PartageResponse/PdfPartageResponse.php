@@ -14,14 +14,19 @@ class PdfPartageResponse extends PartageResponse {
 
     private $appPath;
 
+    private $publicPath;
+
     public function __construct(\Twig_Environment $templating, $app_path)
     {
         $this->templating = $templating;
         $this->appPath = $app_path;
+        $this->publicPath = $this->appPath . '/public';
     }
 
     public function render(Cv $cv)
     {
+        $cv->setBasePath($this->publicPath);
+
         $dompdf = new Dompdf($this->getOptions($cv));
 
         $html = $this->templating->render($cv->getTheme()->getTemplatePathVisualisation(), [
