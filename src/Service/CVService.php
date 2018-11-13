@@ -5,8 +5,8 @@ namespace App\Service;
 use App\Entity\Cv;
 use App\Entity\Experience;
 use App\Entity\Formation;
+use App\ImageFilter\CvAvatarImageFilter;
 use Doctrine\Bundle\DoctrineBundle\Registry;
-use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
@@ -23,7 +23,7 @@ class CVService {
 
     private $packages;
 
-    private $imagineCacheManager;
+    private $imageManager;
 
     private $appPath;
 
@@ -33,12 +33,10 @@ class CVService {
 
     private $fileSystem;
 
-    const IMAGINE_FILTER = 'cv_avatar';
-
-    public function __construct(Registry $doctrine, Packages $packages, CacheManager $imagineCacheManager, $app_path, $parameters) {
+    public function __construct(Registry $doctrine, Packages $packages, ImageManager $imageManager, $app_path, $parameters) {
         $this->doctrine = $doctrine;
         $this->packages = $packages;
-        $this->imagineCacheManager = $imagineCacheManager;
+        $this->imageManager = $imageManager;
         $this->appPath = $app_path;
         $this->publicPath = $this->appPath . '/public';
         $this->parameters = $parameters;
@@ -53,14 +51,14 @@ class CVService {
 
     public function getAvatar(Cv $cv) {
         return $cv->getAvatarPath() && !($cv->getAvatarPath() instanceof UploadedFile)
-                ? $this->imagineCacheManager->getBrowserPath($this->packages->getUrl($cv->getAvatarPath()), self::IMAGINE_FILTER)
-                : $this->getDefaultAvatar($cv);
+            ? $this->packages->getUrl($this->imageManager->get($cv->getAvatarPath(), CvAvatarImageFilter::class))
+            : $this->getDefaultAvatar($cv);
     }
 
     public function getDefaultAvatar(Cv $cv) {
         return $cv->getUser()->getAvatarPath()
-                ? $this->imagineCacheManager->getBrowserPath($this->packages->getUrl($cv->getUser()->getAvatarPath()), self::IMAGINE_FILTER)
-                : "https://dummyimage.com/200x250/ecf0f1/7f8c8d";
+            ? $this->packages->getUrl($this->imageManager->get($cv->getUser()->getAvatarPath(), CvAvatarImageFilter::class))
+            : "https://dummyimage.com/200x250/ecf0f1/7f8c8d";
     }
 
     public function hasCustomTemplateEdition(Cv $cv): bool {
@@ -78,8 +76,8 @@ class CVService {
 
     public function getExperiencePeriode(Experience $experience) {
         return $experience->getInformationsGenerales()->enCours()
-                ? "Depuis le " . $experience->getInformationsGenerales()->getDateDebut()->format('d/m/Y')
-                : "Du " . $experience->getInformationsGenerales()->getDateDebut()->format('d/m/Y') . " au " . $experience->getInformationsGenerales()->getDateFin()->format('d/m/Y');
+            ? "Depuis le " . $experience->getInformationsGenerales()->getDateDebut()->format('d/m/Y')
+            : "Du " . $experience->getInformationsGenerales()->getDateDebut()->format('d/m/Y') . " au " . $experience->getInformationsGenerales()->getDateFin()->format('d/m/Y');
     }
 
     public function getFormationPeriode(Formation $formation) {

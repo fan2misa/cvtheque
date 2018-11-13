@@ -3,8 +3,8 @@
 namespace App\Service;
 
 use App\Entity\User;
+use App\ImageFilter\UserAvatarImageFilter;
 use Doctrine\Bundle\DoctrineBundle\Registry;
-use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Swift_Mailer;
 use Swift_Message;
 use Symfony\Component\Asset\Packages;
@@ -31,7 +31,7 @@ class UserService {
 
     private $packages;
 
-    private $imagineCacheManager;
+    private $imageManager;
 
     private $appPath;
 
@@ -41,15 +41,13 @@ class UserService {
 
     private $fileSystem;
 
-    const IMAGINE_FILTER = 'user_avatar';
-
-    public function __construct(Registry $doctrine, UserPasswordEncoder $passwordEncoder, Swift_Mailer $mailer, Twig_Environment $twig, Packages $packages, CacheManager $imagineCacheManager, $app_path, $parameters) {
+    public function __construct(Registry $doctrine, UserPasswordEncoder $passwordEncoder, Swift_Mailer $mailer, Twig_Environment $twig, Packages $packages, ImageManager $imageManager, $app_path, $parameters) {
         $this->doctrine = $doctrine;
         $this->passwordEncoder = $passwordEncoder;
         $this->mailer = $mailer;
         $this->twig = $twig;
         $this->packages = $packages;
-        $this->imagineCacheManager = $imagineCacheManager;
+        $this->imageManager = $imageManager;
         $this->appPath = $app_path;
         $this->publicPath = $this->appPath . '/public';
         $this->parameters = $parameters;
@@ -79,14 +77,14 @@ class UserService {
     
     public function getAvatar(User $user) {
         return $user->getAvatarPath() && !($user->getAvatarPath() instanceof UploadedFile)
-            ? $this->imagineCacheManager->getBrowserPath($this->packages->getUrl($user->getAvatarPath()), self::IMAGINE_FILTER)
+            ? $this->imageManager->get($user->getAvatarPath(), UserAvatarImageFilter::class)
             : $this->getDefaultAvatar();
     }
 
     public function getDefaultAvatar() {
         $avatar = $this->parameters['default'];
         if (!preg_match('/^(http|https)/', $avatar)) {
-            $avatar = $this->imagineCacheManager->getBrowserPath($this->packages->getUrl($avatar), self::IMAGINE_FILTER);
+            $avatar = $this->imageManager->get($avatar, UserAvatarImageFilter::class);
         }
         return $avatar;
     }

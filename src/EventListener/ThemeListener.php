@@ -3,8 +3,8 @@
 namespace App\EventListener;
 
 use App\Entity\Theme;
+use App\Service\ImageManager;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -13,7 +13,7 @@ class ThemeListener
 
     private $packages;
 
-    private $imagineCacheManager;
+    private $imageManager;
 
     private $publicPath;
 
@@ -23,9 +23,9 @@ class ThemeListener
 
     const IMAGINE_FILTER = 'theme_avatar';
 
-    public function __construct(Packages $packages, CacheManager $imagineCacheManager, $public_path, $parameters) {
+    public function __construct(Packages $packages, ImageManager $imageManager, $public_path, $parameters) {
         $this->packages = $packages;
-        $this->imagineCacheManager = $imagineCacheManager;
+        $this->imageManager = $imageManager;
         $this->publicPath = $public_path;
         $this->parameters = $parameters;
         $this->fileSystem = new Filesystem();
@@ -38,7 +38,7 @@ class ThemeListener
             : $this->parameters['default'];
 
         if (!preg_match('/^(http|https)/', $avatar)) {
-            $avatar = $this->imagineCacheManager->getBrowserPath($this->packages->getUrl($avatar), self::IMAGINE_FILTER);
+            $avatar = $this->imageManager->getBrowserPath($this->packages->getUrl($avatar), self::IMAGINE_FILTER);
         }
 
         $theme->setAvatarCropped($avatar);
