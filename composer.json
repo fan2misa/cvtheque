@@ -7,7 +7,7 @@
         "ext-iconv": "*",
         "dompdf/dompdf": "^0.8.2",
         "fresh/doctrine-enum-bundle": "^6.2",
-        "liip/imagine-bundle": "^2.1",
+        "intervention/image": "^2.4",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "*",
         "symfony/console": "*",

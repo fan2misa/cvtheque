@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    intervention:
+        driver: gd
     user:
         default: 'https://dummyimage.com/100x120/ecf0f1/7f8c8d'
         avatar_path: 'media/user'
@@ -38,6 +40,9 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    App\Service\ImageManager:
+        arguments: ['%intervention%']
+
     App\Provider\UserProvider:
         arguments: ['@doctrine']
 
@@ -49,13 +54,13 @@ services:
         arguments: ['@doctrine', '%kernel.project_dir%']
 
     App\EventListener\ThemeListener:
-        arguments: ['@assets.packages', '@liip_imagine.cache.manager', '%kernel.project_dir%/public', '%theme%']
+        arguments: ['@assets.packages', '@App\Service\ImageManager', '%kernel.project_dir%/public', '%theme%']
         tags:
             - { name: doctrine.orm.entity_listener }
 
     App\Service\UserService:
         public: true
-        arguments: ['@doctrine', '@security.password_encoder', '@mailer', '@twig', '@assets.packages', '@liip_imagine.cache.manager', '%kernel.project_dir%', '%user%']
+        arguments: ['@doctrine', '@security.password_encoder', '@mailer', '@twig', '@assets.packages', '@App\Service\ImageManager', '%kernel.project_dir%', '%user%']
 
     App\Service\ContactService:
         public: true
@@ -63,10 +68,21 @@ services:
 
     App\Service\CVService:
         public: true
-        arguments: ['@doctrine', '@assets.packages', '@liip_imagine.cache.manager', '%kernel.project_dir%', '%cv%']
+        arguments: ['@doctrine', '@assets.packages', '@App\Service\ImageManager', '%kernel.project_dir%', '%cv%']
+
+    App\Service\Wrapper\CvWrapperService:
+        public: true
+        arguments: ['@App\Service\CVService', '@App\Service\Wrapper\UserWrapperService', '@App\Service\Wrapper\ThemeWrapperService']
+
+    App\Service\Wrapper\UserWrapperService:
+        public: true
+
+    App\Service\Wrapper\ThemeWrapperService:
+        public: true
 
     App\Service\PartageResponseService:
         public: true
+        arguments: ['@App\Service\Wrapper\CvWrapperService']
 
     App\PartageResponse\HtmlPartageResponse:
         public: true
@@ -78,4 +94,12 @@ services:
         public: true
         arguments: ['@twig', '%kernel.project_dir%']
         tags:
-        - { name: app.partage_response, extension: 'pdf' }
+            - { name: app.partage_response, extension: 'pdf' }
+
+    App\ImageFilter\CvAvatarImageFilter:
+        tags:
+        - { name: app.intervention.image_filter }
+
+    App\ImageFilter\UserAvatarImageFilter:
+        tags:
+        - { name: app.intervention.image_filter }

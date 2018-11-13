@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\DependencyInjection\Compiler\ImageFilterPass;
 use App\DependencyInjection\Compiler\PartageResponsePass;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -63,5 +64,6 @@ class Kernel extends BaseKernel
     protected function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new PartageResponsePass());
+        $container->addCompilerPass(new ImageFilterPass());
     }
 }

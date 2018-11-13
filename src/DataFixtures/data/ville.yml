@@ -4,20 +4,25 @@
 -
     id: 1
     nom: Paris
-    code_postal: 76000
+    code_postal: 75000
     pays: France
 -
     id: 2
     nom: Vincennes
-    code_postal: 76100
+    code_postal: 94300
     pays: France
 -
     id: 3
-    nom: Gotham
-    code_postal: 76480
-    pays: USA
+    nom: Bois-Guillaume
+    code_postal: 76100
+    pays: France
 -
     id: 4
+    nom: Gotham
+    code_postal: GC001
+    pays: USA
+-
+    id: 5
     nom: Metropolis
-    code_postal: 76481
+    code_postal: MC001
     pays: USA

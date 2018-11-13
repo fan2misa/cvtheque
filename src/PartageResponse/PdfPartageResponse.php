@@ -2,26 +2,31 @@
 
 namespace App\PartageResponse;
 
-use App\Entity\Cv;
-use App\Service\PartageResponseInterface;
+use App\Service\Wrapper\Entity\Cv;
+use App\Service\PartageResponse;
 use Dompdf\Css\Stylesheet;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-class PdfPartageResponse implements PartageResponseInterface {
+class PdfPartageResponse extends PartageResponse {
 
     private $templating;
 
     private $appPath;
 
+    private $publicPath;
+
     public function __construct(\Twig_Environment $templating, $app_path)
     {
         $this->templating = $templating;
         $this->appPath = $app_path;
+        $this->publicPath = $this->appPath . '/public';
     }
 
     public function render(Cv $cv)
     {
+        $cv->setBasePath($this->publicPath);
+
         $dompdf = new Dompdf($this->getOptions($cv));
 
         $html = $this->templating->render($cv->getTheme()->getTemplatePathVisualisation(), [

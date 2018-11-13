@@ -147,7 +147,7 @@ class CvFixture extends AbstractFixture implements DependentFixtureInterface {
                 ->setIntitulePoste($data['intitule_poste'])
                 ->setDateDebut($this->getDateTime($data['date_debut']));
 
-        if (isset($data['date_fin'])) {
+        if (isset($data['date_fin']) && null !== $data['date_fin']) {
             $informationsGenerales->setEnCours(FALSE);
             $informationsGenerales->setDateFin($this->getDateTime($data['date_fin']));
         } else {

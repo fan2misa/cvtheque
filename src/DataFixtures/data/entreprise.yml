@@ -11,13 +11,17 @@
     description: Description de NextFormation
 -
     id: 3
+    nom: TRSb Digiwin
+    description: Description de TRSb Digiwin
+-
+    id: 4
     nom: Wayne Enterprise
     description: Description de Wayne Enterprise
 -
-    id: 4
+    id: 5
     nom: Manoir Wayne
     description: Description de Manoir Wayne
 -
-    id: 5
+    id: 6
     nom: The Daily Planet
     description: Description de The Daily Planet
