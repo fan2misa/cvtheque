@@ -10,6 +10,13 @@ class UserWrapperService {
     {
         $userWrapper = new \App\Service\Wrapper\Entity\User();
 
+        $userWrapper
+            ->setNom($user->getNom())
+            ->setPrenom($user->getPrenom())
+            ->setEmail($user->getEmail())
+            ->setDateAnniversaire($user->getDateAnniversaire())
+        ;
+
         return $userWrapper;
     }
 

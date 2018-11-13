@@ -60,6 +60,19 @@
                 - { contenu: "Analyse, conception, réalisation, maintenance et évolution du site internet next-village destiné aux stagiaires et formateurs" }
                 - { contenu: "Analyse, conception, réalisation, maintenance et évolution des sites portail de Nextformation" }
                 - { contenu: "Maintenance et évolution des applications pour les clients de CFDInformatique" }
+        -   informations_generales:
+                intitule_poste: Développeur web
+                date_debut: 2015-11-01
+                date_fin: ~
+            entreprise_id: 3
+            type_contrat: CDI
+            ville_id: 3
+            missions:
+            - { contenu: "Développement de l’application Compas sous Play 2 et React" }
+            - { contenu: "Développement de l’application Ocean sous Play 2 (Java)" }
+            - { contenu: "Analyse, conception, réalisation, maintenance et évolution du site Sécurité TV pour SNCF-Réseaux sous Drupal 7" }
+            - { contenu: "Analyse, conception, réalisation du site Providence pour SNCF-Réseaux sous Drupal 8" }
+            - { contenu: "Maintenance et évolution du site Gisele V4 développé sous Symfony 2" }
     domaines_competence:
         -
             nom: Framework
@@ -102,16 +115,16 @@
                 intitule_poste: PDG
                 date_debut: 2016-09-01
                 date_fin: 2018-06-10
-            entreprise_id: 3
+            entreprise_id: 4
             type_contrat: CDI
-            ville_id: 3
+            ville_id: 4
         -
             informations_generales:
                 intitule_poste: Batman
                 date_debut: 2017-01-01
-            entreprise_id: 4
+            entreprise_id: 5
             type_contrat: CDD
-            ville_id: 3
+            ville_id: 4
     domaines_competence:
         -
             nom: Armes
