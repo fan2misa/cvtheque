@@ -45,9 +45,11 @@ class PdfPartageResponse extends PartageResponse {
 
     private function getOptions(Cv $cv) {
         $pdfOptions = new Options();
+
         $pdfOptions
             ->setDefaultFont('Roboto')
             ->setIsHtml5ParserEnabled(true)
+            ->setFontHeightRatio(1)
             ->setChroot($this->appPath . '/public')
             ->setFontDir($pdfOptions->getChroot() . '/' . $cv->getTheme()->getPublicPath() . '/css/fonts')
             ->setIsRemoteEnabled(true);

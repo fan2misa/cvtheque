@@ -1,52 +1,12 @@
 
 /* Theme : Standard */
 
+html {
+    margin: 15px;
+}
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-    display: block;
-}
 body {
     line-height: 1;
-}
-ol, ul {
-    list-style: none;
-}
-blockquote, q {
-    quotes: none;
-}
-blockquote:before, blockquote:after, q:before, q:after {
-    content: '';
-    content: none;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-html {
-    margin: 5mm;
 }
 
 body * {
@@ -55,43 +15,45 @@ body * {
 }
 
 h1 {
-    margin-top: 0 !important;
+    margin: 0 0 0 10px;
     font-size: 36px !important;
-    margin-left: 3mm;
 }
 
 h2 {
     font-size: 22px !important;
-    margin-left: 3mm;
+    margin: 0 0 0 10px;
 }
 
 h3 {
     color: #e67e22;
     border-bottom: 2px solid #e67e22;
     font-size: 18px !important;
+    margin: 0 0 3px 0;
 }
 
 h4 {
     color: #2980b9;
     font-size: 14px !important;
+    margin: 0;
 }
 
 h5 {
     color: #777777;
     font-style: italic;
     font-size: 12px;
+    margin: 0 0 5px 0;
 }
 
-.p-1 { padding: 1mm; }
-.pl-1 { padding-left: 1mm; }
-.pr-1 { padding-right: 1mm; }
+.p-1 { padding: 3px; }
+.pl-1 { padding-left: 3px; }
+.pr-1 { padding-right: 3px; }
 
 .cv-visualisation .header {
     background-color: #e67e22;
     color: white;
-    height: 50mm;
-    padding: 2mm;
-    margin-bottom: 3mm;
+    height: 150px;
+    padding: 5px;
+    margin-bottom: 10px;
 }
 
 .cv-visualisation .header img {
@@ -129,17 +91,17 @@ h5 {
 }
 
 .cv-visualisation .competences ul {
-    margin: 0 0 3mm 0;
-    padding-left: 3mm;
+    padding: 0 0 10px 10px;
+    margin: 0;
     list-style-type: none;
 }
 
 .cv-visualisation .experiences ul {
-    margin-bottom: 5mm;
-    padding-left: 3mm;
+    padding: 0 0 10px 10px;
+    margin: 0;
     list-style-type: none;
 }
 
 .cv-visualisation .experiences li {
-    margin-bottom: 1mm;
+    margin-bottom: 3px;
 }

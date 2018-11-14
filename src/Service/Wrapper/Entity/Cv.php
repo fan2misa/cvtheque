@@ -67,7 +67,9 @@ class Cv {
      */
     public function getAvatar()
     {
-        return rtrim($this->basePath, '/') . '/' . trim($this->avatar, '/');
+        return !preg_match('/^(http|https)/', $this->avatar)
+            ? rtrim($this->basePath, '/') . '/' . trim($this->avatar, '/')
+            : $this->avatar;
     }
 
     /**
