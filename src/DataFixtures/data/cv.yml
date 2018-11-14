@@ -79,7 +79,16 @@
             competences:
                 - { nom: Symfony, note: 4.5 }
                 - { nom: CodeIgniter, note: 4 }
+                - { nom: Phaser, note: 4 }
+                - { nom: React, note: 4 }
+                - { nom: Angular, note: 3.5 }
                 - { nom: Slim Framework, note: 3.5 }
+                - { nom: Laravel, note: 3.5 }
+                - { nom: Zend, note: 3.5 }
+                - { nom: Nette Framework, note: 3.5 }
+                - { nom: Cakephp, note: 3.5 }
+                - { nom: Electron, note: 3.5 }
+                - { nom: Cordova, note: 3 }
         -
             nom: Programmation web
             competences:
@@ -88,6 +97,7 @@
                 - { nom: PHP, note: 4.5 }
                 - { nom: Java, note: 3.5 }
                 - { nom: Javascript, note: 4 }
+                - { nom: Typescript, note: 4 }
                 - { nom: SQL, note: 4 }
                 - { nom: C/C++, note: 2.5 }
         -
@@ -95,6 +105,7 @@
             competences:
                 - { nom: Drupal, note: 3.5 }
                 - { nom: WordPress, note: 3.5 }
+                - { nom: PrestaShop, note: 3 }
         -
             nom: Autres
             competences:
