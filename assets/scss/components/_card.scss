@@ -1,0 +1,26 @@
+
+.card.bg-dark {
+    color: $white;
+
+    .form-control {
+        background-color: $dark;
+        color: $white;
+        border-color: darken($dark, 6%);
+    }
+
+    select.form-control {
+        &:focus::-ms-value {
+            background-color: $input-bg;
+        }
+    }
+}
+
+.card.card-lg {
+
+    .form-control {
+        font-size: 1.2em;
+        padding: 0;
+        border-width: 0 0 2px 0;
+    }
+
+}

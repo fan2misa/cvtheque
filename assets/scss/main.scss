@@ -4,10 +4,20 @@
 @import "bootstrap";
 @import "font-awesome";
 
+body { background-color: $secondary }
+
+.wrapper { margin-top: 20px; }
+
 @import "components/loader";
 @import "components/modal";
 @import "components/button";
 @import "components/main-topbar";
+@import "components/card";
 
 @import "./components/cv-topbar";
 @import "./components/cv-jumbotron";
+
+// Buttons + Forms
+
+$input-btn-padding-y-lg: 2rem;
+$input-btn-padding-x-lg: 1rem;
