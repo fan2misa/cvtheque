@@ -4,5 +4,7 @@
             {{ include(get_template_path(cv) ~ '/subform/formulaire-contact.html.twig', { 'form': contactField }) }}
         {% endfor %}
     </div>
-    <button type="button" class="btn btn-default" data-prototype-button-add>Ajouter</button>
+    <div class="text-center">
+        <button type="button" class="btn btn-success my-3" data-prototype-button-add>Ajouter</button>
+    </div>
 </div>

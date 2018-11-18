@@ -4,7 +4,7 @@
 @import "bootstrap";
 @import "font-awesome";
 
-body { background-color: $secondary }
+body { background-color: $secondary; color: $white; }
 
 .wrapper { margin-top: 20px; }
 
@@ -13,6 +13,7 @@ body { background-color: $secondary }
 @import "components/button";
 @import "components/main-topbar";
 @import "components/card";
+@import "components/form";
 
 @import "./components/cv-topbar";
 @import "./components/cv-jumbotron";

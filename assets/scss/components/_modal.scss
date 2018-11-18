@@ -1,3 +1,5 @@
+@include bg-variant(".modal-content", $dark);
+
 .modal-dialog.modal-super-lg {
     margin: 0;
     max-width: inherit;

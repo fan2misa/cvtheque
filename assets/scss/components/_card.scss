@@ -1,18 +1,9 @@
 
-.card.bg-dark {
+@include bg-variant(".card", $dark);
+
+.card {
     color: $white;
-
-    .form-control {
-        background-color: $dark;
-        color: $white;
-        border-color: darken($dark, 6%);
-    }
-
-    select.form-control {
-        &:focus::-ms-value {
-            background-color: $input-bg;
-        }
-    }
+    margin-bottom: $spacer;
 }
 
 .card.card-lg {

@@ -1,7 +1,11 @@
 // Variables
 
-$primary: #2c3e50;
+$white: #fff;
+$spacer: 1rem;
+
+$primary: #9b59b6;
 $secondary: #34495e;
+$tertiary: #2c3e50;
 
 $font-size-base: 1rem;
 
@@ -26,4 +30,7 @@ $card-lg-input-btn-padding-x: 0.5rem;
 
 // Forms
 
+$input-color: $white;
 $input-border-radius: 0;
+$input-box-shadow: none;
+$input-focus-box-shadow: none;
