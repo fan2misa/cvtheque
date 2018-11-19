@@ -1,0 +1,17 @@
+
+@include bg-variant(".card", $dark);
+
+.card {
+    color: $white;
+    margin-bottom: $spacer;
+}
+
+.card.card-lg {
+
+    .form-control {
+        font-size: 1.2em;
+        padding: 0;
+        border-width: 0 0 2px 0;
+    }
+
+}

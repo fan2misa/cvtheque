@@ -1,7 +1,14 @@
 // Variables
 
-$primary: #563d7c;
-$secondary: #2c3e50;
+$white: #fff;
+$gray-800: #343a40;
+$dark: $gray-800;
+
+$spacer: 1rem;
+
+$primary: #9b59b6;
+$secondary: #34495e;
+$tertiary: #2c3e50;
 
 $font-size-base: 1rem;
 
@@ -11,3 +18,31 @@ $h3-font-size: $font-size-base * 1.3;
 $h4-font-size: $font-size-base * 1.2;
 $h5-font-size: $font-size-base * 1.1;
 $h6-font-size: $font-size-base;
+
+// Buttons
+
+$btn-border-radius: 0;
+$btn-border-radius-lg: 0;
+$btn-border-radius-sm: 0;
+
+// Cards
+
+$card-border-radius: 0;
+$card-lg-input-btn-padding-y: 2rem;
+$card-lg-input-btn-padding-x: 0.5rem;
+
+// Forms
+
+$input-color: $white;
+$input-border-radius: 0;
+$input-box-shadow: none;
+$input-focus-box-shadow: none;
+
+// Dropdowns
+
+$dropdown-bg: $tertiary;
+$dropdown-border-color: darken($dropdown-bg, 5%);
+$dropdown-divider-bg: $dropdown-border-color;
+$dropdown-link-color: $white;
+$dropdown-link-hover-bg: darken($dropdown-bg, 2%);
+$dropdown-link-hover-color: $dropdown-link-color;

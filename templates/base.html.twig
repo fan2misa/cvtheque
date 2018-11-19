@@ -37,7 +37,11 @@
             </div>
         </nav>
 
-        {% block body %}{% endblock %}
+        {% block body %}
+            <div class="wrapper">
+                {% block wrapper %}{% endblock %}
+            </div>
+        {% endblock %}
 
         <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
