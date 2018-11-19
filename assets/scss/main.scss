@@ -9,6 +9,7 @@ body { background-color: $secondary; color: $white; }
 .wrapper { margin-top: 20px; }
 
 @import "components/loader";
+@import "components/jumbotron";
 @import "components/modal";
 @import "components/button";
 @import "components/main-topbar";
