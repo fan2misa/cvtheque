@@ -1,6 +1,9 @@
 // Variables
 
 $white: #fff;
+$gray-800: #343a40;
+$dark: $gray-800;
+
 $spacer: 1rem;
 
 $primary: #9b59b6;
@@ -34,3 +37,12 @@ $input-color: $white;
 $input-border-radius: 0;
 $input-box-shadow: none;
 $input-focus-box-shadow: none;
+
+// Dropdowns
+
+$dropdown-bg: $tertiary;
+$dropdown-border-color: darken($dropdown-bg, 5%);
+$dropdown-divider-bg: $dropdown-border-color;
+$dropdown-link-color: $white;
+$dropdown-link-hover-bg: darken($dropdown-bg, 2%);
+$dropdown-link-hover-color: $dropdown-link-color;
