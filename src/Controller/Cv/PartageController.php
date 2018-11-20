@@ -3,8 +3,9 @@
 namespace App\Controller\Cv;
 
 use App\Entity\Cv;
+use App\Entity\User;
 use App\Service\PartageResponseService;
-use Psr\Container\ContainerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +14,19 @@ class PartageController extends AbstractController
 {
 
     public function index(PartageResponseService $partageResponseService, Cv $cv, $extension)
+    {
+        if ($cv->getUser() !== $this->getUser()) {
+            throw $this->createNotFoundException("Ce Cv ne vous appartient pas !");
+        }
+
+        return $partageResponseService->render($cv, $extension);
+    }
+
+    /**
+     * @ParamConverter("user", options={"mapping"={"user"="slug"}})
+     * @ParamConverter("cv", options={"mapping"={"cv"="slug"}})
+     */
+    public function public(PartageResponseService $partageResponseService, User $user, Cv $cv, $extension)
     {
         if (!$cv->isActive()) {
             throw $this->createNotFoundException("Ce Cv n'est pas actif !");

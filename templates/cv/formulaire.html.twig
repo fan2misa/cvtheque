@@ -27,7 +27,7 @@
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-selection-design">Choisir un design</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('cv_partage', { cv: cv.id, extension: 'pdf' }) }}">Télécharger le CV</a>
+                        <a class="nav-link" href="{{ path('cv_visualisation', { cv: cv.id, extension: 'pdf' }) }}">Télécharger le CV</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-partage">Partager mon CV</a>
@@ -72,6 +72,12 @@
                 </div>
                 <div class="modal-body">
                     <h2>Visibilité sur le web</h2>
+                    <p>
+                        Vous pouvez visualiser votre CV à cette adresse :
+                        <a href="{{ path('cv_visualisation', { cv: cv.id }) }}">
+                            {{ url('cv_visualisation', { cv: cv.id }) }}
+                        </a>
+                    </p>
                     <div class="form-check">
                         <input type="checkbox"
                                class="form-check-input"
@@ -85,8 +91,8 @@
                         <h2>Information sur votre CV activé</h2>
                         <p>
                             Votre CV est accessible à cette adresse :
-                            <a href="{{ path('cv_partage', { cv: cv.id }) }}">
-                                {{ url('cv_partage', { cv: cv.id }) }}
+                            <a href="{{ path('cv_partage', { user: cv.user.slug, cv: cv.slug }) }}">
+                                {{ url('cv_partage', { user: cv.user.slug, cv: cv.slug }) }}
                             </a>
                         </p>
                     </div>

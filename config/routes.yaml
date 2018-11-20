@@ -35,23 +35,33 @@ cv_modifier:
     requirements:
         id: \d+
 
-cv_partage:
+cv_visualisation:
     path: /cv/{cv}/{extension}
     controller: App\Controller\Cv\PartageController::index
     defaults:
         extension: html
     requirements:
-        id: \d+
-        extension: pdf
+        cv: \d+
+        extension: html|pdf
 
 cv_activation:
-    path: /cv/{cv}/activation
+    path: /cv/activation-cv/{cv}
     controller: App\Controller\Cv\PartageController::activation
     defaults:
         extension: html
     requirements:
         id: \d+
-        extension: pdf
+        extension: html|pdf
+
+cv_partage:
+    path: /cv/{user}/{cv}/{extension}
+    controller: App\Controller\Cv\PartageController::public
+    defaults:
+        extension: html
+    requirements:
+        user: '[a-z\-\.]+'
+        cv: '[a-z\-\.]+'
+        extension: html|pdf
 
 theme_list_json:
     path: /themes/{cv}
