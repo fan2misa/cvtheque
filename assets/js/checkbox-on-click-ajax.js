@@ -34,7 +34,7 @@ $(function () {
                     }
                 },
                 success: function (data, textStatus, jqXHR) {
-                    if (data.checked) {
+                    if (data.checked === "1") {
                         $($checkbox.attr('data-on-click-container'))
                             .show()
                             .html(html);

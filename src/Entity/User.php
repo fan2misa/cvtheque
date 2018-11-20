@@ -13,6 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\EntityListeners({"App\EventListener\UserListener"})
  * @UniqueEntity(fields="email", message="Cette adresse email existe déjà")
  */
 class User implements UserInterface
@@ -36,7 +37,7 @@ class User implements UserInterface
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $email;
 
@@ -84,6 +85,11 @@ class User implements UserInterface
      * @ORM\Column(type="date", nullable=true)
      */
     private $dateAnniversaire;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $slug;
 
     public function __construct()
     {
@@ -297,6 +303,18 @@ class User implements UserInterface
     public function setDateAnniversaire(?\DateTimeInterface $dateAnniversaire): self
     {
         $this->dateAnniversaire = $dateAnniversaire;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
