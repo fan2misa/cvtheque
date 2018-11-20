@@ -44,6 +44,6 @@ class PartageResponseService {
      */
     public function render(Cv $cv, $extension)
     {
-        return $this->getPartageResponse($extension)->render($this->cvWrapperService->generateWrapper($cv));
+        return $this->getPartageResponse($extension)->render($this->cvWrapperService->generateWrapper($cv, $extension));
     }
 }

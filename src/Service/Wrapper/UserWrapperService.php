@@ -6,7 +6,7 @@ use App\Entity\User;
 
 class UserWrapperService {
 
-    public function generateWrapper(User $user)
+    public function generateWrapper(User $user, $extension)
     {
         $userWrapper = new \App\Service\Wrapper\Entity\User();
 

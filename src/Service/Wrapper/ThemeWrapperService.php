@@ -6,7 +6,7 @@ use App\Entity\Theme;
 
 class ThemeWrapperService {
 
-    public function generateWrapper(Theme $theme)
+    public function generateWrapper(Theme $theme, $extension)
     {
         $themeWrapper = new \App\Service\Wrapper\Entity\Theme();
 
