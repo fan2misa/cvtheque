@@ -1,49 +1,43 @@
 
 /* Theme : Standard */
 
-html {
-    margin: 15px;
-}
-
 body {
-    line-height: 1;
     background-color: #fff;
     color: #000;
 }
 
 body * {
-    font-family: 'Roboto', sans-serif;
-    font-size: 12px;
+    font-family: sans-serif;
 }
 
 h1 {
     margin: 0 0 0 10px;
-    font-size: 36px !important;
+    font-size: 2.250em !important;
 }
 
 h2 {
-    font-size: 22px !important;
+    font-size: 1.75em !important;
     margin: 0 0 0 10px;
 }
 
 h3 {
     color: #e67e22;
     border-bottom: 2px solid #e67e22;
-    font-size: 18px !important;
-    margin: 0 0 3px 0;
+    font-size: 1.5em !important;
+    margin: 0 0 5px 0;
 }
 
 h4 {
     color: #2980b9;
-    font-size: 14px !important;
+    font-size: 1.2em !important;
     margin: 0;
 }
 
 h5 {
     color: #777777;
     font-style: italic;
-    font-size: 12px;
-    margin: 0 0 5px 0;
+    font-size: 1.125em;
+    margin: 0 0 10px 0;
 }
 
 .p-1 { padding: 3px; }
@@ -66,10 +60,6 @@ h5 {
 
 .cv-visualisation .header-content {
     float: left;
-}
-
-.cv-visualisation .body {
-    position: relative;
 }
 
 .cv-visualisation .sidebar {
@@ -102,8 +92,4 @@ h5 {
     padding: 0 0 10px 10px;
     margin: 0;
     list-style-type: none;
-}
-
-.cv-visualisation .experiences li {
-    margin-bottom: 3px;
 }

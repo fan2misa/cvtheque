@@ -29,9 +29,9 @@ class Theme {
     /**
      * @return null|string
      */
-    public function getTemplatePathVisualisation(): ?string
+    public function getTemplatePathVisualisation(?string $extension = null): ?string
     {
-        return null !== $this->getTemplatePath() ? $this->getTemplatePath() . '/visualisation.html.twig' : null;
+        return null !== $this->getTemplatePath() ? $this->getTemplatePath() . '/visualisation' . (null !== $extension ? '-' . $extension : '') . '.html.twig' : null;
     }
 
     /**
@@ -71,9 +71,9 @@ class Theme {
     /**
      * @return null|string
      */
-    public function getCssPathVisualisation(): ?string
+    public function getCssPathVisualisation(?string $extension = null): ?string
     {
-        return null !== $this->getPublicPath() ? $this->getPublicPath() . '/css/theme-visualisation.css' : null;
+        return null !== $this->getPublicPath() ? $this->getPublicPath() . '/css/theme-visualisation' . (null !== $extension ? '-' . $extension : '') . '.css' : null;
     }
 
 }

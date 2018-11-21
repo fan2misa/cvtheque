@@ -89,7 +89,8 @@ class ThemeMaker extends AbstractMaker {
             'You can find template at : ' . $this->getTargetTemplatePath($entity->getTemplatePath()),
             'You can find css files at : ' . $this->getTargetPublicPath($entity->getPublicPath()),
             'You can add screenshot image at : ' . $this->getTargetPublicPath($entity->getAvatar()),
-            'If you don\'t want to edit edition part, remove file: ' . $this->getTargetTemplatePath($entity->getTemplatePathEdition())
+            'If you don\'t want to edit edition part, remove file: ' . $this->getTargetTemplatePath($entity->getTemplatePathEdition()),
+            'If you want a specific template for an extension file (html, pdf), you can create it like it: ' . $this->getTargetTemplatePath($entity->getTemplatePath()) . '/visualisation-pdf.html.twig'
         ]);
     }
 
@@ -116,7 +117,13 @@ class ThemeMaker extends AbstractMaker {
         $generator->generateFile($this->getTargetPublicPath($theme->getCssPathEdition()), $this->getTemplateName('theme-edition'), [
             'theme_name' => $input->getArgument('themes-name')
         ]);
-        $generator->generateFile($this->getTargetPublicPath($theme->getCssPathVisualisation()), $this->getTemplateName('theme-visualisation'), [
+        $generator->generateFile($this->getTargetPublicPath($theme->getPublicPath() . '/css/theme-visualisation.css'), $this->getTemplateName('theme-visualisation'), [
+            'theme_name' => $input->getArgument('themes-name')
+        ]);
+        $generator->generateFile($this->getTargetPublicPath($theme->getPublicPath() . '/css/theme-visualisation-html.css'), $this->getTemplateName('theme-visualisation'), [
+            'theme_name' => $input->getArgument('themes-name')
+        ]);
+        $generator->generateFile($this->getTargetPublicPath($theme->getPublicPath() . '/css/theme-visualisation-pdf.css'), $this->getTemplateName('theme-visualisation'), [
             'theme_name' => $input->getArgument('themes-name')
         ]);
     }

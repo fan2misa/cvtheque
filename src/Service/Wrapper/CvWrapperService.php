@@ -20,7 +20,7 @@ class CvWrapperService {
         $this->themeWrapperService = $themeWrapperService;
     }
 
-    public function generateWrapper(Cv $cv)
+    public function generateWrapper(Cv $cv, $extension)
     {
         $cvWrapper = new \App\Service\Wrapper\Entity\Cv();
 
@@ -33,8 +33,8 @@ class CvWrapperService {
             ->setFormations($cv->getFormations())
             ->setExperiences($cv->getExperiences())
             ->setDomainesCompetence($cv->getDomainesCompetence())
-            ->setUser($this->userWrapperService->generateWrapper($cv->getUser()))
-            ->setTheme($this->themeWrapperService->generateWrapper($cv->getTheme()))
+            ->setUser($this->userWrapperService->generateWrapper($cv->getUser(), $extension))
+            ->setTheme($this->themeWrapperService->generateWrapper($cv->getTheme(), $extension))
         ;
 
         return $cvWrapper;

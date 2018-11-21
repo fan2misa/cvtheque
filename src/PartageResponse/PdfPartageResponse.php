@@ -10,26 +10,13 @@ use Dompdf\Options;
 
 class PdfPartageResponse extends PartageResponse {
 
-    private $templating;
-
-    private $appPath;
-
-    private $publicPath;
-
-    public function __construct(\Twig_Environment $templating, $app_path)
-    {
-        $this->templating = $templating;
-        $this->appPath = $app_path;
-        $this->publicPath = $this->appPath . '/public';
-    }
-
     public function render(Cv $cv)
     {
         $cv->setBasePath($this->publicPath);
 
         $dompdf = new Dompdf($this->getOptions($cv));
 
-        $html = $this->templating->render($cv->getTheme()->getTemplatePathVisualisation(), [
+        $html = $this->templating->render($this->getTemplate($cv), [
             'cv' => $cv
         ]);
 
@@ -60,6 +47,12 @@ class PdfPartageResponse extends PartageResponse {
         $pdfStylesheet = new Stylesheet($dompdf);
         $pdfStylesheet->load_css_file($cv->getTheme()->getCssPathGlobal());
         $pdfStylesheet->load_css_file($cv->getTheme()->getCssPathVisualisation());
+        $pdfStylesheet->load_css_file($cv->getTheme()->getCssPathVisualisation($this->getExtension()));
         return $pdfStylesheet;
+    }
+
+    protected function getExtension()
+    {
+        return 'pdf';
     }
 }

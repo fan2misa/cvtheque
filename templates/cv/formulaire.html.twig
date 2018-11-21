@@ -95,6 +95,12 @@
                                 {{ url('cv_partage', { user: cv.user.slug, cv: cv.slug }) }}
                             </a>
                         </p>
+                        <p>
+                            Il est également accessible au format PDF à cette adresse :
+                            <a href="{{ path('cv_partage', { user: cv.user.slug, cv: cv.slug, extension: 'pdf' }) }}">
+                                {{ url('cv_partage', { user: cv.user.slug, cv: cv.slug, extension: 'pdf' }) }}
+                            </a>
+                        </p>
                     </div>
                 </div>
                 <div class="modal-footer">
