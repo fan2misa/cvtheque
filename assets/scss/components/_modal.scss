@@ -11,5 +11,9 @@
 
     .modal-content {
         height: 100%;
+
+        .modal-body {
+            overflow-y: auto;
+        }
     }
 }
