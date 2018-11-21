@@ -1,6 +1,18 @@
 
 /* Theme : Standard */
 
-.cv-visualisation {
+html {
+    margin: 15px;
+}
 
+body * {
+    font-size: 12px;
+}
+
+.cv-visualisation .competences li {
+    margin-bottom: 5px;
+}
+
+.cv-visualisation .experiences li {
+    margin-bottom: 5px;
 }
