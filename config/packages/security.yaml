@@ -30,6 +30,7 @@ security:
                 target: home
 
     access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/(connexion|inscription), roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/cv/[a-z\-\.]+/[a-z\-\.]+(/html|/pdf|/|), roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/(.+), roles: ROLE_USER }
