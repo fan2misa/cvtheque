@@ -20,6 +20,10 @@
                               Mon compte
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-compte-dropdown">
+                                {% if is_granted("ROLE_ADMIN") %}
+                                    <a class="dropdown-item" href="{{ path('sonata_admin_dashboard') }}">Administration</a>
+                                    <div class="dropdown-divider"></div>
+                                {% endif %}
                                 <a class="dropdown-item" href="{{ path('profil') }}">Profil</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ path('deconnexion') }}">Déconnexion</a>

@@ -9,6 +9,8 @@
         "fresh/doctrine-enum-bundle": "^6.2",
         "intervention/image": "^2.4",
         "sensio/framework-extra-bundle": "^5.1",
+        "sonata-project/admin-bundle": "^3.40",
+        "sonata-project/doctrine-orm-admin-bundle": "^3.6",
         "symfony/asset": "*",
         "symfony/console": "*",
         "symfony/expression-language": "*",
