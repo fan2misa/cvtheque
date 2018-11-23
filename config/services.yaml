@@ -12,6 +12,8 @@ parameters:
         avatar_path: 'media/user'
     cv:
         avatar_path: 'media/cv'
+        theme:
+            standard: 'standard'
     theme:
         default: 'https://dummyimage.com/298x421/ecf0f1/7f8c8d'
         avatar_path: 'media/themes'

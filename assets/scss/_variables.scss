@@ -1,14 +1,15 @@
 // Variables
 
-$white: #fff;
-$gray-800: #343a40;
-$dark: $gray-800;
-
 $spacer: 1rem;
 
 $primary: #9b59b6;
 $secondary: #34495e;
 $tertiary: #2c3e50;
+
+$theme-colors: map-merge($theme-colors, (
+    "primary":    $primary,
+    "secondary":  $secondary,
+));
 
 $font-size-base: 1rem;
 

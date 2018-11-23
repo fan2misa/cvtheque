@@ -1,0 +1,4 @@
+
+.alert-error {
+    @include alert-variant(theme-color-level("danger", $alert-bg-level), theme-color-level("danger", $alert-border-level), theme-color-level("danger", $alert-color-level));
+}

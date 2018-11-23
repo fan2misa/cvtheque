@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\Cv;
 use App\Entity\Experience;
 use App\Entity\Formation;
+use App\Entity\Theme;
 use App\ImageFilter\CvAvatarImageFilter;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\Asset\Packages;
@@ -41,6 +42,12 @@ class CVService {
         $this->publicPath = $this->appPath . '/public';
         $this->parameters = $parameters;
         $this->fileSystem = new Filesystem();
+    }
+
+    public function create(): Cv {
+        $cv = new Cv();
+        $cv->setTheme($this->getThemeStandard());
+        return $cv;
     }
 
     public function save(Cv $cv) {
@@ -82,6 +89,11 @@ class CVService {
 
     public function getFormationPeriode(Formation $formation) {
         return "Du " . $formation->getDateDebut()->format('d/m/Y') . " au " . $formation->getDateFin()->format('d/m/Y');
+    }
+
+    public function getThemeStandard(): Theme
+    {
+        return $this->doctrine->getRepository(Theme::class)->findOneBySlug($this->parameters['theme']['standard']);
     }
 
     private function uploadAvatar(Cv $cv) {

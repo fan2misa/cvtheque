@@ -53,5 +53,12 @@
         {% block javascripts %}{% endblock %}
 
         <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+
+        {% if open_modal is defined %}
+            <script type="text/javascript">
+                $('{{ open_modal }}').modal();
+
+            </script>
+        {% endif %}
     </body>
 </html>
