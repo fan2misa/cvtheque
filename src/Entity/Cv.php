@@ -23,6 +23,7 @@ class Cv
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Symfony\Component\Validator\Constraints\NotBlank
      */
     private $nom;
 

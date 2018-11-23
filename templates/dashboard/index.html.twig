@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
+{% use 'flash.html.twig' %}
+
 {% block title %}Tableau de bord{% endblock %}
 
 {% block wrapper %}
     <div class="container">
+
+        {{ block('flash') }}
+
         <div class="row">
             <div class="col-5">
                 {{ include('.inc/user/informations-generales.html.twig', { 'user': app.user }) }}
@@ -11,7 +16,7 @@
             <div class="col-7">
                 <div class="card">
                     <div class="card-body">
-                        {{ include('.inc/user/cv-liste.html.twig', { 'user': app.user }) }}
+                        {{ include('.inc/user/cv-liste.html.twig', { 'user': app.user, 'form': form }) }}
                     </div>
                 </div>
             </div>
