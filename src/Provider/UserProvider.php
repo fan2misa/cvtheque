@@ -21,7 +21,7 @@ class UserProvider implements UserProviderInterface {
         $this->doctrine = $doctrine;
     }
 
-    public function loadUserByUsername($username): UserInterface {
+    public function loadUserByUsername($username): ?UserInterface {
         return $this->doctrine->getRepository(User::class)->findOneByEmail($username);
     }
 
