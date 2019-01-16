@@ -33,7 +33,7 @@ class ThemeMaker extends AbstractMaker {
      */
     public static function getCommandName(): string
     {
-        return 'make:themes';
+        return 'make:theme';
     }
 
     /**

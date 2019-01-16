@@ -59,8 +59,3 @@ services:
               - "MYSQL_USER=${BDD_MYSQL_USER}"
               - "MYSQL_PASSWORD=${BDD_MYSQL_PASSWORD}"
               - "MYSQL_DATABASE=${BDD_MYSQL_DATABASE}"
-              
-    npm:
-        build: ./dockerfiles/npm
-        volumes:
-            - ${SOURCE_ROOT_FOLDER}:/data/
