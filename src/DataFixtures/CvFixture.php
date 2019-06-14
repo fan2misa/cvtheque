@@ -73,8 +73,6 @@ class CvFixture extends AbstractFixture implements DependentFixtureInterface {
             $this->addReference($this->getReferencePath(self::PREFIX_REFERENCE, $data['id']), $entity);
         }
 
-
-
         $manager->flush();
     }
 
@@ -184,7 +182,7 @@ class CvFixture extends AbstractFixture implements DependentFixtureInterface {
     }
 
     protected function getYamlPath() {
-        return "data/cv.yml";
+        return "cv.yml";
     }
 
     public function getDependencies(): array {
@@ -195,4 +193,8 @@ class CvFixture extends AbstractFixture implements DependentFixtureInterface {
         ];
     }
 
+    public static function getGroups(): array
+    {
+        return ['dev'];
+    }
 }

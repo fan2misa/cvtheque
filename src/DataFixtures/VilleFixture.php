@@ -28,7 +28,11 @@ class VilleFixture extends AbstractFixture {
     }
 
     protected function getYamlPath() {
-        return "data/ville.yml";
+        return "ville.yml";
     }
 
+    public static function getGroups(): array
+    {
+        return ['dev'];
+    }
 }

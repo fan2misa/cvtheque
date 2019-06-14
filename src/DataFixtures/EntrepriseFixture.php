@@ -27,7 +27,11 @@ class EntrepriseFixture extends AbstractFixture {
     }
 
     protected function getYamlPath() {
-        return "data/entreprise.yml";
+        return "entreprise.yml";
     }
 
+    public static function getGroups(): array
+    {
+        return ['dev'];
+    }
 }

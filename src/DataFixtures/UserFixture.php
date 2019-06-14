@@ -55,7 +55,12 @@ class UserFixture extends AbstractFixture {
     }
 
     protected function getYamlPath() {
-        return "data/user.yml";
+        return "user.yml";
+    }
+
+    public static function getGroups(): array
+    {
+        return ['initial'];
     }
 
 }

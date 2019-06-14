@@ -7,6 +7,8 @@ parameters:
     locale: 'en'
     intervention:
         driver: gd
+    media:
+        directory: 'media'
     user:
         default: 'https://dummyimage.com/100x120/ecf0f1/7f8c8d'
         avatar_path: 'media/user'
@@ -64,7 +66,7 @@ services:
 
     App\Command\InitCommand:
       public: true
-      arguments: ['@doctrine', '%kernel.project_dir%']
+      arguments: ['@doctrine', '%kernel.project_dir%', '@parameter_bag']
 
     App\Maker\ThemeMaker:
         arguments: ['@doctrine', '%kernel.project_dir%']
