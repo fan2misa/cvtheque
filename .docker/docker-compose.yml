@@ -49,13 +49,13 @@ services:
             - PMA_HOST=database
 
     composer:
-        image: composer/composer
+        build: ./dockerfiles/composer
         volumes:
-            - ${SOURCE_ROOT_FOLDER}:/app/
+        - ${SOURCE_ROOT_FOLDER}:/app/
         links:
-            - database
+        - database
         environment:
-              - "MYSQL_ROOT_PASSWORD=${BDD_MYSQL_ROOT_PASSWORD}"
-              - "MYSQL_USER=${BDD_MYSQL_USER}"
-              - "MYSQL_PASSWORD=${BDD_MYSQL_PASSWORD}"
-              - "MYSQL_DATABASE=${BDD_MYSQL_DATABASE}"
+        - "MYSQL_ROOT_PASSWORD=${BDD_MYSQL_ROOT_PASSWORD}"
+        - "MYSQL_USER=${BDD_MYSQL_USER}"
+        - "MYSQL_PASSWORD=${BDD_MYSQL_PASSWORD}"
+        - "MYSQL_DATABASE=${BDD_MYSQL_DATABASE}"
