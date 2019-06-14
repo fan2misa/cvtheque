@@ -1,5 +1,5 @@
 <div class="media">
-    <img class="mx-auto d-block img-fluid" src="{{ cv_avatar(cv) }}" alt="Generic placeholder image" />
+    <img class="mx-auto d-block img-fluid" src="{{ cv.avatar | media_resize('cv.avatar.filter') }}" alt="Generic placeholder image" />
     <div class="media-body">
         <div class="container-fluid">
             <div class="form-group">

@@ -67,9 +67,10 @@ class User implements UserInterface
     private $tokenInscription;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\Media", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $avatarPath;
+    private $avatar;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Cv", mappedBy="user", orphanRemoval=true)
@@ -221,14 +222,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getAvatarPath()
+    public function getAvatar(): ?Media
     {
-        return $this->avatarPath;
+        return $this->avatar;
     }
 
-    public function setAvatarPath($avatarPath): self
+    public function setAvatar(Media $avatar): self
     {
-        $this->avatarPath = $avatarPath;
+        $this->avatar = $avatar;
 
         return $this;
     }

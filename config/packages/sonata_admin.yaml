@@ -15,6 +15,11 @@ sonata_admin:
                 icon: '<i class="fa fa-file-text-o"></i>'
                 items:
                     - app.admin.cv
+            app.admin.group.media:
+                label: Médias
+                icon: '<i class="fa fa-picture-o"></i>'
+                items:
+                    - admin.media
 
 sonata_block:
     blocks:

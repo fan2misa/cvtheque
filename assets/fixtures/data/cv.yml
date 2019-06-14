@@ -5,6 +5,7 @@
     id: 1
     nom: Développeur web
     theme: standard
+    avatar: 200x250.png
     user_id: 1
     situation_professionnelle: EN_POSTE
     disponibilite: OPPORTUNITE
@@ -117,6 +118,7 @@
     id: 2
     nom: PDG
     theme: standard
+    avatar: 200x250.png
     user_id: 2
     situation_professionnelle: EN_POSTE
     disponibilite: OPPORTUNITE
@@ -146,4 +148,5 @@
     id: 3
     nom: Journaliste
     theme: standard
+    avatar: 200x250.png
     user_id: 3

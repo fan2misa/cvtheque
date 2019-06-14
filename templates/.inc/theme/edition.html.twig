@@ -48,7 +48,7 @@
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <img class="mx-auto d-block img-fluid" src="{{ cv_avatar(cv) }}" alt="Generic placeholder image" />
+                    <img class="mx-auto d-block img-fluid" src="{{ cv.avatar | media_resize('cv.avatar.filter') }}" alt="Generic placeholder image" />
                 </div>
 
                 <div class="modal" id="modal-generale" tabindex="-1" role="dialog">

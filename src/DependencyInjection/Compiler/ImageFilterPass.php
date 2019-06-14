@@ -17,7 +17,7 @@ class ImageFilterPass implements CompilerPassInterface {
 
         $definition = $container->findDefinition(ImageManager::class);
 
-        $taggedServices = $container->findTaggedServiceIds('app.intervention.image_filter');
+        $taggedServices = $container->findTaggedServiceIds('app.intervention_image.image_filter');
 
         foreach ($taggedServices as $id => $tags) {
             $definition->addMethodCall('addImageFilter', [new Reference($id), $id]);

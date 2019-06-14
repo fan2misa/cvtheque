@@ -2,23 +2,25 @@
 
 namespace App\Service;
 
-use Intervention\Image\Filters\FilterInterface;
+use App\Filters\FilterInterface;
 use Intervention\Image\ImageManager as InterventionImageManager;
 use Symfony\Component\Filesystem\Filesystem;
 
 class ImageManager extends InterventionImageManager
 {
     /**
-     * @var ImageFilter
+     * @var FilterInterface
      */
     private $imageFilters;
 
+    private $projectDir;
+
     private $fileSystem;
 
-    public function __construct(array $parameter)
+    public function __construct(string $projectDir)
     {
-        parent::__construct($parameter);
-        $this->imageFilters = [];
+        parent::__construct();
+        $this->projectDir = rtrim($projectDir, DIRECTORY_SEPARATOR) . '/public';
         $this->fileSystem = new Filesystem();
     }
 
@@ -27,39 +29,35 @@ class ImageManager extends InterventionImageManager
         $this->imageFilters[$id] = $imageFilter;
     }
 
+    public function getFilter($id): FilterInterface
+    {
+        return $this->imageFilters[$id];
+    }
+
     public function get($path, $filterId)
     {
         $filter = $this->getFilter($filterId);
 
-        if (!$this->imageExist($filter, $path)) {
-            $this->fileSystem->mkdir($this->getImageDir($filter, $path));
-
-            $image = $this->make($path);
-            $image
-                ->filter($filter)
-                ->save($this->getImagePath($filter, $path));
+        if (!$this->filteredImageExist($path, $filter)) {
+            $this->make($this->projectDir . $path)->filter($filter)->save($this->getFilteredImagePath($this->projectDir . $path, $filter))->destroy();
         }
 
-        return $this->getImagePath($filter, $path);
+        return $this->getFilteredImagePath($path, $filter);
     }
 
-    public function imageExist(ImageFilter $filter, $path)
+    protected function filteredImageExist($path, FilterInterface $filter)
     {
-        return file_exists($this->getImagePath($filter, $path));
+        return $this->fileSystem->exists($this->getFilteredImagePath($path, $filter));
     }
 
-    public function getImageDir(ImageFilter $filter, $path)
+    protected function getFilteredImagePath($path, FilterInterface $filter)
     {
-        return implode('/', [dirname($path), $filter->getName()]);
-    }
+        $directory = pathinfo($path, PATHINFO_DIRNAME) . '/' . trim($filter->getFoldername(), '/');
 
-    public function getImagePath(ImageFilter $filter, $path)
-    {
-        return implode('/', [$this->getImageDir($filter, $path), basename($path)]);
-    }
+        if (!$this->fileSystem->exists($this->projectDir . '/' . ltrim($directory))) {
+            $this->fileSystem->mkdir($this->projectDir . '/' . ltrim($directory));
+        }
 
-    private function getFilter($filter): ImageFilter
-    {
-        return $this->imageFilters[$filter];
+        return $directory . '/' . pathinfo($path, PATHINFO_FILENAME) . '.' . pathinfo($path, PATHINFO_EXTENSION);
     }
 }

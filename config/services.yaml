@@ -58,8 +58,15 @@ services:
         - { name: sonata.admin, manager_type: orm, group: "app.admin.group.cv", label: "Liste des CV" }
         public: true
 
+    app.admin.media:
+        class: App\Admin\MediaAdmin
+        arguments: [~, App\Entity\Media, App\Controller\Admin\MediaAdminController]
+        tags:
+        - { name: sonata.admin, manager_type: orm, group: admin, label: Liste des Médias }
+        public: true
+
     App\Service\ImageManager:
-        arguments: ['%intervention%']
+        arguments: ['%kernel.project_dir%']
 
     App\Provider\UserProvider:
         arguments: ['@doctrine']
@@ -70,6 +77,12 @@ services:
 
     App\Maker\ThemeMaker:
         arguments: ['@doctrine', '%kernel.project_dir%']
+
+    App\EventListener\MediaListener:
+        arguments: ['@App\Service\Media\MediaProviderFactory']
+        tags:
+            - { name: doctrine.orm.entity_listener, event: prePersist, entity: App\Entity\Media }
+            - { name: doctrine.orm.entity_listener, event: preUpdate, entity: App\Entity\Media }
 
     App\EventListener\ThemeListener:
         arguments: ['@assets.packages', '@App\Service\ImageManager', '%kernel.project_dir%/public', '%theme%']
@@ -114,10 +127,25 @@ services:
         tags:
             - { name: app.partage_response, extension: 'pdf' }
 
-    App\ImageFilter\CvAvatarImageFilter:
-        tags:
-        - { name: app.intervention.image_filter }
+    App\Service\Media\MediaProviderFactory:
+        calls:
+            - [ addProvider, ['media.provider.file', '@media.provider.file'] ]
+            - [ addProvider, ['media.provider.image', '@media.provider.image'] ]
 
-    App\ImageFilter\UserAvatarImageFilter:
-        tags:
-        - { name: app.intervention.image_filter }
+    media.provider.file:
+        class: App\Service\Media\Provider\FileProvider
+        arguments: ['@doctrine', '%kernel.project_dir%', '%media%']
+
+    media.provider.image:
+        class: App\Service\Media\Provider\ImageProvider
+        arguments: ['@doctrine', '%kernel.project_dir%/public', '%media%']
+
+    user.avatar.filter:
+        class: App\ImageFilter\ResizeFilter
+        arguments: ['user_avatar', 100, 120]
+        tags: [app.intervention_image.image_filter]
+
+    cv.avatar.filter:
+        class: App\ImageFilter\ResizeFilter
+        arguments: ['cv_avatar', 200, 250]
+        tags: [app.intervention_image.image_filter]

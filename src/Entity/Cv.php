@@ -28,9 +28,10 @@ class Cv
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\Media", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $avatarPath;
+    private $avatar;
 
     /**
      * @ORM\Column(type="SituationProfessionnelleEnumType", nullable=true)
@@ -109,14 +110,14 @@ class Cv
         return $this;
     }
 
-    public function getAvatarPath()
+    public function getAvatar()
     {
-        return $this->avatarPath;
+        return $this->avatar;
     }
 
-    public function setAvatarPath($avatarPath): self
+    public function setAvatar($avatar): self
     {
-        $this->avatarPath = $avatarPath;
+        $this->avatar = $avatar;
 
         return $this;
     }

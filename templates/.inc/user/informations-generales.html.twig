@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <div class="media">
-            <img class="mr-3" src="{{ user_avatar(user) }}" alt="Generic placeholder image">
+            <img class="mr-3" src="{{ user.avatar | media_resize('user.avatar.filter') }}" alt="Generic placeholder image">
             <div class="media-body">
                 <h1 class="mt-0">{{ user.fullname }}</h1>
                 <dl>

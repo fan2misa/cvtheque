@@ -21,9 +21,9 @@ class UserType extends AbstractType
                 'required' => false,
                 'widget' => 'single_text'
             ])
-            ->add('avatarPath', FileType::class, [
+            ->add('avatar', MediaType::class, [
                 'required' => false,
-                'data' => null
+                'provider' => 'media.provider.image'
             ])
         ;
     }

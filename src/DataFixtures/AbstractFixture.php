@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Media;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
@@ -54,6 +55,14 @@ abstract class AbstractFixture extends Fixture implements ContainerAwareInterfac
     protected function createFile($path): File
     {
         return new File($this->getAssetsPath() . '/media/' . ltrim($path, '/'));
+    }
+
+    protected function createMedia($path, $providerName = 'media.provider.image', $context = 'default'): Media
+    {
+        return (new Media())
+            ->setBinaryContent($this->createFile($path))
+            ->setContext($context)
+            ->setProviderName($providerName);
     }
 
     /**

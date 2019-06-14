@@ -20,9 +20,9 @@ class CVType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class)
-            ->add('avatarPath', FileType::class, [
+            ->add('avatar', MediaType::class, [
                 'required' => false,
-                'data' => null
+                'provider' => 'media.provider.image'
             ])
             ->add('contacts', CollectionType::class, [
                 'entry_type' => ContactType::class,

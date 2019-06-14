@@ -29,6 +29,7 @@ class UserFixture extends AbstractFixture {
                     ->setEmail($data['email'])
                     ->setPassword($data['password'])
                     ->setEnabled(!!$data['enabled'])
+                    ->setAvatar($this->createMedia($data['avatar']))
                     ->setRoles($data['roles']);
             
             if (isset($data['contacts'])) {
