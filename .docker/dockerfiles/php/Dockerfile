@@ -17,10 +17,22 @@ RUN docker-php-ext-configure gd --with-gd \
         --with-png-dir=/usr/include/ \
         --with-freetype-dir=/usr/include/
 
-RUN docker-php-ext-install pdo pdo_mysql zip gd
+ADD ./conf/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
+ADD ./conf/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+ADD ./conf/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+ADD conf/core.ini /usr/local/etc/php/conf.d/core.ini
+
+RUN pecl install apcu
+
+RUN pecl install xdebug
+
+RUN docker-php-ext-install pdo pdo_mysql zip gd intl opcache
+
+RUN docker-php-ext-enable apcu xdebug
 
 ENV TZ Europe/Paris
-RUN cp /usr/share/zoneinfo/Europe/Paris /etc/localtime
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 WORKDIR /var/www
 
