@@ -1,7 +1,10 @@
 FROM httpd:2.4
 
-ADD ./conf/vhost-symfony.conf /usr/local/apache2/conf/custom/vhost-symfony.conf
+ADD ./conf/vhost-application.conf /usr/local/apache2/conf/custom/vhost-application.conf
 
-RUN echo "Include conf/custom/vhost-symfony.conf" >> /usr/local/apache2/conf/httpd.conf
+ADD ./conf/oauth /var/oauth/
+RUN chmod 660 /var/oauth/*
+
+RUN echo "Include conf/custom/vhost-application.conf" >> /usr/local/apache2/conf/httpd.conf
 
 WORKDIR /var/www

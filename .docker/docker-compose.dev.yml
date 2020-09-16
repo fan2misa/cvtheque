@@ -1,0 +1,39 @@
+version: '3.0'
+services:
+    database:
+        ports:
+            - ${PORT_DATABASE}:3306
+
+    php:
+        ports:
+            - ${PORT_PHP}:9000
+        depends_on:
+            - database
+            - smtp
+
+    httpd:
+        ports:
+            - ${PORT_HTTPD}:80
+        volumes:
+            - ${SOURCE_ROOT_FOLDER}:/var/www
+        depends_on:
+            - php
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - ${PORT_PHPMYADMIN}:80
+        depends_on:
+            - database
+        environment:
+            - PMA_HOST=database
+
+    node:
+        image: bitnami/node
+        volumes:
+            - ${SOURCE_ROOT_FOLDER}:/app
+
+    smtp:
+        image: djfarrelly/maildev:0.13.4
+        ports:
+            - ${PORT_MAILDEV}:80

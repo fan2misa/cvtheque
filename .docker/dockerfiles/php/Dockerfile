@@ -17,6 +17,10 @@ RUN docker-php-ext-configure gd --with-gd \
         --with-png-dir=/usr/include/ \
         --with-freetype-dir=/usr/include/
 
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+RUN php -r "unlink('composer-setup.php');"
+		
 ADD ./conf/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 ADD ./conf/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 ADD ./conf/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
@@ -31,7 +35,6 @@ RUN docker-php-ext-install pdo pdo_mysql zip gd intl opcache
 RUN docker-php-ext-enable apcu xdebug
 
 ENV TZ Europe/Paris
-
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 WORKDIR /var/www
